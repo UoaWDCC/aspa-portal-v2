@@ -1,9 +1,9 @@
-import { Routes, Route } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout";
-
-import Home from "./routes/Home";
 import About from "./routes/About";
 import Contact from "./routes/Contact";
+import Home from "./routes/Home";
+import Register from "./routes/Register";
 
 export default function App() {
   return (
@@ -12,6 +12,7 @@ export default function App() {
         <Route index element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/register" element={<Register />} />
       </Route>
     </Routes>
   );
