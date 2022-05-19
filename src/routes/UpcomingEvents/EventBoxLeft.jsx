@@ -33,7 +33,7 @@ export default function EventBoxLeft() {
     justifyContent: "center",
     alignItems: "center",
     overflow: "hidden",
-    border: "0.1rem solid white",
+    border: "0.2rem solid white",
     flexBasis: "30%",
   };
 
@@ -44,7 +44,7 @@ export default function EventBoxLeft() {
   };
 
   const rightColumn = {
-    border: "0.1rem solid white",
+    border: "0.2rem solid white",
     flexBasis: "70%",
     display: "flex",
     flexDirection: "column",
