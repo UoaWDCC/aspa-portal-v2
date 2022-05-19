@@ -13,6 +13,9 @@ export default function Header() {
         <li>
           <Link to="/contact">Dashboard</Link>
         </li>
+        <li>
+          <Link to="/upcoming-events">Upcoming Events</Link>
+        </li>
       </ul>
     </nav>
   );
