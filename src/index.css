@@ -3,6 +3,12 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  background-image: url("./routes/UpcomingEvents/images/mainBG.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+}
+
 /*
   Using a slightly modified version of Josh's Custom CSS Reset.
   You can read about it here: https://www.joshwcomeau.com/css/custom-css-reset/
