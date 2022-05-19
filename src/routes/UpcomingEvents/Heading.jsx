@@ -9,7 +9,7 @@ export default function Heading() {
 
   return (
     <div style={headingStyle}>
-      <h1>Upcoming Events</h1>
+      <button>Upcoming Events</button>
     </div>
   );
 }
