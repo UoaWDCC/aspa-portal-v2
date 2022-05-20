@@ -2,13 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-	background-color: #1b1b1b;
-	background-image: url("./assets/mainBG.jpg");
-	background-size: cover;
-	color: white;
-}
-
 /*
   Using a slightly modified version of Josh's Custom CSS Reset.
   You can read about it here: https://www.joshwcomeau.com/css/custom-css-reset/
@@ -27,8 +20,9 @@ body,
 }
 
 body {
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
 }
 
 img,
@@ -59,4 +53,12 @@ h6 {
 
 #root {
 	isolation: isolate;
+}
+
+body {
+	background-color: #1b1b1b;
+	background-image: url("./assets/mainBG.jpg");
+	background-size: cover;
+	color: white;
+	font-family: 'Unna', serif;
 }
