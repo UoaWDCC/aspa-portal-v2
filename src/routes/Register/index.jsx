@@ -3,7 +3,7 @@ import { useReducer } from "react";
 export default function Register() {
   const screens = [Intro, GeneralData, SpecificData, Payment];
 
-  const [screen, sendScreenAction] = useReducer((state, action) => {
+  const [activeScreen, setActiveScreen] = useReducer((state, action) => {
     switch (action) {
       case "next":
         return state >= 3 ? 3 : state + 1;
@@ -16,19 +16,30 @@ export default function Register() {
 
   return (
     <main className="h-full w-full max-w-2xl bg-gray-900 py-16 px-12">
-      {screen !== 0 && (
-        <div>
-          {[1, 2, 3].map((val, i) => (
-            <span key={val} className={i + 1 === screen && `text-yellow-400`}>
-              {val}
-            </span>
-          ))}
-        </div>
-      )}
-      {screens[screen]()}
+      <div>
+        {["i", 1, 2, 3].map((val, i) => (
+          <span key={val} className={i === activeScreen && `text-yellow-400`}>
+            {val}
+          </span>
+        ))}
+      </div>
+      <form action="" className="grid">
+        {screens.map((ScreenWidget, i) => (
+          <section
+            className={`${
+              i === activeScreen
+                ? "block opacity-100 translate-y-0"
+                : "block opacity-0 translate-y-2"
+            } transition row-span-full col-span-full duration-300`}
+            key={ScreenWidget}
+          >
+            {ScreenWidget()}
+          </section>
+        ))}
+      </form>
       <div className="flex gap-2 mt-8">
-        <button onClick={() => sendScreenAction("prev")}>prev</button>
-        <button onClick={() => sendScreenAction("next")}>next</button>
+        <button onClick={() => setActiveScreen("prev")}>prev</button>
+        <button onClick={() => setActiveScreen("next")}>next</button>
       </div>
     </main>
   );
@@ -80,6 +91,7 @@ function GeneralData() {
             name="upi"
           />
         </div>
+        <button type="submit">hello</button>
       </aside>
     </>
   );
