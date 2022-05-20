@@ -1,4 +1,6 @@
 import { useReducer } from "react";
+import { AiOutlineDollar } from "react-icons/ai";
+import { IoLocationOutline, IoTimeOutline } from "react-icons/io5";
 
 export default function Register() {
   const screens = [Intro, GeneralData, SpecificData, Payment];
@@ -15,46 +17,77 @@ export default function Register() {
   }, 0);
 
   return (
-    <main className="h-full w-full max-w-2xl bg-gray-900 py-16 px-12">
+    <main className="h-full w-full flex flex-col gap-8 max-w-2xl bg-gray-900 py-16 px-12">
       <div>
         {["i", 1, 2, 3].map((val, i) => (
-          <span key={val} className={i === activeScreen && `text-yellow-400`}>
+          <span key={val} className={i === activeScreen && "text-yellow-400"}>
             {val}
           </span>
         ))}
       </div>
-      <form action="" className="grid">
-        {screens.map((ScreenWidget, i) => (
+      <form action="." className="grid">
+        {screens.map((ScreenComponent, i) => (
           <section
             className={`${
               i === activeScreen
                 ? "block opacity-100 translate-y-0"
-                : "block opacity-0 translate-y-2"
+                : "none pointer-events-none opacity-0 translate-y-2"
             } transition row-span-full col-span-full duration-300`}
-            key={ScreenWidget}
+            key={ScreenComponent}
           >
-            {ScreenWidget()}
+            {ScreenComponent()}
           </section>
         ))}
       </form>
-      <div className="flex gap-2 mt-8">
-        <button onClick={() => setActiveScreen("prev")}>prev</button>
-        <button onClick={() => setActiveScreen("next")}>next</button>
+      <div className="flex gap-6 mt-8">
+        <button onClick={() => setActiveScreen("prev")}>Back</button>
+        <button
+          className="border-2 border-white px-4 py-2"
+          onClick={() => setActiveScreen("next")}
+        >
+          Continue
+        </button>
       </div>
     </main>
   );
 }
 
 function Intro() {
-  return <h1>Register Section</h1>;
+  return (
+    <>
+      <div className="prose prose-lg prose-h1:text-6xl prose-h1:mb-[0.63em] prose-invert mb-8">
+        <h1>Register</h1>
+        <p>
+          Bring your cue skills, friends, and pool rivals for a casual night of
+          pool! Limited availability so sign up to confirm your spot! (This form
+          will close upon reaching capacity so if you're reading this it's not
+          too late :D)
+        </p>
+      </div>
+      <div className="flex flex-col gap-4 text-lg text-gray-300">
+        <div className="flex gap-4 align-middle">
+          <IoTimeOutline size={24} />
+          <p className="my-auto">Thursday 19th May 2022, 6:30 - 8:00 PM</p>
+        </div>
+        <div className="flex gap-4 align-middle">
+          <IoLocationOutline size={24} />
+          <p className="my-auto">9 City Road, Orange Pool Club</p>
+        </div>
+        <div className="flex gap-4 align-middle">
+          <AiOutlineDollar size={24} />
+          <p className="my-auto">$6.00 with ASPA membership</p>
+        </div>
+      </div>
+    </>
+  );
 }
 
 function GeneralData() {
   return (
     <>
-      <aside className="flex flex-col gap-8 ">
+      <aside className="flex flex-col gap-8">
         <div className="grid grid-cols-2 gap-8">
-          <div className="flex flex-col gap-1">
+          <div className="flex flex-col gap-3">
             <label htmlFor="firstName">First Name</label>
             <input
               className="bg-transparent px-3 py-2 border-2 rounded-lg"
@@ -63,7 +96,7 @@ function GeneralData() {
               name="firstName"
             />
           </div>
-          <div className="flex flex-col gap-1">
+          <div className="flex flex-col gap-3">
             <label htmlFor="firstName">Last Name</label>
             <input
               className="bg-transparent px-3 py-2 border-2 rounded-lg"
@@ -73,7 +106,7 @@ function GeneralData() {
             />
           </div>
         </div>
-        <div className="flex flex-col gap-1">
+        <div className="flex flex-col gap-3">
           <label htmlFor="firstName">Email</label>
           <input
             className="bg-transparent px-3 py-2 border-2 rounded-lg"
@@ -82,7 +115,7 @@ function GeneralData() {
             name="email"
           />
         </div>
-        <div className="flex flex-col gap-1">
+        <div className="flex flex-col gap-3">
           <label htmlFor="firstName">UPI</label>
           <input
             className="bg-transparent px-3 py-2 border-2 rounded-lg"
@@ -91,7 +124,6 @@ function GeneralData() {
             name="upi"
           />
         </div>
-        <button type="submit">hello</button>
       </aside>
     </>
   );
