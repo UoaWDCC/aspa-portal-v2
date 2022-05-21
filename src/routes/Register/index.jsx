@@ -1,5 +1,8 @@
 import { useReducer } from "react";
+import GeneralData from "./GeneralData";
 import Intro from "./Intro";
+import Payment from "./Payment";
+import SpecificData from "./SpecificData";
 
 export default function Register() {
   const screens = [Intro, GeneralData, SpecificData, Payment];
@@ -49,79 +52,4 @@ export default function Register() {
       </div>
     </main>
   );
-}
-
-function GeneralData() {
-  return (
-    <aside className="flex flex-col gap-8">
-      <div className="grid grid-cols-2 gap-8">
-        <div className="flex flex-col gap-3">
-          <label htmlFor="firstName">First Name</label>
-          <input
-            className="bg-transparent px-3 py-2 border-2 rounded-lg"
-            type="text"
-            placeholder="John"
-            name="firstName"
-            id="firstName"
-          />
-        </div>
-        <div className="flex flex-col gap-3">
-          <label htmlFor="firstName">Last Name</label>
-          <input
-            className="bg-transparent px-3 py-2 border-2 rounded-lg"
-            type="text"
-            placeholder="Doe"
-            name="lastName"
-            id="lastName"
-          />
-        </div>
-      </div>
-      <div className="flex flex-col gap-3">
-        <label htmlFor="firstName">Email</label>
-        <input
-          className="bg-transparent px-3 py-2 border-2 rounded-lg"
-          type="text"
-          placeholder="johndoe@gmail.com"
-          name="email"
-          id="email"
-        />
-      </div>
-      <div className="flex flex-col gap-3">
-        <label htmlFor="firstName">UPI</label>
-        <input
-          className="bg-transparent px-3 py-2 border-2 rounded-lg"
-          type="text"
-          placeholder="jdoe727"
-          name="upi"
-          id="upi"
-        />
-      </div>
-    </aside>
-  );
-}
-function SpecificData() {
-  return (
-    <aside className="flex flex-col gap-8">
-      <div className="grid grid-cols-2 gap-8">
-        <div className="flex flex-col gap-3">
-          <label htmlFor="skillLevel">First Name</label>
-          <select
-            className="bg-transparent px-3 py-2 border-2 rounded-lg"
-            type="select"
-            placeholder=""
-            name="skillLevel"
-            id="skillLevel"
-          >
-            <option value="volvo">Volvo</option>
-            <option value="saab">Saab</option>
-            <option value="mercedes">Mercedes</option>
-            <option value="audi">Audi</option>
-          </select>
-        </div>
-      </div>
-    </aside>
-  );
-}
-function Payment() {
-  return <h1>Third section</h1>;
 }
