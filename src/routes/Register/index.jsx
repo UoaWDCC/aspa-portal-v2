@@ -1,10 +1,12 @@
-import { useReducer } from "react";
+import { useReducer, useRef } from "react";
 import GeneralData from "./GeneralData";
 import Payment from "./Payment";
 import RegisterIntro from "./RegisterIntro";
 import SpecificData from "./SpecificData";
 
 export default function Register() {
+  const formEl = useRef(null);
+
   const screens = [RegisterIntro, GeneralData, SpecificData, Payment];
 
   const [activeScreen, setActiveScreen] = useReducer((state, action) => {
@@ -18,6 +20,12 @@ export default function Register() {
     }
   }, 0);
 
+  // const sendForm = () => {
+  //   const FD = new FormData(formEl.current);
+
+  //   console.log(Array.from(FD.entries()));
+  // };
+
   return (
     <main className="h-full w-full flex flex-col gap-8 max-w-2xl bg-gray-900 py-16 px-12">
       <div>
@@ -27,7 +35,7 @@ export default function Register() {
           </span>
         ))}
       </div>
-      <form action="." className="grid">
+      <form action="." className="grid" ref={formEl}>
         {screens.map((ScreenComponent, i) => (
           <section
             className={`${

@@ -27,14 +27,14 @@ const skillLevels = [
 ];
 
 function SkillDropDown() {
-  const [selected, setSelected] = useState(skillLevels[0]);
+  const [selected, setSelected] = useState(0);
 
   return (
     <div className="w-72">
       <Listbox value={selected} onChange={setSelected} name="skillLevel">
         <div className="relative mt-1">
           <Listbox.Button className="relative w-full cursor-default bg-transparent pl-3 pr-10 py-2 border-2 rounded-lg text-left">
-            <span className="block truncate">{selected}</span>
+            <span className="block truncate">{skillLevels[selected]}</span>
             <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
               <HiOutlineSelector
                 className="h-5 w-5 text-gray-400"
@@ -60,7 +60,7 @@ function SkillDropDown() {
                       active ? "bg-gray-700 text-gray-300" : ""
                     }`
                   }
-                  value={skillLevel}
+                  value={i}
                 >
                   {({ selected }) => (
                     <>
