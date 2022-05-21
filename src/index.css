@@ -19,9 +19,13 @@ body,
 	height: 100%;
 }
 
+#root {
+	overflow-y: auto;
+}
+
 body {
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 img,
@@ -52,4 +56,13 @@ h6 {
 
 #root {
 	isolation: isolate;
+}
+
+body {
+	background-color: #1b1b1b;
+	background-image: url("./assets/mainBG.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	color: white;
+	font-family: 'Unna', serif;
 }
