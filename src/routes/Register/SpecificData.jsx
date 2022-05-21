@@ -33,7 +33,7 @@ function SkillDropDown() {
     <div className="w-72">
       <Listbox value={selected} onChange={setSelected} name="skillLevel">
         <div className="relative mt-1">
-          <Listbox.Button className="relative w-full cursor-default bg-transparent pl-3 pr-10 py-2 border-2 rounded-lg text-left">
+          <Listbox.Button className="relative w-full cursor-pointer bg-transparent pl-3 pr-10 py-2 border-2 rounded-lg text-left">
             <span className="block truncate">{skillLevels[selected]}</span>
             <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
               <HiOutlineSelector
@@ -55,11 +55,7 @@ function SkillDropDown() {
               {skillLevels.map((skillLevel, i) => (
                 <Listbox.Option
                   key={i}
-                  className={({ active }) =>
-                    `relative cursor-default select-none py-3 pl-3 pr-10 transition-colors text-gray-300 ${
-                      active ? "bg-gray-700 text-gray-300" : ""
-                    }`
-                  }
+                  className="relative cursor-pointer select-none py-3 pl-3 pr-10 transition-colors text-white hover:bg-gray-700"
                   value={i}
                 >
                   {({ selected }) => (
@@ -96,8 +92,7 @@ function PreviousMemberCheckbox() {
       checked={enabled}
       onChange={setEnabled}
       name="previousMember"
-      className={`${enabled ? "bg-gray-700" : "bg-transparent"}
-          relative inline-flex justify-center items-center h-8 w-8 shrink-0 cursor-pointer rounded-lg border-2 border-white transition-colors duration-200 ease-in-out`}
+      className="relative inline-flex justify-center items-center h-8 w-8 shrink-0 cursor-pointer rounded-lg border-2 border-white transition-colors duration-100 ease-in-out"
     >
       <IoCheckmarkSharp
         aria-hidden="true"
