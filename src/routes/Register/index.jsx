@@ -1,6 +1,5 @@
 import { useReducer } from "react";
-import { AiOutlineDollar } from "react-icons/ai";
-import { IoLocationOutline, IoTimeOutline } from "react-icons/io5";
+import Intro from "./Intro";
 
 export default function Register() {
   const screens = [Intro, GeneralData, SpecificData, Payment];
@@ -52,84 +51,76 @@ export default function Register() {
   );
 }
 
-function Intro() {
-  return (
-    <>
-      <div className="prose prose-lg prose-h1:text-6xl prose-h1:mb-[0.63em] prose-invert mb-8">
-        <h1>Register</h1>
-        <p>
-          Bring your cue skills, friends, and pool rivals for a casual night of
-          pool! Limited availability so sign up to confirm your spot! (This form
-          will close upon reaching capacity so if you're reading this it's not
-          too late :D)
-        </p>
-      </div>
-      <div className="flex flex-col gap-4 text-lg text-gray-300">
-        <div className="flex gap-4 align-middle">
-          <IoTimeOutline size={24} />
-          <p className="my-auto">Thursday 19th May 2022, 6:30 - 8:00 PM</p>
-        </div>
-        <div className="flex gap-4 align-middle">
-          <IoLocationOutline size={24} />
-          <p className="my-auto">9 City Road, Orange Pool Club</p>
-        </div>
-        <div className="flex gap-4 align-middle">
-          <AiOutlineDollar size={24} />
-          <p className="my-auto">$6.00 with ASPA membership</p>
-        </div>
-      </div>
-    </>
-  );
-}
-
 function GeneralData() {
   return (
-    <>
-      <aside className="flex flex-col gap-8">
-        <div className="grid grid-cols-2 gap-8">
-          <div className="flex flex-col gap-3">
-            <label htmlFor="firstName">First Name</label>
-            <input
-              className="bg-transparent px-3 py-2 border-2 rounded-lg"
-              type="text"
-              placeholder="John"
-              name="firstName"
-            />
-          </div>
-          <div className="flex flex-col gap-3">
-            <label htmlFor="firstName">Last Name</label>
-            <input
-              className="bg-transparent px-3 py-2 border-2 rounded-lg"
-              type="text"
-              placeholder="Doe"
-              name="lastName"
-            />
-          </div>
-        </div>
+    <aside className="flex flex-col gap-8">
+      <div className="grid grid-cols-2 gap-8">
         <div className="flex flex-col gap-3">
-          <label htmlFor="firstName">Email</label>
+          <label htmlFor="firstName">First Name</label>
           <input
             className="bg-transparent px-3 py-2 border-2 rounded-lg"
             type="text"
-            placeholder="johndoe@gmail.com"
-            name="email"
+            placeholder="John"
+            name="firstName"
+            id="firstName"
           />
         </div>
         <div className="flex flex-col gap-3">
-          <label htmlFor="firstName">UPI</label>
+          <label htmlFor="firstName">Last Name</label>
           <input
             className="bg-transparent px-3 py-2 border-2 rounded-lg"
             type="text"
-            placeholder="jdoe727"
-            name="upi"
+            placeholder="Doe"
+            name="lastName"
+            id="lastName"
           />
         </div>
-      </aside>
-    </>
+      </div>
+      <div className="flex flex-col gap-3">
+        <label htmlFor="firstName">Email</label>
+        <input
+          className="bg-transparent px-3 py-2 border-2 rounded-lg"
+          type="text"
+          placeholder="johndoe@gmail.com"
+          name="email"
+          id="email"
+        />
+      </div>
+      <div className="flex flex-col gap-3">
+        <label htmlFor="firstName">UPI</label>
+        <input
+          className="bg-transparent px-3 py-2 border-2 rounded-lg"
+          type="text"
+          placeholder="jdoe727"
+          name="upi"
+          id="upi"
+        />
+      </div>
+    </aside>
   );
 }
 function SpecificData() {
-  return <h1>Second Section</h1>;
+  return (
+    <aside className="flex flex-col gap-8">
+      <div className="grid grid-cols-2 gap-8">
+        <div className="flex flex-col gap-3">
+          <label htmlFor="skillLevel">First Name</label>
+          <select
+            className="bg-transparent px-3 py-2 border-2 rounded-lg"
+            type="select"
+            placeholder=""
+            name="skillLevel"
+            id="skillLevel"
+          >
+            <option value="volvo">Volvo</option>
+            <option value="saab">Saab</option>
+            <option value="mercedes">Mercedes</option>
+            <option value="audi">Audi</option>
+          </select>
+        </div>
+      </div>
+    </aside>
+  );
 }
 function Payment() {
   return <h1>Third section</h1>;
