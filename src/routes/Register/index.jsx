@@ -1,11 +1,11 @@
 import { useReducer } from "react";
 import GeneralData from "./GeneralData";
-import Intro from "./Intro";
 import Payment from "./Payment";
+import RegisterIntro from "./RegisterIntro";
 import SpecificData from "./SpecificData";
 
 export default function Register() {
-  const screens = [Intro, GeneralData, SpecificData, Payment];
+  const screens = [RegisterIntro, GeneralData, SpecificData, Payment];
 
   const [activeScreen, setActiveScreen] = useReducer((state, action) => {
     switch (action) {

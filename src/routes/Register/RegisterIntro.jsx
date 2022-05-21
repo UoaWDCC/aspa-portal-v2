@@ -1,7 +1,7 @@
 import { AiOutlineDollar } from "react-icons/ai";
 import { IoLocationOutline, IoTimeOutline } from "react-icons/io5";
 
-export default function Intro() {
+export default function RegisterIntro() {
   return (
     <>
       <div className="prose prose-lg prose-h1:text-6xl prose-h1:mb-[0.63em] prose-invert mb-8">

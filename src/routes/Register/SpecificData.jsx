@@ -1,6 +1,7 @@
-import { Listbox, Transition } from "@headlessui/react";
+import { Listbox, Switch, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import { HiCheck, HiOutlineSelector } from "react-icons/hi";
+import { IoCheckmarkSharp } from "react-icons/io5";
 
 export default function SpecificData() {
   return (
@@ -10,6 +11,10 @@ export default function SpecificData() {
           <label htmlFor="skillLevel">Skill level</label>
           <SkillDropDown />
         </div>
+      </div>
+      <div className="flex flex-col gap-3">
+        <label htmlFor="previousMember">Previous ASPA Member</label>
+        <PreviousMemberCheckbox />
       </div>
     </aside>
   );
@@ -46,7 +51,7 @@ function SkillDropDown() {
             leaveFrom="opacity-100 translate-y-0"
             leaveTo="opacity-0 translate-y-2"
           >
-            <Listbox.Options className="absolute mt-2 max-h-60 w-full overflow-y-auto overflow-x-hidden rounded-md bg-gray-800 text-sm border-2 border-gray-500">
+            <Listbox.Options className="absolute mt-2 max-h-60 w-full overflow-y-auto overflow-x-hidden rounded-md bg-gray-800 text-sm border-2 border-gray-500 z-10">
               {skillLevels.map((skillLevel, i) => (
                 <Listbox.Option
                   key={i}
@@ -80,5 +85,26 @@ function SkillDropDown() {
         </div>
       </Listbox>
     </div>
+  );
+}
+
+function PreviousMemberCheckbox() {
+  const [enabled, setEnabled] = useState(false);
+
+  return (
+    <Switch
+      checked={enabled}
+      onChange={setEnabled}
+      name="previousMember"
+      className={`${enabled ? "bg-gray-700" : "bg-transparent"}
+          relative inline-flex justify-center items-center h-8 w-8 shrink-0 cursor-pointer rounded-lg border-2 border-white transition-colors duration-200 ease-in-out`}
+    >
+      <IoCheckmarkSharp
+        aria-hidden="true"
+        size={48}
+        className={`${enabled ? "opacity-100" : "opacity-0"}
+            pointer-events-none`}
+      />
+    </Switch>
   );
 }
