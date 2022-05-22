@@ -1,14 +1,6 @@
 export default function Heading() {
-  const headingStyle = {
-    display: "flex",
-    justifyContent: "center",
-    fontSize: "3.5rem",
-    color: "#ffffff",
-    margin: "2rem",
-  };
-
   return (
-    <div style={headingStyle}>
+    <div className="flex justify-center text-7xl text-white m-10">
       <button>Upcoming Events</button>
     </div>
   );
