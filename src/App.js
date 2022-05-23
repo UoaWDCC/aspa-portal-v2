@@ -4,6 +4,7 @@ import About from "./routes/About";
 import Contact from "./routes/Contact";
 import Home from "./routes/Home";
 import Register from "./routes/Register";
+import UpcomingEvents from "./routes/UpcomingEvents";
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/upcoming-events" element={<UpcomingEvents />} />
         </Route>
       </Routes>
     </div>

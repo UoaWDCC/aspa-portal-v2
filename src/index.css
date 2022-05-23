@@ -3,6 +3,12 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  background-image: url("./routes/UpcomingEvents/images/mainBG.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+}
+
 /*
   Using a slightly modified version of Josh's Custom CSS Reset.
   You can read about it here: https://www.joshwcomeau.com/css/custom-css-reset/
@@ -10,14 +16,14 @@
 *,
 *::before,
 *::after {
-	margin: 0;
-	box-sizing: border-box;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 html,
 body,
 #root {
-	height: 100%;
+  height: 100%;
 }
 
 #root {
@@ -25,8 +31,8 @@ body,
 }
 
 body {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 img,
@@ -34,15 +40,15 @@ picture,
 video,
 canvas,
 svg {
-	display: block;
-	max-width: 100%;
+  display: block;
+  max-width: 100%;
 }
 
 input,
 button,
 textarea,
 select {
-	font: inherit;
+  font: inherit;
 }
 
 p,
@@ -52,11 +58,11 @@ h3,
 h4,
 h5,
 h6 {
-	overflow-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 #root {
-	isolation: isolate;
+  isolation: isolate;
 }
 
 body {
