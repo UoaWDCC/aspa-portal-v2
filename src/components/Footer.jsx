@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
-    <nav className="absolute font-['Poppins'] font-normal text-sm bottom-0 ml-10 mb-8 leading-10">
+    <nav className="font-['Poppins'] font-normal text-sm bottom-0 ml-10 mb-8 mt-auto leading-10">
       <ul>
         <li>
           <Link to="/about">about</Link>
