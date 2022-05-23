@@ -6,10 +6,10 @@ export default function Layout() {
   return (
     <>
       <Header />
-      <Footer />
-
       {/* An <Outlet> renders the active route component, such as <Home /> or <Contact /> */}
       <Outlet />
+
+      <Footer />
     </>
   );
 }
