@@ -1,9 +1,13 @@
-import { useReducer } from "react";
-import { AiOutlineDollar } from "react-icons/ai";
-import { IoLocationOutline, IoTimeOutline } from "react-icons/io5";
+import { useReducer, useRef } from "react";
+import GeneralData from "./GeneralData";
+import Payment from "./Payment";
+import RegisterIntro from "./RegisterIntro";
+import SpecificData from "./SpecificData";
 
 export default function Register() {
-  const screens = [Intro, GeneralData, SpecificData, Payment];
+  const formEl = useRef(null);
+
+  const screens = [RegisterIntro, GeneralData, SpecificData, Payment];
 
   const [activeScreen, setActiveScreen] = useReducer((state, action) => {
     switch (action) {
@@ -16,6 +20,12 @@ export default function Register() {
     }
   }, 0);
 
+  // const sendForm = () => {
+  //   const FD = new FormData(formEl.current);
+
+  //   console.log(Array.from(FD.entries()));
+  // };
+
   return (
     <main className="h-full w-full flex flex-col gap-8 max-w-2xl bg-gray-900 py-16 px-12">
       <div>
@@ -25,7 +35,7 @@ export default function Register() {
           </span>
         ))}
       </div>
-      <form action="." className="grid">
+      <form action="." className="grid" ref={formEl}>
         {screens.map((ScreenComponent, i) => (
           <section
             className={`${
@@ -50,87 +60,4 @@ export default function Register() {
       </div>
     </main>
   );
-}
-
-function Intro() {
-  return (
-    <>
-      <div className="prose prose-lg prose-h1:text-6xl prose-h1:mb-[0.63em] prose-invert mb-8">
-        <h1>Register</h1>
-        <p>
-          Bring your cue skills, friends, and pool rivals for a casual night of
-          pool! Limited availability so sign up to confirm your spot! (This form
-          will close upon reaching capacity so if you're reading this it's not
-          too late :D)
-        </p>
-      </div>
-      <div className="flex flex-col gap-4 text-lg text-gray-300">
-        <div className="flex gap-4 align-middle">
-          <IoTimeOutline size={24} />
-          <p className="my-auto">Thursday 19th May 2022, 6:30 - 8:00 PM</p>
-        </div>
-        <div className="flex gap-4 align-middle">
-          <IoLocationOutline size={24} />
-          <p className="my-auto">9 City Road, Orange Pool Club</p>
-        </div>
-        <div className="flex gap-4 align-middle">
-          <AiOutlineDollar size={24} />
-          <p className="my-auto">$6.00 with ASPA membership</p>
-        </div>
-      </div>
-    </>
-  );
-}
-
-function GeneralData() {
-  return (
-    <>
-      <aside className="flex flex-col gap-8">
-        <div className="grid grid-cols-2 gap-8">
-          <div className="flex flex-col gap-3">
-            <label htmlFor="firstName">First Name</label>
-            <input
-              className="bg-transparent px-3 py-2 border-2 rounded-lg"
-              type="text"
-              placeholder="John"
-              name="firstName"
-            />
-          </div>
-          <div className="flex flex-col gap-3">
-            <label htmlFor="firstName">Last Name</label>
-            <input
-              className="bg-transparent px-3 py-2 border-2 rounded-lg"
-              type="text"
-              placeholder="Doe"
-              name="lastName"
-            />
-          </div>
-        </div>
-        <div className="flex flex-col gap-3">
-          <label htmlFor="firstName">Email</label>
-          <input
-            className="bg-transparent px-3 py-2 border-2 rounded-lg"
-            type="text"
-            placeholder="johndoe@gmail.com"
-            name="email"
-          />
-        </div>
-        <div className="flex flex-col gap-3">
-          <label htmlFor="firstName">UPI</label>
-          <input
-            className="bg-transparent px-3 py-2 border-2 rounded-lg"
-            type="text"
-            placeholder="jdoe727"
-            name="upi"
-          />
-        </div>
-      </aside>
-    </>
-  );
-}
-function SpecificData() {
-  return <h1>Second Section</h1>;
-}
-function Payment() {
-  return <h1>Third section</h1>;
 }
