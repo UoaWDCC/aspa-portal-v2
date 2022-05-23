@@ -1,8 +1,9 @@
+import aspaLogo from "./images/ASPA_logo_inverted.png";
 import "./assets/fonts.css";
 
 export default function EventBoxLeft() {
   return (
-    <div className="w-4/5 my-12 mx-auto h-100 text-white flex bg-neutral-900">
+    <div className="w-4/5 my-12 mx-auto h-96 text-white flex bg-neutral-900 overflow-hidden">
       <div className="flex justify-center align-center overflow-hidden border-solid border-2 border-white basis-1/3">
         <img
           src={require("./images/testImg.jpg")}
@@ -10,7 +11,8 @@ export default function EventBoxLeft() {
           className="flex-shrink-0 min-w-full min-h-full"
         />
       </div>
-      <div className="border-solid border-2 border-white basis-2/3 flex flex-col">
+      <div className="relative border-solid border-2 border-white basis-2/3 flex flex-col">
+        <img src={aspaLogo} alt="" className="absolute bottom-0 right-0" />
         <div className="text-center text-6xl text-white basis-1/4 p-4 playfair">
           <h2>Event A</h2>
         </div>
