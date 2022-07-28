@@ -1,5 +1,3 @@
-const getUser = (req, res) => {
-  res.json({ user: "USER" });
+export const getUser = (req, res) => {
+  res.send("SENDING FROM USER ROUTE");
 };
-
-module.exports = getUser;

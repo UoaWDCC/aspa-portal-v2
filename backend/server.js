@@ -3,8 +3,6 @@ import cors from "cors";
 import mongoose from "mongoose";
 
 const app = express();
-const cors = require("cors");
-require("dotenv").config({ path: "./config.env" });
 const port = process.env.PORT || 5000;
 const dbURL =
   process.env.DB_URL ||
