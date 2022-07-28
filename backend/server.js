@@ -14,9 +14,8 @@ import eventRoute from "./routes/event.js";
 
 app.use(cors());
 app.use(express.json());
-app.use(require("./routes/record"));
-// get driver connection
-const dbo = require("./db/conn");
+
+app.use("/user", userRoute);
 
 mongoose
   .connect(dbURL)
