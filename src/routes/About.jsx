@@ -2,22 +2,18 @@ import MyImage from "./UpcomingEvents/images/ASPA_logo_inverted.png";
 
 export default function About() {
   return (
-    <div className="mx-32 py-28">
-      <div className="flex">
+    <div className="mx-32 pt-8 pb-28">
+      <div className="flex items-center">
         <div className="prose text-white ">
           <h5 className="text-white leading-none mb-2">WHO ARE WE?</h5>
-          <div className="w-3/4 overflow-x-auto">
-            <h1 className="text-white leading-none text-5xl">
-              Auckland Student Pool Association
-            </h1>
-          </div>
+          <h1 className="text-white leading-none text-5xl mb-0">
+            Auckland Student Pool Association
+          </h1>
         </div>
-        <div className="justify-center items-center h-64 w-64">
-          <img src={MyImage} alt="logo" />
-        </div>
+        <img className="max-w-[40%]" src={MyImage} alt="logo" />
       </div>
       <div>
-        <p className="max-w-[100ch] text-2xl">
+        <p className="max-w-[100ch] text-xl">
           The Auckland Student Pool Association (ASPA), based in the University
           of Auckland, focuses on faciliating a supporting environment that
           brings people together who are passionate about pool and aims to
