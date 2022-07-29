@@ -13,7 +13,7 @@ import eventRoute from "./routes/event.js";
 app.use(cors());
 app.use(express.json());
 
-app.use("/user", userRoute);
+app.use("/event", eventRoute);
 
 mongoose
   .connect(dbURL)
