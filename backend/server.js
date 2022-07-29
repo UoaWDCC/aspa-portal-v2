@@ -8,12 +8,12 @@ const dbURL =
   process.env.DB_URL ||
   "mongodb+srv://123:123@cluster0.3rsko.mongodb.net/?retryWrites=true&w=majority";
 
-import userRoute from "./routes/user.js";
+import eventRoute from "./routes/event.js";
 
 app.use(cors());
 app.use(express.json());
 
-app.use("/user", userRoute);
+app.use("/event", eventRoute);
 
 mongoose
   .connect(dbURL)
