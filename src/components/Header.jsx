@@ -18,8 +18,8 @@ export default function Header() {
           <IoSearch size="20" />
           <span>Search</span>
         </Link>
-        <Link to="/about">Login</Link>
-        <Link to="/upcoming-events">Register</Link>
+        <Link to="/">Login</Link>
+        <Link to="/register">Register</Link>
       </div>
     </nav>
   );
