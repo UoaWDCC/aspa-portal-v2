@@ -24,3 +24,20 @@ export const createEvent = async (req, res) => {
     res.json(error);
   }
 };
+
+export const updateEvent = async (req, res) => {
+  try {
+    const { eventId } = req.params;
+
+    const event = await Event.findByIdAndUpdate(
+      { _id: eventId },
+      {
+        eventTitle: "ok updated",
+      }
+    );
+
+    res.json(event);
+  } catch (error) {
+    res.json(error);
+  }
+};
