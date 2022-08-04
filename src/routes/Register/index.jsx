@@ -4,6 +4,18 @@ import Payment from "./Payment";
 import RegisterIntro from "./RegisterIntro";
 import SpecificData from "./SpecificData";
 
+const Line = () => (
+  <svg
+    width="109"
+    height="1"
+    viewBox="0 0 109 1"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <line y1="0.5" x2="109" y2="0.5" stroke="white" />
+  </svg>
+);
+
 export default function Register() {
   const formEl = useRef(null);
 
@@ -28,12 +40,14 @@ export default function Register() {
 
   return (
     <main className="h-full w-full flex flex-col gap-8 max-w-2xl bg-gray-900 py-16 px-12">
-      <div>
-        {["i", 1, 2, 3].map((val, i) => (
-          <span key={val} className={i === activeScreen && "text-yellow-400"}>
-            {val}
-          </span>
-        ))}
+      <div className="flex mx-12 gap-6 justify-between items-center text-5xl mb-8">
+        <span className={activeScreen === 0 && "text-yellow-400"}>i</span>
+        <Line />
+        <span className={activeScreen === 1 && "text-yellow-400"}>1</span>
+        <Line />
+        <span className={activeScreen === 2 && "text-yellow-400"}>2</span>
+        <Line />
+        <span className={activeScreen === 3 && "text-yellow-400"}>3</span>
       </div>
       <form action="." className="grid" ref={formEl}>
         {screens.map((ScreenComponent, i) => (
