@@ -1,6 +1,7 @@
 import Heading from "./Heading";
 import EventBoxLeft from "./EventBoxLeft";
 import EventBoxRight from "./EventBoxRight";
+import ViewEvents from "./ViewEvents";
 
 export default function UpcomingEvents() {
   return (
@@ -10,6 +11,7 @@ export default function UpcomingEvents() {
         <EventBoxLeft />
         <EventBoxRight />
         <EventBoxLeft />
+        <ViewEvents />
       </div>
     </div>
   );
