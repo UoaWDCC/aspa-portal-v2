@@ -6,7 +6,7 @@ const app = express();
 const port = process.env.PORT || 5000;
 const dbURL =
   process.env.DB_URL ||
-  "mongodb+srv://123:123@cluster0.3rsko.mongodb.net/?retryWrites=true&w=majority";
+  "mongodb+srv://wdcc:wdcc123@cluster0.dhxrxle.mongodb.net/?retryWrites=true&w=majority";
 
 import eventRoute from "./routes/event.js";
 
