@@ -1,7 +1,14 @@
+import { useState } from "react";
 import aspaLogo from "./images/ASPA_logo_inverted.png";
 import "./assets/fonts.css";
 
 export default function EventBoxLeft() {
+  const [edit, setEdit] = useState(false);
+
+  const toggleEdit = () => {
+    setEdit(!edit);
+  };
+
   return (
     <div className="w-4/5 h-1/2 text-white flex flex-col md:flex-row flex-wrap bg-neutral-900 overflow-hidden last:mb-10">
       <div className="flex justify-center align-center overflow-hidden border-solid border-2 border-white basis-1/3">
@@ -12,6 +19,12 @@ export default function EventBoxLeft() {
         />
       </div>
       <div className="relative border-solid border-2 border-white md:basis-2/3 flex flex-col overflow-hidden">
+        <button
+          className="absolute top-1 right-3 z-50 text-5xl"
+          onClick={toggleEdit}
+        >
+          &#8801;
+        </button>
         <img src={aspaLogo} alt="" className="absolute bottom-0 right-0" />
         <div className="text-center text-6xl text-white basis-1/4 p-4 playfair">
           <h2>Event A</h2>
@@ -29,7 +42,10 @@ export default function EventBoxLeft() {
           <h4>THURSDAY . 19/05 6:30PM - 8:30PM</h4>
         </div>
         <div className="flex justify-center align-center px-4 pt-4 pb-8 basis-1/4">
-          <button className="text-base border-solid border-2 border-white w-4/5 h-12 playfair">
+          <button
+            className="text-base border-solid border-2 border-white w-4/5 h-12 playfair z-50"
+            onClick={() => window.open("https://google.com", "_blank")}
+          >
             Register
           </button>
         </div>
