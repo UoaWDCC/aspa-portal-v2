@@ -29,7 +29,7 @@ export default function EventBoxLeft() {
           <h4>THURSDAY . 19/05 6:30PM - 8:30PM</h4>
         </div>
         <div className="flex justify-center align-center px-4 pt-4 pb-8 basis-1/4">
-          <button className="text-base border-solid border-2 border-white w-4/5 h-12 playfair">
+          <button className="text-base border-solid border-2 border-white px-28 md:px-40 h-12 playfair">
             Register
           </button>
         </div>
