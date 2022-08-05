@@ -1,3 +1,4 @@
+import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoSearch } from "react-icons/io5";
@@ -6,6 +7,43 @@ import Logo from "../assets/logo.svg";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+
+  const mobileMenuVariants = {
+    open: {
+      opacity: 1,
+      transition: {
+        duration: 0.25,
+        staggerChildren: 0.05,
+        when: "beforeChildren",
+      },
+    },
+    closed: {
+      opacity: 0,
+      transition: {
+        duration: 0.25,
+        staggerChildren: 0.05,
+      },
+    },
+  };
+
+  const menuLinkVariants = {
+    open: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: "spring",
+        bounce: 0,
+      },
+    },
+    closed: {
+      opacity: 0,
+      y: -24,
+      transition: {
+        type: "spring",
+        bounce: 0,
+      },
+    },
+  };
 
   return (
     <>
@@ -36,22 +74,38 @@ export default function Header() {
           <Link to="/register">Register</Link>
         </div>
       </nav>
-      {isOpen && (
-        <div className="fixed inset-0 bg-gray-900 flex flex-col justify-center items-center p-4 gap-8 text-xl z-40 md:hidden">
-          <Link onClick={() => setIsOpen(false)} to="/about">
-            About
-          </Link>
-          <Link onClick={() => setIsOpen(false)} to="/upcoming-events">
-            Upcoming Events
-          </Link>
-          <Link onClick={() => setIsOpen(false)} to="/login">
-            Login
-          </Link>
-          <Link onClick={() => setIsOpen(false)} to="/register">
-            Register
-          </Link>
-        </div>
-      )}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            variants={mobileMenuVariants}
+            initial="closed"
+            animate="open"
+            exit="closed"
+            className="fixed inset-0 bg-gray-900 flex flex-col justify-center items-center p-4 gap-8 text-xl z-40 md:hidden"
+          >
+            <motion.span variants={menuLinkVariants}>
+              <Link onClick={() => setIsOpen(false)} to="/about">
+                About
+              </Link>
+            </motion.span>
+            <motion.span variants={menuLinkVariants}>
+              <Link onClick={() => setIsOpen(false)} to="/upcoming-events">
+                Upcoming Events
+              </Link>
+            </motion.span>
+            <motion.span variants={menuLinkVariants}>
+              <Link onClick={() => setIsOpen(false)} to="/login">
+                Login
+              </Link>
+            </motion.span>
+            <motion.span variants={menuLinkVariants}>
+              <Link onClick={() => setIsOpen(false)} to="/register">
+                Register
+              </Link>
+            </motion.span>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }
