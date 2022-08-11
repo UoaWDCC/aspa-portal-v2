@@ -8,7 +8,6 @@ export default function UpcomingEvents() {
     <div className="isolate">
       <Heading />
       <div className="flex flex-col gap-8 p-8 justify-center items-center">
-        <EventForm />
         <EventBoxLeft />
         <EventBoxRight />
         <EventBoxLeft />
