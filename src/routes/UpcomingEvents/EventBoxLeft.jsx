@@ -4,6 +4,18 @@ import "./assets/fonts.css";
 
 export default function EventBoxLeft() {
   const [edit, setEdit] = useState(false);
+  const [eventTitle, setEventTitle] = useState("A");
+  const [eventDescription, setEventDescription] = useState("B");
+  const [eventLocation, setEventLocation] = useState("C");
+
+  const sendData = () => {
+    axios.post("http://localhost:5000/event", {
+      eventTitle,
+      eventDescription,
+      eventLocation,
+    });
+    console.log("AAAAAAAAAAAAAAAA");
+  };
 
   const toggleEdit = () => {
     setEdit(!edit);
@@ -96,6 +108,7 @@ export default function EventBoxLeft() {
                 <button
                   type="submit"
                   className="text-base border-solid border-2 border-white w-4/5 h-12 playfair z-50"
+                  onClick={sendData}
                 >
                   SUBMIT
                 </button>
