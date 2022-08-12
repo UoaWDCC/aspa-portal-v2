@@ -96,7 +96,7 @@ export default function EventBoxLeft(objectId) {
                   name="title"
                   onChange={(event) => setEventTitle(event.target.value)}
                 >
-                  PLACEHOLDER TEXT
+                  {eventData?.eventTitle}
                 </textarea>
               </div>
               <div className="m-5">
@@ -106,7 +106,7 @@ export default function EventBoxLeft(objectId) {
                   name="description"
                   onChange={(event) => setEventDescription(event.target.value)}
                 >
-                  PLACEHOLDER TEXT
+                  {eventData?.eventDescription}
                 </textarea>
               </div>
               <div className="m-5">
@@ -116,7 +116,7 @@ export default function EventBoxLeft(objectId) {
                   name="location"
                   onChange={(event) => setEventLocation(event.target.value)}
                 >
-                  PLACEHOLDER TEXT
+                  {eventData?.eventLocation}
                 </textarea>
               </div>
               <div className="m-5">
