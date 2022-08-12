@@ -11,13 +11,12 @@ export const getEvents = async (req, res) => {
 
 export const createEvent = async (req, res) => {
   try {
-    const { eventData } = req.body;
     console.log(req.body);
     console.log("AAAAAAAAAAA");
     const event = new Event({
-      eventTitle: eventData.eventTitle,
-      eventDescription: eventData.eventDescription,
-      eventLocation: eventData.eventLocation,
+      eventTitle: req.body.eventTitle,
+      eventDescription: req.body.eventDescription,
+      eventLocation: req.body.eventLocation,
       eventDate: new Date(),
     });
     await event.save();
