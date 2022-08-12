@@ -28,12 +28,16 @@ export const createEvent = async (req, res) => {
 
 export const updateEvent = async (req, res) => {
   try {
+    console.log("PATCH REQUEST");
     const { eventId } = req.params;
 
     const event = await Event.findByIdAndUpdate(
       { _id: eventId },
       {
-        eventTitle: "ok updated",
+        eventTitle: req.body.eventTitle,
+        eventDescription: req.body.eventDescription,
+        eventLocation: req.body.eventLocation,
+        eventDate: new Date(),
       }
     );
 

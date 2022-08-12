@@ -3,19 +3,21 @@ import aspaLogo from "./images/ASPA_logo_inverted.png";
 import "./assets/fonts.css";
 import axios from "axios";
 
-export default function EventBoxLeft() {
+export default function EventBoxLeft(objectId) {
   const [edit, setEdit] = useState(false);
   const [eventTitle, setEventTitle] = useState("");
   const [eventDescription, setEventDescription] = useState("");
   const [eventLocation, setEventLocation] = useState("");
 
-  const sendData = () => {
-    axios.post("http://localhost:5000/event", {
+  const sendData = (event) => {
+    event.preventDefault();
+    axios.patch(`http://localhost:5000/event/${objectId.objectId}`, {
       eventTitle,
       eventDescription,
       eventLocation,
     });
     console.log("AAAAAAAAAAAAAAAA");
+    console.log(objectId.objectId);
   };
 
   const toggleEdit = () => {
