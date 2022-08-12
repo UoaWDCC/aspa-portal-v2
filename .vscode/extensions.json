@@ -6,7 +6,6 @@
 	"recommendations": [
 		"dbaeumer.vscode-eslint",
 		"bradlc.vscode-tailwindcss",
-		"csstools.postcss"
 	],
 	// List of extensions recommended by VS Code that should not be recommended for users of this workspace.
 	"unwantedRecommendations": []
