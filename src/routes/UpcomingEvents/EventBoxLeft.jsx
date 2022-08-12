@@ -88,9 +88,7 @@ export default function EventBoxLeft() {
                 <textarea
                   className="text-xl z-50 bg-neutral-800 justify-center unna w-full"
                   name="title"
-                  onKeyDown={(event) =>
-                    setEventTitle(eventTitle + `${event.key}`)
-                  }
+                  onChange={(event) => setEventTitle(event.target.value)}
                 >
                   PLACEHOLDER TEXT
                 </textarea>
@@ -100,6 +98,7 @@ export default function EventBoxLeft() {
                 <textarea
                   className="text-xl z-50 bg-neutral-800 justify-center unna w-full"
                   name="description"
+                  onChange={(event) => setEventDescription(event.target.value)}
                 >
                   PLACEHOLDER TEXT
                 </textarea>
@@ -109,6 +108,7 @@ export default function EventBoxLeft() {
                 <textarea
                   className="text-xl z-50 bg-neutral-800 justify-center unna w-full"
                   name="location"
+                  onChange={(event) => setEventLocation(event.target.value)}
                 >
                   PLACEHOLDER TEXT
                 </textarea>
