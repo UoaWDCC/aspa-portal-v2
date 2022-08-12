@@ -1,13 +1,22 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import aspaLogo from "./images/ASPA_logo_inverted.png";
 import "./assets/fonts.css";
 import axios from "axios";
 
 export default function EventBoxLeft(objectId) {
+  const [eventData, setEventData] = useState(null);
   const [edit, setEdit] = useState(false);
   const [eventTitle, setEventTitle] = useState("");
   const [eventDescription, setEventDescription] = useState("");
   const [eventLocation, setEventLocation] = useState("");
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:5000/event/${objectId.objectId}`)
+      .then((response) => setEventData(response.data))
+      .catch((error) => console.log(error));
+    console.log(eventData);
+  }, [eventData]);
 
   const sendData = (event) => {
     event.preventDefault();
@@ -53,18 +62,13 @@ export default function EventBoxLeft(objectId) {
             </button>
             <img src={aspaLogo} alt="" className="absolute bottom-0 right-0" />
             <div className="text-center text-6xl text-white basis-1/4 p-4 playfair">
-              <h2>Event A</h2>
+              <h2>{eventData?.eventTitle}</h2>
             </div>
             <div className="text-center text-base text-white basis-1/4 p-4 unna">
-              <h3>
-                Bring your cue skills, friends and pool rivals for a casual
-                night of pool.
-                <br />
-                $6.00 with ASPA membership
-              </h3>
+              <h3>{eventData?.eventDescription}</h3>
             </div>
             <div className="text-center basis-1/4 text-neutral-300 p-4 unna">
-              <h4>9 CITY ROAD . ORANGE POOL CLUB</h4>
+              <h4>{eventData?.eventLocation}</h4>
               <h4>THURSDAY . 19/05 6:30PM - 8:30PM</h4>
             </div>
             <div className="flex justify-center align-center px-4 pt-4 pb-8 basis-1/4">
