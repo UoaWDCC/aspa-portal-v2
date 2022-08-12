@@ -11,8 +11,9 @@ export const getEvents = async (req, res) => {
 
 export const createEvent = async (req, res) => {
   try {
-    const eventData = req.body;
-    console.log(eventData);
+    const { eventData } = req.body;
+    console.log(req.body);
+    console.log("AAAAAAAAAAA");
     const event = new Event({
       eventTitle: eventData.eventTitle,
       eventDescription: eventData.eventDescription,

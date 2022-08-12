@@ -1,12 +1,13 @@
 import { useState } from "react";
 import aspaLogo from "./images/ASPA_logo_inverted.png";
 import "./assets/fonts.css";
+import axios from "axios";
 
 export default function EventBoxLeft() {
   const [edit, setEdit] = useState(false);
-  const [eventTitle, setEventTitle] = useState("A");
-  const [eventDescription, setEventDescription] = useState("B");
-  const [eventLocation, setEventLocation] = useState("C");
+  const [eventTitle, setEventTitle] = useState("");
+  const [eventDescription, setEventDescription] = useState("");
+  const [eventLocation, setEventLocation] = useState("");
 
   const sendData = () => {
     axios.post("http://localhost:5000/event", {
@@ -84,31 +85,47 @@ export default function EventBoxLeft() {
             <form>
               <div className="m-5">
                 <label className="text-3xl align-top">Title:&#160;</label>
-                <textarea className="text-xl z-50 bg-neutral-800 justify-center unna w-full">
+                <textarea
+                  className="text-xl z-50 bg-neutral-800 justify-center unna w-full"
+                  name="title"
+                  onKeyDown={(event) =>
+                    setEventTitle(eventTitle + `${event.key}`)
+                  }
+                >
                   PLACEHOLDER TEXT
                 </textarea>
               </div>
               <div className="m-5">
                 <label className="text-3xl align-top">Description:&#160;</label>
-                <textarea className="text-xl z-50 bg-neutral-800 justify-center unna w-full">
+                <textarea
+                  className="text-xl z-50 bg-neutral-800 justify-center unna w-full"
+                  name="description"
+                >
                   PLACEHOLDER TEXT
                 </textarea>
               </div>
               <div className="m-5">
                 <label className="text-3xl align-top">Location:&#160;</label>
-                <textarea className="text-xl z-50 bg-neutral-800 justify-center unna w-full">
+                <textarea
+                  className="text-xl z-50 bg-neutral-800 justify-center unna w-full"
+                  name="location"
+                >
                   PLACEHOLDER TEXT
                 </textarea>
               </div>
               <div className="m-5">
                 <label className="text-3xl align-top">Time:&#160;</label>
-                <input type="date" className="bg-neutral-800 text-xl w-full" />
+                <input
+                  type="date"
+                  className="bg-neutral-800 text-xl w-full"
+                  name="time"
+                />
               </div>
               <div className="flex justify-center align-center px-4 pt-4 pb-8 basis-1/4">
                 <button
                   type="submit"
-                  className="text-base border-solid border-2 border-white w-4/5 h-12 playfair z-50"
                   onClick={sendData}
+                  className="text-base border-solid border-2 border-white w-4/5 h-12 playfair z-50"
                 >
                   SUBMIT
                 </button>
