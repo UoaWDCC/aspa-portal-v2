@@ -9,6 +9,16 @@ export const getEvents = async (req, res) => {
   }
 };
 
+export const getEvent = async (req, res) => {
+  try {
+    const { eventId } = req.params;
+    const event = await Event.findById(eventId);
+    res.status(200).json(event);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const createEvent = async (req, res) => {
   try {
     console.log(req.body);
