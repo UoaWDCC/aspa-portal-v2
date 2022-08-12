@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { IoSearch } from "react-icons/io5";
+//import { IoSearch } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import Logo from "../assets/logo.svg";
 
@@ -66,10 +66,10 @@ export default function Header() {
           </Link>
         </div>
         <div className="hidden gap-8 font-bold items-center md:flex">
-          <Link to="/" className="flex gap-2 items-center">
+          {/*<Link to="/" className="flex gap-2 items-center">
             <IoSearch size="20" />
             <span>Search</span>
-          </Link>
+          </Link>*/}
           <Link to="/login">Login</Link>
           <Link to="/register">Register</Link>
         </div>
