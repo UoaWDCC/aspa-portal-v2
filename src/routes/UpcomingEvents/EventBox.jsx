@@ -36,7 +36,7 @@ export default function EventBoxLeft(objectId) {
   };
 
   return (
-    <div className="w-4/5 h-1/2 text-white flex flex-col md:flex-row flex-wrap bg-neutral-900 overflow-hidden last:mb-10">
+    <div className="w-4/5 h-1/2 text-white flex flex-col md:flex-row even:flex-row-reverse flex-wrap bg-neutral-900 overflow-hidden last:mb-10">
       <div className="flex justify-center align-center overflow-hidden border-solid border-2 border-white basis-1/3">
         {!edit ? (
           <img
