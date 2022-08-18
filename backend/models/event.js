@@ -6,6 +6,7 @@ const eventSchema = new Schema({
   eventDescription: String,
   eventLocation: String,
   eventTime: Date,
+  eventLink: String,
 });
 
 const Event = mongoose.model("Event", eventSchema);

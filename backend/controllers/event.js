@@ -48,6 +48,7 @@ export const updateEvent = async (req, res) => {
         eventDescription: req.body.eventDescription,
         eventLocation: req.body.eventLocation,
         eventDate: new Date(),
+        eventLink: req.body.eventLink,
       }
     );
 

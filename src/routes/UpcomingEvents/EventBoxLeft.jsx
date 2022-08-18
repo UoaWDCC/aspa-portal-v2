@@ -9,6 +9,7 @@ export default function EventBoxLeft(objectId) {
   const [eventTitle, setEventTitle] = useState("");
   const [eventDescription, setEventDescription] = useState("");
   const [eventLocation, setEventLocation] = useState("");
+  const [eventLink, setEventLink] = useState("");
 
   useEffect(() => {
     axios
@@ -24,6 +25,7 @@ export default function EventBoxLeft(objectId) {
       eventTitle,
       eventDescription,
       eventLocation,
+      eventLink,
     });
     console.log("AAAAAAAAAAAAAAAA");
     console.log(objectId.objectId);
@@ -74,7 +76,7 @@ export default function EventBoxLeft(objectId) {
             <div className="flex justify-center align-center px-4 pt-4 pb-8 basis-1/4">
               <button
                 className="text-base border-solid border-2 border-white w-4/5 h-12 playfair z-50"
-                onClick={() => window.open("https://google.com", "_blank")}
+                onClick={() => window.open(eventData?.eventLink, "_blank")}
               >
                 Register
               </button>
@@ -126,6 +128,18 @@ export default function EventBoxLeft(objectId) {
                   className="bg-neutral-800 text-xl w-full"
                   name="time"
                 />
+              </div>
+              <div className="m-5">
+                <label className="text-3xl align-top">
+                  Register Link:&#160;
+                </label>
+                <textarea
+                  className="text-xl z-50 bg-neutral-800 justify-center unna w-full"
+                  name="link"
+                  onChange={(event) => setEventLink(event.target.value)}
+                >
+                  {eventData?.eventLink}
+                </textarea>
               </div>
               <div className="flex justify-center align-center px-4 pt-4 pb-8 basis-1/4">
                 <button
