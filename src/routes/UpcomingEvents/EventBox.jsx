@@ -29,6 +29,7 @@ export default function EventBoxLeft(objectId) {
     });
     console.log("AAAAAAAAAAAAAAAA");
     console.log(objectId.objectId);
+    toggleEdit();
   };
 
   const toggleEdit = () => {
