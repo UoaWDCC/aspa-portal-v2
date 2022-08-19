@@ -41,14 +41,25 @@ export const updateEvent = async (req, res) => {
     console.log("PATCH REQUEST");
     const { eventId } = req.params;
 
+    const eventData = await Event.findById(eventId);
     const event = await Event.findByIdAndUpdate(
       { _id: eventId },
       {
-        eventTitle: req.body.eventTitle,
-        eventDescription: req.body.eventDescription,
-        eventLocation: req.body.eventLocation,
+        eventTitle:
+          req.body.eventTitle != ""
+            ? req.body.eventTitle
+            : eventData.eventTitle,
+        eventDescription:
+          req.body.eventDescription != ""
+            ? req.body.eventDescription
+            : eventData.eventDescription,
+        eventLocation:
+          req.body.eventLocation != ""
+            ? req.body.eventLocation
+            : eventData.eventTitle,
         eventDate: new Date(),
-        eventLink: req.body.eventLink,
+        eventLink:
+          req.body.eventLink != "" ? req.body.eventLink : eventData.eventLink,
       }
     );
 
