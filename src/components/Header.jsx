@@ -1,11 +1,11 @@
 import { AnimatePresence, motion } from "framer-motion";
+import PropTypes from "prop-types";
 import { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
-//import { IoSearch } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import Logo from "../assets/logo.svg";
 
-export default function Header() {
+function Header({ absolute = false }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const mobileMenuVariants = {
@@ -47,7 +47,11 @@ export default function Header() {
 
   return (
     <>
-      <nav className="flex md:justify-between px-12 py-6 sans">
+      <nav
+        className={`flex md:justify-between px-12 py-6 sans ${
+          absolute ? "absolute top-0 left-0 w-full" : ""
+        }`}
+      >
         <div className="flex gap-8 w-full items-center justify-between md:justify-start md:w-auto">
           <Link to="/" className="flex gap-4 items-center">
             <img src={Logo} alt="" className="h-8" />
@@ -109,3 +113,9 @@ export default function Header() {
     </>
   );
 }
+
+Header.propTypes = {
+  absolute: PropTypes.bool,
+};
+
+export default Header;
