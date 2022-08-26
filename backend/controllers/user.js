@@ -16,9 +16,12 @@ export const createUser = async (req, res) => {
 
     const userDetails = req.body;
     const user = new User({
-      name: userDetails.name,
+      firstName: userDetails.firstName,
+      lastName: userDetails.lastName,
       email: userDetails.email,
       UPI: userDetails.upi,
+      skillLevel: userDetails.skillLevel,
+      previousMember: userDetails.previousMember,
     });
     await user.save();
     res.json(user);
