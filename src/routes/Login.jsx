@@ -1,13 +1,18 @@
+import { motion } from "framer-motion";
 import React from "react";
 import { AiOutlineUser } from "react-icons/ai";
 import { BsKey } from "react-icons/bs";
+import { fadeUpInView } from "./animation/utils";
 
 export default function Login() {
   return (
     <>
       <div className="fixed -z-50 inset-0 bg-black bg-opacity-60"></div>
       <div className="h-full flex justify-center items-center">
-        <form className="flex flex-col justify-center items-center min-w-[28%] max-w-2xl px-4">
+        <motion.form
+          {...fadeUpInView()}
+          className="flex flex-col justify-center items-center min-w-[28%] max-w-2xl px-4"
+        >
           <div className="flex flex-col gap-2 text-center mb-10">
             <h1 className="text-5xl">Login</h1>
             <p className="text-lg">Please enter your username and password</p>
@@ -56,7 +61,7 @@ export default function Login() {
               </a>
             </p>
           </div>
-        </form>
+        </motion.form>
       </div>
     </>
   );

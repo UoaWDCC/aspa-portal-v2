@@ -43,7 +43,7 @@ export default function EventBoxLeft(objectId) {
           <img
             src={require("./images/testImg.jpg")}
             alt="Image of pool table"
-            className="flex-shrink-0 min-w-full min-h-full overflow-hidden"
+            className="flex-shrink-0 min-w-full min-h-full overflow-hidden object-cover"
           />
         ) : (
           <>
