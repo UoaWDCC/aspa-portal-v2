@@ -9,11 +9,13 @@ const dbURL =
   "mongodb+srv://wdcc:wdcc123@cluster0.dhxrxle.mongodb.net/?retryWrites=true&w=majority";
 
 import eventRoute from "./routes/event.js";
+import userRoute from "./routes/user.js";
 
 app.use(cors());
 app.use(express.json());
 
 app.use("/event", eventRoute);
+app.use("/user", userRoute);
 
 mongoose
   .connect(dbURL)
