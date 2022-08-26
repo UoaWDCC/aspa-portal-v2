@@ -39,39 +39,42 @@ export default function Register() {
   // };
 
   return (
-    <main className="h-full w-full flex flex-col gap-8 max-w-2xl bg-gray-900 py-16 px-12">
-      <div className="flex mx-12 gap-6 justify-between items-center text-5xl mb-8">
-        <span className={activeScreen === 0 && "text-yellow-400"}>i</span>
-        <Line />
-        <span className={activeScreen === 1 && "text-yellow-400"}>1</span>
-        <Line />
-        <span className={activeScreen === 2 && "text-yellow-400"}>2</span>
-        <Line />
-        <span className={activeScreen === 3 && "text-yellow-400"}>3</span>
-      </div>
-      <form action="." className="grid" ref={formEl}>
-        {screens.map((ScreenComponent, i) => (
-          <section
-            className={`${
-              i === activeScreen
-                ? "block opacity-100 translate-y-0"
-                : "none pointer-events-none opacity-0 translate-y-2"
-            } transition row-span-full col-span-full duration-300`}
-            key={ScreenComponent}
+    <>
+      <div className="fixed inset-0 bg-black bg-opacity-60 w-full max-w-2xl mr-auto -z-10" />
+      <main className="h-full w-full flex flex-col gap-8 max-w-2xl py-16 px-12">
+        <div className="flex mx-12 gap-6 justify-between items-center text-5xl mb-8">
+          <span className={activeScreen === 0 && "text-yellow-400"}>i</span>
+          <Line />
+          <span className={activeScreen === 1 && "text-yellow-400"}>1</span>
+          <Line />
+          <span className={activeScreen === 2 && "text-yellow-400"}>2</span>
+          <Line />
+          <span className={activeScreen === 3 && "text-yellow-400"}>3</span>
+        </div>
+        <form action="." className="grid" ref={formEl}>
+          {screens.map((ScreenComponent, i) => (
+            <section
+              className={`${
+                i === activeScreen
+                  ? "block opacity-100 translate-y-0"
+                  : "none pointer-events-none opacity-0 translate-y-2"
+              } transition row-span-full col-span-full duration-300`}
+              key={ScreenComponent}
+            >
+              {ScreenComponent()}
+            </section>
+          ))}
+        </form>
+        <div className="flex gap-6 mt-8">
+          <button onClick={() => setActiveScreen("prev")}>Back</button>
+          <button
+            className="border-2 border-white px-4 py-2"
+            onClick={() => setActiveScreen("next")}
           >
-            {ScreenComponent()}
-          </section>
-        ))}
-      </form>
-      <div className="flex gap-6 mt-8">
-        <button onClick={() => setActiveScreen("prev")}>Back</button>
-        <button
-          className="border-2 border-white px-4 py-2"
-          onClick={() => setActiveScreen("next")}
-        >
-          Continue
-        </button>
-      </div>
-    </main>
+            Continue
+          </button>
+        </div>
+      </main>
+    </>
   );
 }
