@@ -7,12 +7,15 @@ export default function Home() {
         Auckland Students <br /> Pool Association
       </h1>
       <div className="grid gap-8 grid-cols-2 text-lg text-center">
-        <Link to="/upcoming-events" className="border-white border-2 px-6 py-2">
+        <Link
+          to="/upcoming-events"
+          className="border-white rounded-sm border-2 px-6 py-2"
+        >
           View Events
         </Link>
         <Link
           to="register"
-          className="border-white bg-white text-gray-800 border-2 px-6 py-2"
+          className="border-white bg-white rounded-sm text-gray-800 border-2 px-6 py-2"
         >
           Join Us
         </Link>

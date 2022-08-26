@@ -68,7 +68,7 @@ export default function Register() {
         <div className="flex gap-6 mt-8">
           <button onClick={() => setActiveScreen("prev")}>Back</button>
           <button
-            className="border-2 border-white px-4 py-2"
+            className="border-2 border-white rounded-sm px-4 py-2"
             onClick={() => setActiveScreen("next")}
           >
             Continue
