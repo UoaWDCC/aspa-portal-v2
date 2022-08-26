@@ -3,15 +3,15 @@ const { Schema } = mongoose;
 
 const userSchema = new Schema({
   name: {
-    String,
+    type: String,
     required: true,
   },
   email: {
-    String,
+    type: String,
     required: true,
   },
   UPI: {
-    String,
+    type: String,
     required: true,
   },
 });
