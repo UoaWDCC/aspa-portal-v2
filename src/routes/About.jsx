@@ -19,7 +19,7 @@ export default function About() {
           brings people together who are passionate about pool and aims to
           promote billiard sports. We hold casual events, coaching events, and
           tournaments, connecting members that are interested in playing against
-          other members in a competitive and social environmenreadt.
+          other members in a competitive and social environment.
         </p>
       </div>
     </div>
