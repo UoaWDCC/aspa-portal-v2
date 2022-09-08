@@ -1,8 +1,10 @@
+import { motion } from "framer-motion";
 import Logo from "../assets/logo.svg";
+import { fadeUpInView } from "./animation/utils";
 
 export default function About() {
   return (
-    <div className="flex justify-center">
+    <motion.div {...fadeUpInView()} className="flex justify-center">
       <div className="pt-8 pb-28 max-w-4xl mx-4">
         <div className="flex items-center mb-12">
           <div className="prose text-white ">
@@ -22,6 +24,6 @@ export default function About() {
           other members in a competitive and social environmenreadt.
         </p>
       </div>
-    </div>
+    </motion.div>
   );
 }

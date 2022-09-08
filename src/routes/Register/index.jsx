@@ -1,4 +1,6 @@
+import { motion } from "framer-motion";
 import { useReducer, useRef } from "react";
+import { fadeUpInView } from "../animation/utils";
 import GeneralData from "./GeneralData";
 import Payment from "./Payment";
 import RegisterIntro from "./RegisterIntro";
@@ -42,7 +44,10 @@ export default function Register() {
     <>
       <div className="fixed inset-0 bg-black bg-opacity-60 w-full max-w-2xl mr-auto -z-10" />
       <main className="h-full w-full flex flex-col gap-8 max-w-2xl py-16 px-12">
-        <div className="flex mx-12 gap-6 justify-between items-center text-5xl mb-8">
+        <motion.div
+          {...fadeUpInView()}
+          className="flex mx-12 gap-6 justify-between items-center text-5xl mb-8"
+        >
           <span className={activeScreen === 0 && "text-yellow-400"}>i</span>
           <Line />
           <span className={activeScreen === 1 && "text-yellow-400"}>1</span>
@@ -50,8 +55,13 @@ export default function Register() {
           <span className={activeScreen === 2 && "text-yellow-400"}>2</span>
           <Line />
           <span className={activeScreen === 3 && "text-yellow-400"}>3</span>
-        </div>
-        <form action="." className="grid" ref={formEl}>
+        </motion.div>
+        <motion.form
+          {...fadeUpInView(0.1)}
+          action="."
+          className="grid"
+          ref={formEl}
+        >
           {screens.map((ScreenComponent, i) => (
             <section
               className={`${
@@ -64,8 +74,8 @@ export default function Register() {
               {ScreenComponent()}
             </section>
           ))}
-        </form>
-        <div className="flex gap-6 mt-8">
+        </motion.form>
+        <motion.div {...fadeUpInView(0.2)} className="flex gap-6 mt-8">
           <button onClick={() => setActiveScreen("prev")}>Back</button>
           <button
             className="border-2 border-white rounded-sm px-4 py-2"
@@ -73,7 +83,7 @@ export default function Register() {
           >
             Continue
           </button>
-        </div>
+        </motion.div>
       </main>
     </>
   );

@@ -9,7 +9,7 @@ export default function Home() {
         Auckland Students <br /> Pool Association
       </motion.h1>
       <motion.div
-        {...fadeUpInView(0.4)}
+        {...fadeUpInView(0.15)}
         className="grid gap-8 grid-cols-2 text-lg text-center"
       >
         <Link
