@@ -14,8 +14,8 @@ export default function About() {
       </div>
       <div>
         <p className="max-w-[100ch] text-xl">
-          The Auckland Student Pool Association (ASPA), based in the University
-          of Auckland, focuses on faciliating a supporting environment that
+          The Auckland Student Pool Association (ASPA), based at the University
+          of Auckland, focuses on facilitating a supporting environment that
           brings people together who are passionate about pool and aims to
           promote billiard sports. We hold casual events, coaching events, and
           tournaments, connecting members that are interested in playing against
