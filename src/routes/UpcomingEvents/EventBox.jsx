@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import "./assets/fonts.css";
 import aspaLogo from "./images/ASPA_logo_inverted.png";
 
 export default function EventBoxLeft(objectId) {
@@ -54,7 +53,7 @@ export default function EventBoxLeft(objectId) {
           </>
         )}
       </div>
-      <div className="relative border-solid border-2 border-white md:basis-2/3 flex flex-col overflow-hidden">
+      <div className="relative border-solid border-2 border-white text-center md:basis-2/3 flex flex-col overflow-hidden">
         {!edit ? (
           <>
             <button
@@ -68,23 +67,25 @@ export default function EventBoxLeft(objectId) {
               alt=""
               className="absolute bottom-0 right-0 pointer-events-none"
             />
-            <div className="text-center text-6xl text-white basis-1/4 p-4 playfair">
+            <div className="text-6xl basis-1/4 p-4 font-bold">
               <h2>{eventData?.eventTitle}</h2>
             </div>
-            <div className="text-center text-base text-white basis-1/4 p-4 unna">
-              <h3>{eventData?.eventDescription}</h3>
+            <div className="text-base basis-1/4 p-4">
+              <p>{eventData?.eventDescription}</p>
             </div>
-            <div className="text-center basis-1/4 text-neutral-300 p-4 unna">
+            <div className="basis-1/4 text-neutral-300 p-4">
               <h4>{eventData?.eventLocation}</h4>
               <h4>THURSDAY . 19/05 6:30PM - 8:30PM</h4>
             </div>
             <div className="flex justify-center align-center px-4 pt-4 pb-8 basis-1/4">
-              <button
-                className="text-base border-solid border-2 border-white w-4/5 h-12 playfair z-50"
-                onClick={() => window.open(eventData?.eventLink, "_blank")}
+              <a
+                className="text-base border-solid border-2 border-white w-4/5 h-12 z-50"
+                href={eventData?.eventLink}
+                target="_blank"
+                rel="noreferrer noopener"
               >
                 Register
-              </button>
+              </a>
             </div>
           </>
         ) : (
@@ -99,7 +100,7 @@ export default function EventBoxLeft(objectId) {
               <div className="m-5">
                 <label className="text-3xl align-top">Title:&#160;</label>
                 <textarea
-                  className="text-xl z-50 bg-neutral-800 justify-center unna w-full"
+                  className="text-xl z-50 bg-neutral-800 justify-center w-full"
                   name="title"
                   onChange={(event) => setEventTitle(event.target.value)}
                 >
@@ -109,7 +110,7 @@ export default function EventBoxLeft(objectId) {
               <div className="m-5">
                 <label className="text-3xl align-top">Description:&#160;</label>
                 <textarea
-                  className="text-xl z-50 bg-neutral-800 justify-center unna w-full"
+                  className="text-xl z-50 bg-neutral-800 justify-center w-full"
                   name="description"
                   onChange={(event) => setEventDescription(event.target.value)}
                 >
@@ -119,7 +120,7 @@ export default function EventBoxLeft(objectId) {
               <div className="m-5">
                 <label className="text-3xl align-top">Location:&#160;</label>
                 <textarea
-                  className="text-xl z-50 bg-neutral-800 justify-center unna w-full"
+                  className="text-xl z-50 bg-neutral-800 justify-center w-full"
                   name="location"
                   onChange={(event) => setEventLocation(event.target.value)}
                 >
@@ -139,7 +140,7 @@ export default function EventBoxLeft(objectId) {
                   Register Link:&#160;
                 </label>
                 <textarea
-                  className="text-xl z-50 bg-neutral-800 justify-center unna w-full"
+                  className="text-xl z-50 bg-neutral-800 justify-center w-full"
                   name="link"
                   onChange={(event) => setEventLink(event.target.value)}
                 >
@@ -150,7 +151,7 @@ export default function EventBoxLeft(objectId) {
                 <button
                   type="submit"
                   onClick={sendData}
-                  className="text-base border-solid border-2 border-white w-4/5 h-12 playfair z-50"
+                  className="text-base border-solid border-2 border-white w-4/5 h-12 z-50"
                 >
                   SUBMIT
                 </button>
