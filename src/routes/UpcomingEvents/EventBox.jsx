@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import "./assets/fonts.css";
-import aspaLogo from "./images/ASPA_logo_inverted.png";
 
 export default function EventBoxLeft(objectId) {
   const [eventData, setEventData] = useState(null);
@@ -37,24 +36,8 @@ export default function EventBoxLeft(objectId) {
   };
 
   return (
-    <div className="w-4/5 h-1/2 text-white rounded-sm flex flex-col md:flex-row even:flex-row-reverse flex-wrap bg-neutral-900 overflow-hidden last:mb-10">
-      <div className="flex justify-center align-center overflow-hidden border-solid border-2 border-white basis-1/3">
-        {!edit ? (
-          <img
-            src={require("./images/testImg.jpg")}
-            alt="Image of pool table"
-            className="flex-shrink-0 min-w-full min-h-full overflow-hidden object-cover"
-          />
-        ) : (
-          <>
-            <div className="">
-              <label className="m-5 text-3xl">Image: </label>
-              <input type="file" className="m-5" />
-            </div>
-          </>
-        )}
-      </div>
-      <div className="relative border-solid border-2 border-white md:basis-2/3 flex flex-col overflow-hidden">
+    <div className="w-4/5 h-1/2 text-white rounded-sm flex-wrap bg-black bg-opacity-60 overflow-hidden last:mb-10">
+      <div className="relative border-solid border-2 border-white md:basis-2/3  flex-col">
         {!edit ? (
           <>
             <button
@@ -63,11 +46,6 @@ export default function EventBoxLeft(objectId) {
             >
               &#8801;
             </button>
-            <img
-              src={aspaLogo}
-              alt=""
-              className="absolute bottom-0 right-0 pointer-events-none"
-            />
             <div className="text-center text-6xl text-white basis-1/4 p-4 playfair">
               <h2>{eventData?.eventTitle}</h2>
             </div>
