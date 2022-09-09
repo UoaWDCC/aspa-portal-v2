@@ -41,7 +41,7 @@ $ npm start // run it locally
 $ npm run build // this will compile the react code using webpack and generate a folder called build in the root level
 ```
 
-# Dependencies
+## Dependencies
 
 | Client-side                   | 
 | ----------------------------- |
@@ -57,7 +57,7 @@ $ npm run build // this will compile the react code using webpack and generate a
 $ cd backend/ // open new terminal to run this
 $ npm i       // npm install packages
 $ npm start // run it locally
-
+```
 
 # Contributors
 
