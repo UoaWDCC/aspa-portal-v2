@@ -3,6 +3,7 @@ import Layout from "./components/Layout";
 import About from "./routes/About";
 import Contact from "./routes/Contact";
 import Home from "./routes/Home";
+import Login from "./routes/Login";
 import Register from "./routes/Register";
 import UpcomingEvents from "./routes/UpcomingEvents";
 
@@ -14,6 +15,7 @@ export default function App() {
           <Route index element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/upcoming-events" element={<UpcomingEvents />} />
         </Route>
