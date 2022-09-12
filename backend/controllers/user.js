@@ -17,7 +17,7 @@ export const createUser = async (req, res) => {
       firstName,
       lastName,
       email,
-      UPI,
+      upi,
       skillLevel,
       previousMember,
       username,
@@ -27,12 +27,12 @@ export const createUser = async (req, res) => {
       firstName,
       lastName,
       email,
-      UPI,
+      upi,
       skillLevel,
       previousMember,
       username,
     });
-    console.log(username);
+    console.log(user);
     const registeredUser = await User.register(user, password);
     console.log(registeredUser);
     res.json(registeredUser);

@@ -17,7 +17,7 @@ const userSchema = new Schema({
     required: true,
     unique: true,
   },
-  UPI: {
+  upi: {
     type: String,
     required: true,
   },
