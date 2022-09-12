@@ -12,7 +12,6 @@ export const getUser = async (req, res) => {
 
 export const createUser = async (req, res) => {
   try {
-    console.log(req.body);
     const {
       firstName,
       lastName,
@@ -32,7 +31,6 @@ export const createUser = async (req, res) => {
       previousMember,
       username,
     });
-    console.log(user);
     const registeredUser = await User.register(user, password);
     console.log(registeredUser);
     res.json(registeredUser);

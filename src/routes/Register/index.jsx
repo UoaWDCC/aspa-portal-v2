@@ -50,17 +50,16 @@ export default function Register() {
 
     const data = Array.from(FD.entries());
 
-    console.log(data[0]);
     try {
       axios.post("http://localhost:5000/user/register", {
-        firstName: data[0][1],
-        lastName: data[1][1],
-        email: data[2][1],
-        upi: data[3][1],
-        skillLevel: "Beginner", // need to make this change
-        previousMember: data[5][1] === "" ? false : true,
-        username: data[6][1],
-        password: data[7][1],
+        firstName: data.find((data) => data[0] === "firstName")[1],
+        lastName: data.find((data) => data[0] === "lastName")[1],
+        email: data.find((data) => data[0] === "email")[1],
+        upi: data.find((data) => data[0] === "upi")[1],
+        skillLevel: "Beginner", // need to not hard code this
+        previousMember: true, // need to not hard code this
+        username: data.find((data) => data[0] === "username")[1],
+        password: data.find((data) => data[0] === "password")[1],
       });
     } catch (error) {
       console.log(error.message);
