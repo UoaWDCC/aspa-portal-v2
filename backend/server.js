@@ -6,6 +6,7 @@ import passport from "passport";
 import LocalStrategy from "passport-local";
 import session from "express-session";
 import flash from "express-flash";
+import User from "./models/user.js";
 
 dotenv.config();
 const app = express();
@@ -37,6 +38,10 @@ app.use(flash());
 
 app.use(passport.initialize());
 app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 app.use("/event", eventRoute);
 app.use("/user", userRoute);
