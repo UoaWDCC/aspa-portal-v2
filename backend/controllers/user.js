@@ -3,7 +3,7 @@ import User from "../models/user.js";
 export const getUser = async (req, res) => {
   try {
     const email = req.params;
-    const user = await User.find({ email: email.toLowerCase() });
+    const user = await User.findOne({ email });
     res.json(user);
   } catch (error) {
     res.status(404).json({ message: error.message });
@@ -13,20 +13,32 @@ export const getUser = async (req, res) => {
 export const createUser = async (req, res) => {
   try {
     // CHECK IF USER DETAILS ARE VALID FIRST (todo)
-
-    const userDetails = req.body;
+    console.log(req.body);
+    const {
+      firstName,
+      lastName,
+      email,
+      UPI,
+      skillLevel,
+      previousMember,
+      username,
+      password,
+    } = req.body;
     const user = new User({
-      firstName: userDetails.firstName,
-      lastName: userDetails.lastName,
-      email: userDetails.email,
-      UPI: userDetails.upi,
-      skillLevel: userDetails.skillLevel,
-      previousMember: userDetails.previousMember,
+      firstName,
+      lastName,
+      email,
+      UPI,
+      skillLevel,
+      previousMember,
+      username,
     });
-    await user.save();
-    res.json(user);
+    console.log(username);
+    const registeredUser = await User.register(user, password);
+    console.log(registeredUser);
+    res.json(registeredUser);
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    res.status(400).json({ error });
   }
 };
 

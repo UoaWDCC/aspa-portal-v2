@@ -20,6 +20,11 @@ import userRoute from "./routes/user.js";
 
 app.use(cors());
 app.use(express.json());
+app.use(
+  express.urlencoded({
+    extended: true,
+  })
+);
 
 // MAKE SURE TO CHANGE THE SESSIONCONFIG FOR PRODUCTION
 const sessionConfig = {
