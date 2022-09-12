@@ -12,7 +12,6 @@ export const getUser = async (req, res) => {
 
 export const createUser = async (req, res) => {
   try {
-    // CHECK IF USER DETAILS ARE VALID FIRST (todo)
     console.log(req.body);
     const {
       firstName,
@@ -39,6 +38,14 @@ export const createUser = async (req, res) => {
     res.json(registeredUser);
   } catch (error) {
     res.status(400).json({ error });
+  }
+};
+
+export const authenticateUser = async (req, res) => {
+  try {
+    console.log("Logged in successfully!");
+  } catch (error) {
+    res.json({ message: error.message });
   }
 };
 
