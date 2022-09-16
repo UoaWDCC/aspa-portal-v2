@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import passportLocalMongoose from "passport-local-mongoose";
 
 const { Schema } = mongoose;
 
@@ -14,8 +15,9 @@ const userSchema = new Schema({
   email: {
     type: String,
     required: true,
+    unique: true,
   },
-  UPI: {
+  upi: {
     type: String,
     required: true,
   },
@@ -29,6 +31,8 @@ const userSchema = new Schema({
     required: true,
   },
 });
+
+userSchema.plugin(passportLocalMongoose);
 
 const User = mongoose.model("User", userSchema);
 

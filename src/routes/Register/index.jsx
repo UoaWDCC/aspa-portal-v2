@@ -5,6 +5,9 @@ import GeneralData from "./GeneralData";
 import Payment from "./Payment";
 import RegisterIntro from "./RegisterIntro";
 import SpecificData from "./SpecificData";
+import LoginData from "./LoginData";
+
+import axios from "axios";
 
 const Line = () => (
   <svg
@@ -21,12 +24,18 @@ const Line = () => (
 export default function Register() {
   const formEl = useRef(null);
 
-  const screens = [RegisterIntro, GeneralData, SpecificData, Payment];
+  const screens = [
+    RegisterIntro,
+    GeneralData,
+    SpecificData,
+    Payment,
+    LoginData,
+  ];
 
   const [activeScreen, setActiveScreen] = useReducer((state, action) => {
     switch (action) {
       case "next":
-        return state >= 3 ? 3 : state + 1;
+        return state >= 4 ? 4 : state + 1;
       case "prev":
         return state <= 0 ? 0 : state - 1;
       default:
@@ -34,11 +43,28 @@ export default function Register() {
     }
   }, 0);
 
-  // const sendForm = () => {
-  //   const FD = new FormData(formEl.current);
+  const sendForm = async () => {
+    const FD = new FormData(formEl.current);
 
-  //   console.log(Array.from(FD.entries()));
-  // };
+    console.log(Array.from(FD.entries()));
+
+    const data = Array.from(FD.entries());
+
+    try {
+      axios.post("http://localhost:5000/user/register", {
+        firstName: data.find((data) => data[0] === "firstName")[1],
+        lastName: data.find((data) => data[0] === "lastName")[1],
+        email: data.find((data) => data[0] === "email")[1],
+        upi: data.find((data) => data[0] === "upi")[1],
+        skillLevel: "Beginner", // need to not hard code this
+        previousMember: true, // need to not hard code this
+        username: data.find((data) => data[0] === "username")[1],
+        password: data.find((data) => data[0] === "password")[1],
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   return (
     <>
@@ -55,6 +81,8 @@ export default function Register() {
           <span className={activeScreen === 2 && "text-yellow-400"}>2</span>
           <Line />
           <span className={activeScreen === 3 && "text-yellow-400"}>3</span>
+          <Line />
+          <span className={activeScreen === 4 && "text-yellow-400"}>4</span>
         </motion.div>
         <motion.form
           {...fadeUpInView(0.1)}
@@ -83,6 +111,7 @@ export default function Register() {
           >
             Continue
           </button>
+          <button onClick={sendForm}>Submit</button>
         </motion.div>
       </main>
     </>

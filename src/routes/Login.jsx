@@ -1,10 +1,24 @@
 import { motion } from "framer-motion";
-import React from "react";
+import React, { useState } from "react";
 import { AiOutlineUser } from "react-icons/ai";
 import { BsKey } from "react-icons/bs";
 import { fadeUpInView } from "./animation/utils";
 
+import axios from "axios";
+
 export default function Login() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const sendData = (e) => {
+    e.preventDefault();
+    console.log(`${username} ${password}`);
+    axios.post("http://localhost:5000/user/login", {
+      username,
+      password,
+    });
+  };
+
   return (
     <>
       <div className="fixed -z-50 inset-0 bg-black bg-opacity-60"></div>
@@ -25,6 +39,7 @@ export default function Login() {
                 id="email"
                 className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-white border-none bg-transparent peer outline-none"
                 placeholder=" "
+                onChange={(e) => setUsername(e.target.value)}
               />
               <label
                 htmlFor="email"
@@ -40,6 +55,7 @@ export default function Login() {
                 id="password"
                 className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-white border-none bg-transparent peer outline-none"
                 placeholder=" "
+                onChange={(e) => setPassword(e.target.value)}
               />
               <label
                 htmlFor="password"
@@ -51,7 +67,10 @@ export default function Login() {
             <span className="text-sky-100 ml-auto">Forgot Password?</span>
           </div>
           <div className="flex flex-col gap-4 items-center w-full">
-            <button className="border-2 border-white rounded-full text-lg px-12 py-2 w-[80%]">
+            <button
+              onClick={sendData}
+              className="border-2 border-white rounded-full text-lg px-12 py-2 w-[80%]"
+            >
               Login
             </button>
             <p>

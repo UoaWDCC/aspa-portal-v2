@@ -36,7 +36,7 @@ export const createEvent = async (req, res) => {
 
 export const updateEvent = async (req, res) => {
   try {
-    console.log("PATCH REQUEST");
+    console.log(req.body);
     const { eventId } = req.params;
 
     const eventData = await Event.findById(eventId);
