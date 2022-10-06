@@ -16,7 +16,10 @@ app.use(express.json());
 app.use("/event", eventRoute);
 
 mongoose
-  .connect(dbURL)
+  .connect(dbURL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then(() => console.log(`Connected to database`))
   .catch((error) => console.log(error));
 
