@@ -6,7 +6,6 @@ import Payment from "./Payment";
 import RegisterIntro from "./RegisterIntro";
 import SpecificData from "./SpecificData";
 import LoginData from "./LoginData";
-
 import axios from "axios";
 
 const Line = () => (
@@ -32,6 +31,13 @@ export default function Register() {
     LoginData,
   ];
 
+  const skillLevels = [
+    "Beginner",
+    "Intermediate",
+    "Advanced",
+    "Pool is too easy",
+  ];
+
   const [activeScreen, setActiveScreen] = useReducer((state, action) => {
     switch (action) {
       case "next":
@@ -50,14 +56,18 @@ export default function Register() {
 
     const data = Array.from(FD.entries());
 
+    console.log(data.find((data) => data[0] === "previousMember")[1] === "on");
+
     try {
-      axios.post("http://localhost:5000/user/register", {
+      await axios.post("http://localhost:5000/user/register", {
         firstName: data.find((data) => data[0] === "firstName")[1],
         lastName: data.find((data) => data[0] === "lastName")[1],
         email: data.find((data) => data[0] === "email")[1],
         upi: data.find((data) => data[0] === "upi")[1],
-        skillLevel: "Beginner", // need to not hard code this
-        previousMember: true, // need to not hard code this
+        skillLevel:
+          skillLevels[data.find((data) => data[0] === "skillLevel")[1]],
+        previousMember:
+          data.find((data) => data[0] === "previousMember")[1] === "on",
         username: data.find((data) => data[0] === "username")[1],
         password: data.find((data) => data[0] === "password")[1],
       });

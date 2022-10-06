@@ -19,6 +19,7 @@ export default function SpecificData() {
     </aside>
   );
 }
+
 const skillLevels = [
   "Beginner",
   "Intermediate",
@@ -88,18 +89,26 @@ function PreviousMemberCheckbox() {
   const [enabled, setEnabled] = useState(false);
 
   return (
-    <Switch
-      checked={enabled}
-      onChange={setEnabled}
-      name="previousMember"
-      className="relative inline-flex justify-center items-center h-8 w-8 shrink-0 cursor-pointer rounded-lg border-2 border-white transition-colors duration-100 ease-in-out"
-    >
-      <IoCheckmarkSharp
-        aria-hidden="true"
-        size={48}
-        className={`${enabled ? "opacity-100" : "opacity-0"}
-            pointer-events-none`}
+    <>
+      <input
+        type="text"
+        className="hidden"
+        name="previousMember"
+        id="previousMember"
+        value={enabled ? "on" : "off"}
       />
-    </Switch>
+      <Switch
+        checked={enabled}
+        onChange={setEnabled}
+        className="relative inline-flex justify-center items-center h-8 w-8 shrink-0 cursor-pointer rounded-lg border-2 border-white transition-colors duration-100 ease-in-out"
+      >
+        <IoCheckmarkSharp
+          aria-hidden="true"
+          size={48}
+          className={`${enabled ? "opacity-100" : "opacity-0"}
+            pointer-events-none`}
+        />
+      </Switch>
+    </>
   );
 }
