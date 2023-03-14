@@ -1,12 +1,9 @@
 import express from "express";
 import cors from "cors";
-import mongoose from "mongoose";
 
 const app = express();
 const port = process.env.PORT || 5000;
-const dbURL =
-  process.env.DB_URL ||
-  "mongodb+srv://wdcc:wdcc123@cluster0.dhxrxle.mongodb.net/?retryWrites=true&w=majority";
+const dbURL = process.env.DB_URL || "mongodb+srv://wdcc:wdcc123@cluster0.dhxrxle.mongodb.net/?retryWrites=true&w=majority";
 
 import eventRoute from "./routes/event.js";
 

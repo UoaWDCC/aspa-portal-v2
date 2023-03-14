@@ -1,0 +1,9 @@
+{
+  "name": "aspa-portal-v2",
+  "version": "1.0.0",
+  "repository": "git@github.com:UoaWDCC/aspa-portal-v2.git",
+  "author": "projects@wdcc.co.nz",
+  "workspaces": [ "packages/*" ],
+  "license": "MIT",
+  "private": true
+}
