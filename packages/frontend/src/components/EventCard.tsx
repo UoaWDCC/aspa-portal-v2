@@ -1,23 +1,35 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types"; // Import PropTypes
-import "./EventCardStyles.css";
-import mainBG from "../assets/mainBG.jpg";
 
 /*
 Here for EventCard, we pass the title and details as props so that we can put values dynamically from eventsData.js.
 eventsData.js file will work as a data file / work as an api (creates data for each project I want to display). We will render this ProjectCard in the Work.js file.
 */
 
-const EventCard = (props) => {
-  const { title, description, date, location } = props; //destructing props for cleaner code
+// Defining specific types for event data. Currently title, desc, date, location is the only props I need for EventData to display in EventCard.
+export type EventData = {
+  title: string;
+  description: string;
+  date: string;
+  location: string;
+};
+
+// Use TypeScript interface for prop types
+interface EventCardProps extends EventData {
+  // additional props can be added here as needed. Here add the props that might be needed more than what is in EventData.
+}
+
+const EventCard: React.FC<EventCardProps> = ({
+  title,
+  description,
+  date,
+  location,
+}) => {
   return (
     <div className="event-card">
-      <div className="event-image-container">
-        <img src={mainBG} alt="Event Image" className="event-image" />
-      </div>
+      <h2 className="event-title">{title}</h2>
       <div className="event-details">
-        <h1 className="event-title">{title}</h1>
         <p>{description}</p>
         <p>Date: {date}</p>
         <p>Location: {location}</p>
@@ -27,13 +39,6 @@ const EventCard = (props) => {
       </div>
     </div>
   );
-};
-
-EventCard.propTypes = {
-  title: PropTypes.string,
-  date: PropTypes.string,
-  description: PropTypes.string,
-  location: PropTypes.string,
 };
 
 export default EventCard;

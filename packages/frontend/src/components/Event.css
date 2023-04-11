@@ -1,7 +1,0 @@
-.upcoming-event {
-  display: flex; /* Use flexbox to display cards horizontally */
-  align-items: center; /* Align cards vertically in the center */
-  margin-right: 100px; /* Add some margin between cards */
-  padding: 100px;
-  width: 100%;
-}

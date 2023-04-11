@@ -1,0 +1,68 @@
+/* Set font color for <p> tag */
+.event-card p {
+  color: black;
+}
+
+/* Set font color for <h1> tag */
+.event-card h1 {
+  color: black;
+}
+
+.event-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #dda3a3;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  max-width: 300px;
+  margin: 10px;
+}
+
+.event-image-container {
+  height: 200px;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.event-image {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.event-details {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.event-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.event-details p {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.event-buttons {
+  margin-top: 10px;
+}
+
+.event-buttons a {
+  display: inline-block;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.event-buttons a:hover {
+  background-color: #0056b3;
+}

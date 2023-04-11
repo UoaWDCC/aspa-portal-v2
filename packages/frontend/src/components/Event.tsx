@@ -1,13 +1,13 @@
 import React from "react";
 import eventsData from "../routes/UpcomingEvents/eventsData";
-import EventCard from "./EventCard";
-import "./EventStyles.css";
+import EventCard, { EventData } from "./EventCard";
+import "./Event.css";
 
 const Event = () => {
   return (
     <div className="events-container">
       <div className="upcoming-event">
-        {eventsData.map((value, index) => {
+        {eventsData.map((value: EventData, index: number) => {
           return (
             <EventCard
               key={index}
