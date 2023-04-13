@@ -18,6 +18,14 @@
   padding: 20px;
   max-width: 300px;
   margin: 10px;
+
+  /* Define flip card animation */
+  transition: transform 0.5s;
+  transform-style: preserve-3d;
+}
+
+.event-card.flip {
+  transform: rotateY(180deg);
 }
 
 .event-image-container {

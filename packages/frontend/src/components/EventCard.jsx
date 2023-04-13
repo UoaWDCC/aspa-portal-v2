@@ -11,6 +11,7 @@ eventsData.js file will work as a data file / work as an api (creates data for e
 
 const EventCard = (props) => {
   const { title, description, date, location } = props; //destructing props for cleaner code
+
   return (
     <div className="event-card">
       <div className="event-image-container">
