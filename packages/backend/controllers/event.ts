@@ -97,3 +97,19 @@ export const updateEvent = async (req: Request, res: Response) => {
         res.json(error);
     }
 };
+
+export const deleteEvent = async (req: Request, res: Response) => {
+    const { eventId } = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(eventId)) {
+        return res.status(404).json({ error: "No such event" });
+    }
+
+    const event = await Event.findOneAndDelete({ _id: eventId });
+
+    if (!event) {
+        return res.status(404).json({ error: "No such event" });
+    }
+
+    res.status(200).json(event);
+};
