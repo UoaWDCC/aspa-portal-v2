@@ -10,7 +10,7 @@ eventsData.js file will work as a data file / work as an api (creates data for e
 */
 
 const EventCard = (props) => {
-  const { title, description, date, location } = props; //destructing props for cleaner code
+  const { eventId, title, description, date, location } = props; //destructing props for cleaner code
 
   return (
     <div className="event-card">
@@ -23,7 +23,11 @@ const EventCard = (props) => {
         <p>Date: {date}</p>
         <p>Location: {location}</p>
         <div className="event-buttons">
-          <Link to="/Register">Registration</Link>
+          <Link
+            to={`/Register?eventId=${eventId}&title=${title}&date=${date}&description=${description}&location=${location}`}
+          >
+            Registration
+          </Link>
         </div>
       </div>
     </div>
@@ -31,6 +35,7 @@ const EventCard = (props) => {
 };
 
 EventCard.propTypes = {
+  eventId: PropTypes.number,
   title: PropTypes.string,
   date: PropTypes.string,
   description: PropTypes.string,

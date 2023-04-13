@@ -7,10 +7,11 @@ const Event = () => {
   return (
     <div className="events-container">
       <div className="upcoming-event">
-        {eventsData.map((value, index) => {
+        {eventsData.map((value) => {
           return (
             <EventCard
-              key={index}
+              key={value.eventId}
+              eventId={value.eventId}
               title={value.title}
               date={value.date}
               description={value.description}
