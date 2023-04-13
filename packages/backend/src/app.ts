@@ -2,9 +2,13 @@ import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import eventRoute from "../routes/event";
+import userRoute from "../routes/user";
 import cors from "cors";
 
-dotenv.config();
+const conf = dotenv.config();
+if (conf.error) {
+    throw conf.error;
+}
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -13,12 +17,16 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/event", eventRoute);
+app.use("/users", userRoute)
 
 mongoose
     .connect(dbURL)
-    .then(() => console.log(`Connected to database`))
-    .catch((error) => console.log(error));
+    .then(() => {
+        app.listen(port, () => {
+            console.log(`Connected to database. Server is running on port: ${port}`);
+        });
+    })
+    .catch((error) => {
+        console.log(error)
+    });
 
-app.listen(port, () => {
-    console.log(`Server is running on port: ${port}`);
-});

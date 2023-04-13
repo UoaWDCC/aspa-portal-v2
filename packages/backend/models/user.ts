@@ -1,16 +1,23 @@
 import mongoose from "mongoose";
 
-const Schema = mongoose.Schema;
+interface User {
+    name: string;
+    email: string;
+    university: string;
+    studentId?: number;
+    skillLevel: string;
+    eventsAttended: number;
+}
 
-const userSchema = new Schema({
-    name: String,
-    email: String,
-    university: String,
-    student_id: Number,
-    skill_level: String,
-    events_attended: [mongoose.Types.ObjectId],
+const userSchema = new mongoose.Schema<User>({
+    name: { type: String, required: true },
+    email: { type: String, required: true },
+    university: { type: String, required: true },
+    studentId: Number,
+    skillLevel: { type: String, required: true },
+    eventsAttended: { type: Number, required: true },
 });
 
-const User = mongoose.model("User", userSchema);
+const UserModel = mongoose.model<User>("User", userSchema);
 
-export default User;
+export default UserModel;
