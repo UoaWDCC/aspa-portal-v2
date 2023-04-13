@@ -1,5 +1,6 @@
 import Event from "../models/event";
 import express, { Request, Response } from "express";
+const mongoose = require("mongoose");
 
 export const getEvents = async (req: Request, res: Response) => {
     try {
@@ -13,7 +14,17 @@ export const getEvents = async (req: Request, res: Response) => {
 export const getEvent = async (req: Request, res: Response) => {
     try {
         const { eventId } = req.params;
+
+        if (!mongoose.Types.ObjectId.isValid(eventId)) {
+            return res.status(404).json({ error: "No such event" });
+        }
+
         const event = await Event.findById(eventId);
+
+        if (!event) {
+            return res.status(404).json({ error: "No such event" });
+        }
+
         res.status(200).json(event);
     } catch (error) {
         console.log(error);
@@ -22,16 +33,25 @@ export const getEvent = async (req: Request, res: Response) => {
 
 export const createEvent = async (req: Request, res: Response) => {
     try {
-        console.log(req.body);
-        console.log("AAAAAAAAAAA");
-        const event = new Event({
-            eventTitle: req.body.eventTitle,
-            eventDescription: req.body.eventDescription,
-            eventLocation: req.body.eventLocation,
-            eventDate: new Date(),
-        });
-        await event.save();
-        res.status(201).json(event);
+        if (
+            req.body.eventTitle &&
+            req.body.eventDescription &&
+            req.body.eventLocation &&
+            req.body.eventTime
+        ) {
+            const event = new Event({
+                eventTitle: req.body.eventTitle,
+                eventDescription: req.body.eventDescription,
+                eventLocation: req.body.eventLocation,
+                eventDate: req.body.eventLocation,
+            });
+            await event.save();
+            res.status(201).json(event);
+        } else {
+            return res
+                .status(400)
+                .json({ error: "Please fill in all the fields" });
+        }
     } catch (error) {
         res.json(error);
     }
@@ -39,7 +59,6 @@ export const createEvent = async (req: Request, res: Response) => {
 
 export const updateEvent = async (req: Request, res: Response) => {
     try {
-        console.log("PATCH REQUEST");
         const { eventId } = req.params;
 
         const eventData = await Event.findById(eventId);
@@ -58,8 +77,11 @@ export const updateEvent = async (req: Request, res: Response) => {
                     eventLocation:
                         req.body.eventLocation != ""
                             ? req.body.eventLocation
-                            : eventData.eventTitle,
-                    eventDate: new Date(),
+                            : eventData.eventLocation,
+                    eventTime:
+                        req.body.eventTime != ""
+                            ? req.body.eventTime
+                            : eventData.eventTime,
                     eventLink:
                         req.body.eventLink != ""
                             ? req.body.eventLink
@@ -67,7 +89,9 @@ export const updateEvent = async (req: Request, res: Response) => {
                 }
             );
 
-            res.json(event);
+            res.status(200).json(event);
+        } else {
+            return res.status(404).json({ error: "No such event" });
         }
     } catch (error) {
         res.json(error);
