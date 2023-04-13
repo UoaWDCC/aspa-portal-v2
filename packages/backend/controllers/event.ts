@@ -1,6 +1,6 @@
 import Event from "../models/event";
-import express, { Request, Response } from "express";
-const mongoose = require("mongoose");
+import { Request, Response } from "express";
+import mongoose from "mongoose";
 
 export const getEvents = async (req: Request, res: Response) => {
     try {
