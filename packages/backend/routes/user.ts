@@ -5,7 +5,8 @@ import {
     createUser,
     updateUser,
     addEvent,
-    deleteUser
+    deleteUser,
+    removeEvent
 } from "../controllers/user";
 
 const router = express.Router();
@@ -15,6 +16,7 @@ router.get("/:userId", getUser);
 router.post("/", createUser);
 router.patch("/:userId", updateUser);
 router.patch("/addevent/:userId", addEvent);
+router.patch("/removeevent/:userId", removeEvent);
 router.delete("/:userId", deleteUser);
 
 export default router;

@@ -1,23 +1,46 @@
-import mongoose from "mongoose";
+import { Model, Schema, Types, model } from "mongoose";
 
-interface User {
-    name: string;
+export interface RegistrationRecord {
+    eventId: Types.ObjectId;
+    registrationDate: Date;
+    paymentStatus: string;
+    paymentDetails: object
+}
+
+interface IUser {
+    firstName: string;
+    lastName: string;
     email: string;
     university: string;
     studentId?: number;
     skillLevel: string;
-    eventsAttended: number;
+    events?: RegistrationRecord[];
 }
 
-const userSchema = new mongoose.Schema<User>({
-    name: { type: String, required: true },
+type UserDocumentProps = {
+    firstName: string;
+    lastName: string;
+    university: string;
+    studentId?: number;
+    skillLevel: string;
+    events?: Types.DocumentArray<RegistrationRecord>;
+}
+type UserModelType = Model<IUser, object, UserDocumentProps>;
+
+const userSchema = new Schema<IUser>({
+    firstName: { type: String, required: true },
+    lastName: { type: String, required: true },
     email: { type: String, required: true },
     university: { type: String, required: true },
     studentId: Number,
     skillLevel: { type: String, required: true },
-    eventsAttended: { type: Number, required: true },
+
+    events: [new Schema<RegistrationRecord>({
+        eventId: Types.ObjectId,
+        registrationDate: Date,
+        paymentStatus: String,
+        paymentDetails: Object
+    })]
 });
 
-const UserModel = mongoose.model<User>("User", userSchema);
-
-export default UserModel;
+export const User = model<IUser, UserModelType>("User", userSchema);
