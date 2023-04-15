@@ -7,7 +7,7 @@ import cors from "cors";
 
 const conf = dotenv.config();
 if (conf.error) {
-    throw conf.error;
+  throw conf.error;
 }
 
 const app = express();
@@ -16,17 +16,16 @@ const dbURL = `${process.env.DB_URL}`;
 app.use(cors());
 app.use(express.json());
 
-app.use("/event", eventRoute);
-app.use("/users", userRoute)
+app.use("/events", eventRoute);
+app.use("/users", userRoute);
 
 mongoose
-    .connect(dbURL)
-    .then(() => {
-        app.listen(port, () => {
-            console.log(`Connected to database. Server is running on port: ${port}`);
-        });
-    })
-    .catch((error) => {
-        console.log(error)
+  .connect(dbURL)
+  .then(() => {
+    app.listen(port, () => {
+      console.log(`Connected to database. Server is running on port: ${port}`);
     });
-
+  })
+  .catch((error) => {
+    console.log(error);
+  });
