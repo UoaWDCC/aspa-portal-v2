@@ -4,7 +4,7 @@ import About from "./routes/About";
 import Contact from "./routes/Contact";
 import Home from "./routes/Home";
 import Login from "./routes/Login";
-import Register from "./routes/Register";
+import Register from "./routes/NewForm";
 import UpcomingEvents from "./routes/UpcomingEvents";
 
 export default function App() {
