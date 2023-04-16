@@ -43,7 +43,7 @@ export const createEvent = async (req: Request, res: Response) => {
         eventTitle: req.body.eventTitle,
         eventDescription: req.body.eventDescription,
         eventLocation: req.body.eventLocation,
-        eventDate: req.body.eventLocation,
+        eventTime: new Date(req.body.eventTime),
       });
       await event.save();
       res.status(201).json(event);
