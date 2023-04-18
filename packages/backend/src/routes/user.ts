@@ -6,7 +6,7 @@ import {
     updateUser,
     addEvent,
     deleteUser,
-    removeEvent
+    removeEvent,
 } from "../controllers/user";
 
 const router = express.Router();
