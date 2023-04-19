@@ -78,32 +78,95 @@ export const removeRegistration = async (req: Request, res: Response) => {
   try {
     const { userId, eventId } = req.params;
 
-    // Remove the user from the event
-    await Event.findByIdAndUpdate(
-      eventId,
-      {
-        $pull: {
-          users: {
-            userId: userId,
-          },
-        },
-      },
-      { new: true }
-    );
+    // Check if user is registered under the event
+    const eventData = await Event.findOne({
+      _id: eventId,
+      users: { $elemMatch: { userId: userId } },
+    });
 
-    // Remove the event from the user
-    await User.findByIdAndUpdate(
-      userId,
-      {
-        $pull: {
-          events: {
-            eventId: eventId,
+    // If registration already exists, delete registration, otherwise return error
+    if (eventData != null) {
+      // Remove the user from the event
+      await Event.findByIdAndUpdate(
+        eventId,
+        {
+          $pull: {
+            users: {
+              userId: userId,
+            },
           },
         },
-      },
-      { new: true }
-    );
-    res.status(200).json({ message: "User removed from event" });
+        { new: true }
+      );
+
+      // Remove the event from the user
+      await User.findByIdAndUpdate(
+        userId,
+        {
+          $pull: {
+            events: {
+              eventId: eventId,
+            },
+          },
+        },
+        { new: true }
+      );
+      res.status(200).json({ message: "User removed from event" });
+    } else {
+      const err: Error = new Error();
+      err.message = "Unable to delete registration, it does not exist";
+      throw err;
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(400).json(error);
+  }
+};
+
+export const updatePaymentStatus = async (req: Request, res: Response) => {
+  try {
+    const { userId, eventId } = req.params;
+    let { paymentStatus } = req.body;
+
+    if (!paymentStatus) {
+      const err: Error = new Error();
+      err.message = "Payment status was not provided";
+      throw err;
+    }
+
+    // Check if user is registered under the event
+    const eventData = await Event.findOne({
+      _id: eventId,
+      users: { $elemMatch: { userId: userId } },
+    });
+
+    // If registration already exists, update payment status, otherwise return error
+    if (eventData != null) {
+      await Event.updateOne(
+        {
+          _id: eventId,
+          "users.userId": userId,
+        },
+        {
+          $set: { "users.$.paymentStatus": paymentStatus },
+        }
+      );
+
+      await User.updateOne(
+        {
+          _id: userId,
+          "events.eventId": eventId,
+        },
+        {
+          $set: { "events.$.paymentStatus": paymentStatus },
+        }
+      );
+      res.status(200).json({ message: "Payment status has been updated" });
+    } else {
+      const err: Error = new Error();
+      err.message = "Unable to update registration, it does not exist";
+      throw err;
+    }
   } catch (error) {
     console.error(error);
     res.status(400).json(error);
