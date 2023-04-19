@@ -15,7 +15,7 @@ const Create = () => {
   };
 
   return (
-    <div className="create">
+    <div className="create block max-w-md rounded-lg bg-white p-6 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
       {/* Info */}
       <h2>Register</h2>
       <p>
@@ -29,33 +29,39 @@ const Create = () => {
       <p>$6.00 with ASPA membership</p>
 
       <form onSubmit={handleSubmit}>
-        <label htmlFor="name">Full Name</label>
-        <input
-          type="text"
-          id="name"
-          required
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
+        <div>
+          <label htmlFor="name">Full Name</label>
+          <input
+            type="text"
+            id="name"
+            required
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </div>
 
-        <label htmlFor="email">Email</label>
-        <input
-          type="email"
-          id="email"
-          required
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
+        <div>
+          <label htmlFor="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
 
-        <label htmlFor="paymentType">Payment Type:</label>
-        <select
-          id="paymentType"
-          value={paymentType}
-          onChange={(e) => setPaymentType(e.target.value)}
-        >
-          <option value="bank transfer">Bank Transfer</option>
-          <option value="cash">Cash</option>
-        </select>
+        <div>
+          <label htmlFor="paymentType">Payment Type:</label>
+          <select
+            id="paymentType"
+            value={paymentType}
+            onChange={(e) => setPaymentType(e.target.value)}
+          >
+            <option value="bank transfer">Bank Transfer</option>
+            <option value="cash">Cash</option>
+          </select>
+        </div>
 
         {!isPending && <button type="submit">Register</button>}
         {isPending && <button disabled>Registering...</button>}
