@@ -1,0 +1,24 @@
+/* Event.css */
+.events-container {
+  /* Add any styles for the container div */
+}
+
+.upcoming-event {
+  /* Add any styles for the upcoming event container */
+  display: flex;
+  flex-wrap: wrap; /* Use flexbox to wrap the event cards */
+}
+
+.event-title {
+  /* Add any styles for the event title */
+}
+
+.event-details {
+  /* Add any styles for the event details container */
+}
+
+.event-buttons {
+  /* Add any styles for the event buttons container */
+}
+
+/* Add any additional styles as needed */

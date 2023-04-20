@@ -1,12 +1,20 @@
 import { useState } from "react";
 import { AiOutlineDollar } from "react-icons/ai";
 import { IoLocationOutline, IoTimeOutline } from "react-icons/io5";
+import { useLocation } from "react-router-dom";
 
 const Create = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [paymentType, setPaymentType] = useState("bank transfer");
   const [isPending, setIsPending] = useState(false);
+  const url = useLocation();
+  const queryParams = new URLSearchParams(url.search);
+  //const eventId = queryParams.get("eventId"); No point declaring eventId now. Can just do following in API call -> queryParams.get("eventId")
+  const title = queryParams.get("title");
+  const date = queryParams.get("date");
+  const description = queryParams.get("description");
+  const location = queryParams.get("location");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -20,22 +28,17 @@ const Create = () => {
     <div className="create px-16 pt-10">
       {/* Info */}
       <div className="prose prose-lg prose-h1:text-6xl prose-h1:mb-[0.63em] prose-invert mb-8">
-        <h1>Register</h1>
-        <p>
-          Bring your cue skills, friends, and pool rivals for a casual night of
-          pool! Limited availability so sign up to confirm your spot! (This form
-          will close upon reaching capacity so if you're reading this it's not
-          too late :D)
-        </p>
+        <h1>Register for {title}</h1>
+        <p>{description}</p>
       </div>
       <div className="flex flex-col gap-4 text-lg text-gray-300">
         <div className="flex gap-4 align-middle">
           <IoTimeOutline size={24} />
-          <p className="my-auto">Thursday 19th May 2022, 6:30 - 8:00 PM</p>
+          <p className="my-auto">{date}</p>
         </div>
         <div className="flex gap-4 align-middle">
           <IoLocationOutline size={24} />
-          <p className="my-auto">9 City Road, Orange Pool Club</p>
+          <p className="my-auto">{location}</p>
         </div>
         <div className="flex gap-4 align-middle">
           <AiOutlineDollar size={24} />
