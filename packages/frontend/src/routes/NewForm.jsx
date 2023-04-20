@@ -1,10 +1,18 @@
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 
 const Create = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [paymentType, setPaymentType] = useState("");
   const [isPending, setIsPending] = useState(false);
+  const url = useLocation();
+  const queryParams = new URLSearchParams(url.search);
+  //const eventId = queryParams.get("eventId"); No point declaring eventId now. Can just do following in API call -> queryParams.get("eventId")
+  const title = queryParams.get("title");
+  const date = queryParams.get("date");
+  const description = queryParams.get("description");
+  const location = queryParams.get("location");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -17,15 +25,10 @@ const Create = () => {
   return (
     <div className="create">
       {/* Info */}
-      <h2>Register</h2>
-      <p>
-        Bring your cue skills, friends, and pool rivals for a casual night of
-        pool! Limited availability so sign up to confirm your spot! (This form
-        will close upon reaching capacity so if you're reading this it's not too
-        late :D)
-      </p>
-      <p>Thursday 19th May 2022, 6:30 - 8:00 PM</p>
-      <p>9 City Road, Orange Pool Club</p>
+      <h2>Register for {title}</h2>
+      <p>{description}</p>
+      <p>Date: {date}</p>
+      <p>Location: {location}</p>
       <p>$6.00 with ASPA membership</p>
 
       <form onSubmit={handleSubmit}>
