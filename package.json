@@ -9,6 +9,6 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "mongoose": "^7.0.2"
+    "react-icons": "^4.8.0"
   }
 }
