@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types"; // Import PropTypes
 import "./EventCardStyles.css";
-import orangeClub from "../assets/orangeClub.jpg";
+import orangeClub from "../assets/mainBG.jpg";
 
 /*
 Here for EventCard, we pass the title and details as props so that we can put values dynamically from eventsData.js.
