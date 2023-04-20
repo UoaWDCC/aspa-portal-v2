@@ -38,7 +38,7 @@ export const createUser = async (req: Request, res: Response) => {
     const { firstName, lastName, email, university, studentId, skillLevel } =
       req.body;
 
-    if (firstName && lastName && email && university && skillLevel) {
+    if (firstName && lastName && email) {
       const newUser = await User.create({
         firstName,
         lastName,
@@ -57,9 +57,7 @@ export const createUser = async (req: Request, res: Response) => {
           "Missing required fields: " +
           (firstName ? "" : `firstName=${firstName}`) +
           (lastName ? "" : `lastName=${lastName}`) +
-          (email ? "" : `email=${email} `) +
-          (university ? "" : `university=${university} `) +
-          (skillLevel ? "" : `skillLevel=${skillLevel} `),
+          (email ? "" : `email=${email} `),
       });
     }
   } catch (error) {
