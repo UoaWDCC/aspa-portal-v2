@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types"; // Import PropTypes
 import "./EventCardStyles.css";
-import mainBG from "../assets/mainBG.jpg";
+import orangeClub from "../assets/mainBG.jpg";
 
 /*
 Here for EventCard, we pass the title and details as props so that we can put values dynamically from eventsData.js.
@@ -15,7 +15,7 @@ const EventCard = (props) => {
   return (
     <div className="event-card">
       <div className="event-image-container">
-        <img src={mainBG} alt="Event Image" className="event-image" />
+        <img src={orangeClub} alt="Event Image" className="event-image" />
       </div>
       <div className="event-details">
         <h1 className="event-title">{title}</h1>
@@ -26,7 +26,7 @@ const EventCard = (props) => {
           <Link
             to={`/Register?eventId=${eventId}&title=${title}&date=${date}&description=${description}&location=${location}`}
           >
-            Registration
+            Register
           </Link>
         </div>
       </div>

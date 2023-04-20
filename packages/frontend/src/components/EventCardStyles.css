@@ -1,27 +1,32 @@
 /* Set font color for <p> tag */
 .event-card p {
-  color: black;
+  color: rgb(255, 255, 255);
 }
 
 /* Set font color for <h1> tag */
 .event-card h1 {
-  color: black;
+  color: rgb(255, 255, 255);
 }
 
 .event-card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #dda3a3;
+  background-color: #00000093;
+  border-width: 2px;
   border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  padding: 20px;
+  /* box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); */
+  padding: 10px;
   max-width: 300px;
   margin: 10px;
-
+  /* filter: drop-shadow(2px 2px 5px #ffffff67); */
   /* Define flip card animation */
   transition: transform 0.5s;
   transform-style: preserve-3d;
+}
+
+.event-card:hover {
+  transform: scale(1.05);
 }
 
 .event-card.flip {
@@ -47,7 +52,7 @@
 }
 
 .event-title {
-  font-size: 18px;
+  font-size: 25px;
   font-weight: bold;
 }
 
@@ -62,15 +67,18 @@
 
 .event-buttons a {
   display: inline-block;
-  background-color: #007bff;
-  color: #fff;
+  
+  color: #ffffff;
   text-decoration: none;
   padding: 8px 16px;
-  border-radius: 4px;
+  border-radius: 20px;
+  border-color: #ffffff;
+  border-width: 2px;
   font-weight: bold;
   transition: background-color 0.3s ease;
 }
 
 .event-buttons a:hover {
-  background-color: #0056b3;
+  background-color: #ffffff;
+  color: #000000;
 }

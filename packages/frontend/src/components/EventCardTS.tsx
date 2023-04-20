@@ -34,7 +34,7 @@ const EventCard: React.FC<EventCardProps> = ({
         <p>Date: {date}</p>
         <p>Location: {location}</p>
         <div className="event-buttons">
-          <Link to="/Register">Registration</Link>
+          <Link to="/Register">Register</Link>
         </div>
       </div>
     </div>

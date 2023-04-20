@@ -1,10 +1,14 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import "./FormStyles.css";
 import { AiOutlineDollar } from "react-icons/ai";
 import { IoLocationOutline, IoTimeOutline } from "react-icons/io5";
 import { useLocation } from "react-router-dom";
 
+
 const Create = () => {
-  const [name, setName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [paymentType, setPaymentType] = useState("bank transfer");
   const [isPending, setIsPending] = useState(false);
@@ -18,7 +22,7 @@ const Create = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const player = { name, email, paymentType };
+    const player = { firstName, lastName, email, paymentType };
     console.log(player);
     setIsPending(true);
     // Make API call or perform other actions here
@@ -26,6 +30,20 @@ const Create = () => {
 
   return (
     <div className="create px-16 pt-10">
+      <Link to="/upcoming-events" className="back_button">
+        <svg
+          width="12"
+          height="20"
+          viewBox="0 0 12 20"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M9.125 19.1L0.700003 10.7C0.600003 10.6 0.529003 10.4917 0.487003 10.375C0.445003 10.2584 0.424337 10.1334 0.425003 10C0.425003 9.86669 0.44567 9.74169 0.487003 9.62502C0.528337 9.50836 0.599336 9.40002 0.700003 9.30002L9.125 0.875024C9.35834 0.641691 9.65 0.525024 10 0.525024C10.35 0.525024 10.65 0.650024 10.9 0.900024C11.15 1.15002 11.275 1.44169 11.275 1.77502C11.275 2.10836 11.15 2.40002 10.9 2.65002L3.55 10L10.9 17.35C11.1333 17.5834 11.25 17.871 11.25 18.213C11.25 18.555 11.125 18.8507 10.875 19.1C10.625 19.35 10.3333 19.475 10 19.475C9.66667 19.475 9.375 19.35 9.125 19.1Z"
+            fill="white"
+          />
+        </svg>
+      </Link>
       {/* Info */}
       <div className="prose prose-lg prose-h1:text-6xl prose-h1:mb-[0.63em] prose-invert mb-8">
         <h1>Register for {title}</h1>
