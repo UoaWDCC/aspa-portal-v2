@@ -5,10 +5,8 @@ import { AiOutlineDollar } from "react-icons/ai";
 import { IoLocationOutline, IoTimeOutline } from "react-icons/io5";
 import { useLocation } from "react-router-dom";
 
-
 const Create = () => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [paymentType, setPaymentType] = useState("bank transfer");
   const [isPending, setIsPending] = useState(false);
@@ -22,7 +20,7 @@ const Create = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const player = { firstName, lastName, email, paymentType };
+    const player = { name, email, paymentType };
     console.log(player);
     setIsPending(true);
     // Make API call or perform other actions here
