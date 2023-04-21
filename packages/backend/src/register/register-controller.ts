@@ -1,6 +1,6 @@
-import { Event, RegistrationRecordEvent } from "../models/event";
+import { Event, RegistrationRecordEvent } from "../event/event-model";
 import { Request, Response } from "express";
-import { User, RegistrationRecordUser } from "../models/user";
+import { User, RegistrationRecordUser } from "../user/user-model";
 
 /**
  * Register user to an event and event to a user

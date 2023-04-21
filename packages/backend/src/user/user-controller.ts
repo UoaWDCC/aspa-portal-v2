@@ -1,4 +1,4 @@
-import { User, RegistrationRecordUser } from "../models/user";
+import { User, RegistrationRecordUser } from "./user-model";
 import { Request, Response } from "express";
 
 /**

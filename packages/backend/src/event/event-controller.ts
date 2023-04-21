@@ -1,4 +1,4 @@
-import { Event, RegistrationRecordEvent } from "../models/event";
+import { Event, RegistrationRecordEvent } from "./event-model";
 import { Request, Response } from "express";
 import mongoose from "mongoose";
 

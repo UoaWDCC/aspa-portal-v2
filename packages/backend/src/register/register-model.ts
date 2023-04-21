@@ -3,7 +3,7 @@ import {
   registerUserEvent,
   removeRegistration,
   updatePaymentStatus,
-} from "../controllers/register";
+} from "./register-controller";
 
 const router = express.Router();
 

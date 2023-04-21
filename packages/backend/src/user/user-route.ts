@@ -7,7 +7,7 @@ import {
     addEvent,
     deleteUser,
     removeEvent,
-} from "../controllers/user";
+} from "./user-controller";
 
 const router = express.Router();
 

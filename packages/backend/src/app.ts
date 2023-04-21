@@ -1,9 +1,9 @@
 import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
-import eventRoute from "./routes/event";
-import userRoute from "./routes/user";
-import registerRoute from "./routes/register";
+import eventRoute from "./event/event-route";
+import userRoute from "./user/user-route";
+import registerRoute from "./register/register-model";
 import cors from "cors";
 
 const conf = dotenv.config();
