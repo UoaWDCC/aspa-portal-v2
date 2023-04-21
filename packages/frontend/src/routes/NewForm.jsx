@@ -4,9 +4,12 @@ import "./FormStyles.css";
 import { AiOutlineDollar } from "react-icons/ai";
 import { IoLocationOutline, IoTimeOutline } from "react-icons/io5";
 import { useLocation } from "react-router-dom";
+import { fadeUpInView } from "./animation/utils";
+import { motion } from "framer-motion";
 
 const Create = () => {
-  const [name, setName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [paymentType, setPaymentType] = useState("bank transfer");
   const [isPending, setIsPending] = useState(false);
@@ -20,14 +23,14 @@ const Create = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const player = { name, email, paymentType };
+    const player = { firstName, lastName, email, paymentType };
     console.log(player);
     setIsPending(true);
     // Make API call or perform other actions here
   };
 
   return (
-    <div className="create px-16 pt-10">
+    <motion.div {...fadeUpInView()} className="create mx-auto pt-10 ">
       <Link to="/upcoming-events" className="back_button">
         <svg
           width="12"
@@ -63,25 +66,43 @@ const Create = () => {
       </div>
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-3 max-w-2xl">
-        <label htmlFor="name" className="mt-10">
-          Full Name
+        <div className="grid grid-cols-2 gap-4 mt-10">
+          <div className="grid grid-rows-2 gap-0">
+            <label htmlFor="name" className="pt-2">
+              First Name
+            </label>
+            <input
+              type="text"
+              id="firstName"
+              required
+              value={firstName}
+              className="bg-transparent px-3 py-2 border-2 rounded-lg h-10 mb-0"
+              onChange={(e) => setFirstName(e.target.value)}
+            />
+          </div>
+          <div className="grid grid-rows-2 gap-0">
+            <label htmlFor="name" className="pt-2">
+              Last Name
+            </label>
+            <input
+              type="text"
+              id="lastName"
+              required
+              value={lastName}
+              className="bg-transparent px-3 py-2 border-2 rounded-lg h-10 mb-0"
+              onChange={(e) => setLastName(e.target.value)}
+            />
+          </div>
+        </div>
+        <label htmlFor="email" className="mt-0">
+          Email
         </label>
-        <input
-          type="text"
-          id="name"
-          required
-          value={name}
-          className="bg-transparent px-3 py-2 border-2 rounded-lg"
-          onChange={(e) => setName(e.target.value)}
-        />
-
-        <label htmlFor="email">Email</label>
         <input
           type="email"
           id="email"
           required
           value={email}
-          className="bg-transparent px-3 py-2 border-2 rounded-lg"
+          className="bg-transparent px-3 py-2 border-2 rounded-lg h-10"
           onChange={(e) => setEmail(e.target.value)}
         />
 
@@ -92,18 +113,25 @@ const Create = () => {
           className="bg-transparent px-3 py-2 border-2 rounded-lg"
           onChange={(e) => setPaymentType(e.target.value)}
         >
-          <option value="bank transfer">Bank Transfer</option>
-          <option value="cash">Cash</option>
+          <option className="option" value="bank transfer">
+            Bank Transfer
+          </option>
+          <option className="option" value="cash">
+            Cash
+          </option>
         </select>
 
         {!isPending && (
-          <button type="submit" className="mt-4 hover:opacity-50 ">
+          <button
+            type="submit"
+            className="border-2 border-white rounded-full text-lg px-12 py-1 mt-10 w-[80%] mx-auto hover:text-black hover:bg-white transition duration-300 ease-in-out"
+          >
             Register
           </button>
         )}
         {isPending && <button disabled>Registering...</button>}
       </form>
-    </div>
+    </motion.div>
   );
 };
 
