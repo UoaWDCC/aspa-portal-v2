@@ -2,7 +2,6 @@
 
 ## Introduction
 
-Provide a brief overview of the frontend project's background, purpose, functionality, modules, and overall approach.
 Background:
 This project is a web application designed for ASPA, aimed at providing club members with a convenient and streamlined way to sign up for events, make payments, and stay up-to-date with club activities.
 
