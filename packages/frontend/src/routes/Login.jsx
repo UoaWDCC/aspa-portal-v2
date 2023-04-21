@@ -51,13 +51,13 @@ export default function Login() {
             <span className="text-sky-100 ml-auto">Forgot Password?</span>
           </div>
           <div className="flex flex-col gap-4 items-center w-full">
-            <button className="border-2 border-white rounded-full text-lg px-12 py-2 w-[80%]">
+            <button className="border-2 border-white rounded-full text-lg px-12 py-2 w-[80%] hover:text-black hover:bg-white transition duration-500 ease-in-out">
               Login
             </button>
             <p>
               Not a member yet?{" "}
-              <a className="text-sky-200" href="/register">
-                Register!
+              <a className="text-sky-200" href="/sign-up">
+                Sign Up!
               </a>
             </p>
           </div>
