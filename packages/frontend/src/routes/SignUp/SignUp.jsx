@@ -36,16 +36,22 @@ export default function SignUp() {
 
   return (
     <>
+      {/* back ground filter to make the background darker */}
       <div className="fixed -z-50 inset-0 bg-black bg-opacity-60"></div>
+
+      {/* main container */}
       <div className="h-full flex justify-center items-center">
+        {/* form container */}
         <motion.form
           {...fadeUpInView()}
           className="flex flex-col justify-center items-center min-w-[28%] max-w-2xl px-4"
           onSubmit={handleSubmit}
         >
+          {/* form header */}
           <div className="flex flex-col gap-2 text-center mb-10">
             <h1 className="text-5xl">Sign Up</h1>
           </div>
+          {/* First row of inputs, first name and last name */}
           <div className="w-full flex flex-col gap-4 mb-8">
             <div className="grid grid-cols-2 gap-4">
               <div className="relative flex items-center pl-2 gap-4 mb-0 rounded-lg border-2 border-gray-400">
@@ -85,6 +91,7 @@ export default function SignUp() {
                 </label>
               </div>
             </div>
+            {/* second row of inputs, email */}
             <div className="relative flex items-center pl-2 gap-4 rounded-lg border-2 border-gray-400">
               <MdOutlineMailOutline className="h-8 w-8" />
               <input
@@ -103,6 +110,7 @@ export default function SignUp() {
                 Email
               </label>
             </div>
+            {/* third row of inputs, password */}
             <div className="relative flex items-center pl-2 gap-4 rounded-lg border-2 border-gray-400">
               <BsKey className="h-8 w-8" />
               <input
@@ -121,6 +129,7 @@ export default function SignUp() {
                 Password
               </label>
             </div>
+            {/* fourth row of inputs, confirm password */}
             <div className="relative flex items-center pl-2 gap-4 rounded-lg border-2 border-gray-400">
               <BsKey className="h-8 w-8" />
               <input
@@ -139,12 +148,14 @@ export default function SignUp() {
                 Confirm Password
               </label>
             </div>
+            {/* error message for password mismatch, redered conditionally*/}
             {passwordError && (
               <p style={{ color: "red" }}>*Passwords do not match</p>
             )}
             {!passwordError && <div style={{ height: "1.5rem" }}></div>}
-            {/* placeholder element */}
+            {/* placeholder element so elements dont shift */}
           </div>
+          {/* sign up button */}
           <div className="flex flex-col gap-4 items-center w-full">
             <button className="border-2 border-white rounded-full text-lg px-12 py-2 w-[80%] hover:text-black hover:bg-white transition duration-300 ease-in-out">
               Sign Up
