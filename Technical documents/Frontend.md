@@ -2,33 +2,33 @@
 
 ## Introduction
 
-Background:
+**Background:**
 This project is a web application designed for ASPA, aimed at providing club members with a convenient and streamlined way to sign up for events, make payments, and stay up-to-date with club activities.
 
-Purpose:
+**Purpose:**
 The purpose of the application is to simplify the process of managing club events and registrations, as well as facilitating the payment process to offload the manul communication between club members and administrators.
 
-Functionality:
+**Functionality:**
 The application includes several key features, including:
 
-User authentication: Users can sign up for an account or log in to an existing one, in order to speed up event registration process.
+* User authentication: Users can sign up for an account or log in to an existing one, in order to speed up event registration process.
 
-Event browsing and registration: Users can browse upcoming club events, view event details, and register for events they are interested in attending.
+* Event browsing and registration: Users can browse upcoming club events, view event details, and register for events they are interested in attending.
 
-Payment processing: Users can make payments for events they have registered for, using a secure payment gateway.
+* Payment processing: Users can make payments for events they have registered for, using a secure payment gateway.
 
-Modules:
+**Modules:**
 The application is broken down into several modules or components, each responsible for a specific aspect of the application's functionality. These may include:
 
-Authentication module: Responsible for handling user authentication and access control.
+* Authentication module: Responsible for handling user authentication and access control.
 
-Event module: Responsible for managing club events, including creating, editing, and deleting events.
+* Event module: Responsible for managing club events, including creating, editing, and deleting events.
 
-Registration module: Responsible for managing event registrations, including user registration and payment processing.
+* Registration module: Responsible for managing event registrations, including user registration and payment processing.
 
-User module: Responsible for managing user accounts, including user details and attendence.
+* User module: Responsible for managing user accounts, including user details and attendence.
 
-Overall approach:
+**Overall approach:**
 The overall approach to building the application is focused on creating a modular, component-based architecture that emphasizes flexibility, scalability, and maintainability. This involved using popular React libraries and frameworks, such as Redux, React Router, and TailWindCSS, as well as implementing best practices for code organization and testing. The user interface has been designed with usability and accessibility in mind, in order to ensure a positive user experience for all users.
 
 ## Project Structure
