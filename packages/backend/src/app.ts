@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import eventRoute from "./event/event-route";
 import userRoute from "./user/user-route";
-import registerRoute from "./register/register-model";
+import registerRoute from "./register/register-route";
 import cors from "cors";
 
 const conf = dotenv.config();
