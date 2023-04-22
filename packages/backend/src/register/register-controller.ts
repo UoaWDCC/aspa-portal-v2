@@ -18,9 +18,7 @@ export const registerUserEvent = async (req: Request, res: Response) => {
         e.eventId.toHexString() === eventId.toString()
     );
     if (eventAlreadyPresent) {
-      const err: Error = new Error();
-      err.message = "Event already present in user's list of events";
-      throw err;
+      throw new Error("Event already present in user's list of events");
     }
 
     // check if the event is already registerd to the user
@@ -31,9 +29,7 @@ export const registerUserEvent = async (req: Request, res: Response) => {
         e.userId.toHexString() === userId.toString()
     );
     if (userAlreadyPresent) {
-      const err: Error = new Error();
-      err.message = "User already registered for this event";
-      throw err;
+      throw new Error("User already registered for this event");
     }
 
     // Add the user to the event
@@ -84,8 +80,9 @@ export const removeRegistration = async (req: Request, res: Response) => {
       users: { $elemMatch: { userId: userId } },
     });
 
-    // If registration already exists, delete registration, otherwise return error
-    if (eventData != null) {
+    if (eventData == null) {
+      throw new Error("Unable to delete registration, it does not exist");
+    } else {
       // Remove the user from the event
       await Event.findByIdAndUpdate(
         eventId,
@@ -112,10 +109,6 @@ export const removeRegistration = async (req: Request, res: Response) => {
         { new: true }
       );
       res.status(200).json({ message: "User removed from event" });
-    } else {
-      const err: Error = new Error();
-      err.message = "Unable to delete registration, it does not exist";
-      throw err;
     }
   } catch (error) {
     console.error(error);
@@ -129,9 +122,7 @@ export const updatePaymentStatus = async (req: Request, res: Response) => {
     let { paymentStatus } = req.body;
 
     if (!paymentStatus) {
-      const err: Error = new Error();
-      err.message = "Payment status was not provided";
-      throw err;
+      throw new Error("Payment status was not provided");
     }
 
     // Check if user is registered under the event
@@ -163,9 +154,7 @@ export const updatePaymentStatus = async (req: Request, res: Response) => {
       );
       res.status(200).json({ message: "Payment status has been updated" });
     } else {
-      const err: Error = new Error();
-      err.message = "Unable to update registration, it does not exist";
-      throw err;
+      throw new Error("Unable to update registration, it does not exist");
     }
   } catch (error) {
     console.error(error);
