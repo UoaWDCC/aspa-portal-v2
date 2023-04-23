@@ -75,7 +75,7 @@ function Header({ absolute = false }) {
             <span>Search</span>
           </Link>*/}
           <Link to="/login">Login</Link>
-          <Link to="/register">Register</Link>
+          <Link to="/sign-up">Sign Up</Link>
         </div>
       </nav>
       <AnimatePresence>
@@ -103,8 +103,8 @@ function Header({ absolute = false }) {
               </Link>
             </motion.span>
             <motion.span variants={menuLinkVariants}>
-              <Link onClick={() => setIsOpen(false)} to="/register">
-                Register
+              <Link onClick={() => setIsOpen(false)} to="/sign-up">
+                Sign Up
               </Link>
             </motion.span>
           </motion.div>

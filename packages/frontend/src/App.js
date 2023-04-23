@@ -6,6 +6,7 @@ import Home from "./routes/Home";
 import Login from "./routes/Login";
 import Register from "./routes/NewForm";
 import UpcomingEvents from "./routes/UpcomingEvents";
+import SignUp from "./routes/SignUp/SignUp";
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/upcoming-events" element={<UpcomingEvents />} />
+          <Route path="/sign-up" element={<SignUp />} />
         </Route>
       </Routes>
     </div>
