@@ -7,8 +7,5 @@
     "packages/*"
   ],
   "license": "MIT",
-  "private": true,
-  "dependencies": {
-    "react-icons": "^4.8.0"
-  }
+  "private": true
 }
