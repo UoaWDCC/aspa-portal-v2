@@ -1,4 +1,5 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import "./FormStyles.css";
 import { AiOutlineDollar } from "react-icons/ai";
@@ -8,6 +9,7 @@ import { fadeUpInView } from "./animation/utils";
 import { motion } from "framer-motion";
 
 const Create = () => {
+  const [event, setEvent] = useState({});
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -15,11 +17,19 @@ const Create = () => {
   const [isPending, setIsPending] = useState(false);
   const url = useLocation();
   const queryParams = new URLSearchParams(url.search);
-  //const eventId = queryParams.get("eventId"); No point declaring eventId now. Can just do following in API call -> queryParams.get("eventId")
-  const title = queryParams.get("title");
-  const date = queryParams.get("date");
-  const description = queryParams.get("description");
-  const location = queryParams.get("location");
+  const eventId = queryParams.get("eventId");
+
+  useEffect(() => {
+    async function fetchEvent() {
+      const response = await axios.get(
+        `http://localhost:5000/events/${eventId}`
+      );
+      const data = response.data;
+      setEvent(data);
+      console.log(data);
+    }
+    fetchEvent();
+  }, [eventId]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -47,17 +57,17 @@ const Create = () => {
       </Link>
       {/* Info */}
       <div className="prose prose-lg prose-h1:text-6xl prose-h1:mb-[0.63em] prose-invert mb-8">
-        <h1>Register for {title}</h1>
-        <p>{description}</p>
+        <h1>Register for {event.eventTitle}</h1>
+        <p>{event.eventDescription}</p>
       </div>
       <div className="flex flex-col gap-4 text-lg text-gray-300">
         <div className="flex gap-4 align-middle">
           <IoTimeOutline size={24} />
-          <p className="my-auto">{date}</p>
+          <p className="my-auto">{event.eventTime}</p>
         </div>
         <div className="flex gap-4 align-middle">
           <IoLocationOutline size={24} />
-          <p className="my-auto">{location}</p>
+          <p className="my-auto">{event.eventLocation}</p>
         </div>
         <div className="flex gap-4 align-middle">
           <AiOutlineDollar size={24} />

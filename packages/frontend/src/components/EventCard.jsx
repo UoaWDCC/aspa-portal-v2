@@ -23,11 +23,7 @@ const EventCard = (props) => {
         <p>Date: {date}</p>
         <p>Location: {location}</p>
         <div className="event-buttons">
-          <Link
-            to={`/Register?eventId=${eventId}&title=${title}&date=${date}&description=${description}&location=${location}`}
-          >
-            Register
-          </Link>
+          <Link to={`/Register?eventId=${eventId}`}>Register</Link>
         </div>
       </div>
     </div>
@@ -35,7 +31,7 @@ const EventCard = (props) => {
 };
 
 EventCard.propTypes = {
-  eventId: PropTypes.number,
+  eventId: PropTypes.string,
   title: PropTypes.string,
   date: PropTypes.string,
   description: PropTypes.string,
