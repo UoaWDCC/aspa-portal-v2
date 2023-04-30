@@ -1,10 +1,12 @@
 import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
+import cors from "cors";
+
 import eventRoute from "./event/event-route";
 import userRoute from "./user/user-route";
 import registerRoute from "./register/register-route";
-import cors from "cors";
+import paymentRoute from "./payment/payment-route";
 
 const conf = dotenv.config();
 if (conf.error) {
@@ -20,6 +22,7 @@ app.use(express.json());
 app.use("/events", eventRoute);
 app.use("/users", userRoute);
 app.use("/register", registerRoute);
+app.use("/payment", paymentRoute);
 
 mongoose
   .connect(dbURL)

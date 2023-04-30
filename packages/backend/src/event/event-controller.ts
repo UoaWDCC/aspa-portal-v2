@@ -1,4 +1,4 @@
-import { Event, RegistrationRecordEvent } from "./event-model";
+import { Event } from "./event-model";
 import { Request, Response } from "express";
 import mongoose from "mongoose";
 
@@ -37,14 +37,15 @@ export const createEvent = async (req: Request, res: Response) => {
       req.body.eventTitle &&
       req.body.eventDescription &&
       req.body.eventLocation &&
-      req.body.eventTime
+      req.body.eventTime &&
+      req.body.stripeProductId
     ) {
       const event = new Event({
         eventTitle: req.body.eventTitle,
         eventDescription: req.body.eventDescription,
         eventLocation: req.body.eventLocation,
         eventTime: new Date(req.body.eventTime),
-        eventLink: req.body.eventLink,
+        stripeProductId: req.body.stripeProductId
       });
       await event.save();
       res.status(201).json(event);
@@ -80,8 +81,8 @@ export const updateEvent = async (req: Request, res: Response) => {
               : eventData.eventLocation,
           eventTime:
             req.body.eventTime != "" ? req.body.eventTime : eventData.eventTime,
-          eventLink:
-            req.body.eventLink != "" ? req.body.eventLink : eventData.eventLink,
+          stripeProductId:
+            req.body.stripeProductId != "" ? req.body.stripeProductId : eventData.stripeProductId,
         }
       );
 
@@ -91,72 +92,6 @@ export const updateEvent = async (req: Request, res: Response) => {
     }
   } catch (error) {
     res.json(error);
-  }
-};
-
-/**
- *  Register a user to an event
- *
- * Now can be deleted as its not used
- */
-export const registerUser = async (req: Request, res: Response) => {
-  try {
-    const { eventId } = req.params;
-
-    const { userId, registrationDate, paymentStatus, paymentDetails } =
-      req.body;
-
-    const user = {
-      userId,
-      registrationDate,
-      paymentStatus,
-      paymentDetails,
-    };
-
-    const event = await Event.findById(eventId);
-
-    const userAlreadyPresent = event?.users?.find(
-      (e: RegistrationRecordEvent) =>
-        e.userId.toHexString() === userId.toString()
-    );
-    if (userAlreadyPresent) {
-      const err: Error = new Error();
-      err.message = "User already registered for this event";
-      throw err;
-    }
-
-    const updatedEvent = await Event.findByIdAndUpdate(
-      eventId,
-      { $addToSet: { users: user } },
-      { new: true }
-    );
-
-    res.status(200).json(updatedEvent);
-  } catch (error) {
-    console.error(error);
-    res.status(400).json(error);
-  }
-};
-
-/*
- *  Remove a user from an event's list of registered users
- *  Now can be deleted as its not used
- */
-export const removeUser = async (req: Request, res: Response) => {
-  try {
-    const { eventId } = req.params;
-    const { userId } = req.body;
-
-    const updatedEvent = await Event.findByIdAndUpdate(
-      eventId,
-      { $pull: { users: { userId: userId } } },
-      { new: true }
-    );
-
-    res.status(200).json(updatedEvent);
-  } catch (error) {
-    console.error(error);
-    res.status(400).json(error);
   }
 };
 

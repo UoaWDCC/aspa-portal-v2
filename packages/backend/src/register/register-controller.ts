@@ -4,6 +4,8 @@ import { User, RegistrationRecordUser } from "../user/user-model";
 
 /**
  * Register user to an event and event to a user
+ * 
+ * TODO: JWT token
  */
 export const registerUserEvent = async (req: Request, res: Response) => {
     try {
@@ -11,7 +13,7 @@ export const registerUserEvent = async (req: Request, res: Response) => {
             userId,
             eventId,
             registrationDate,
-            paymentStatus,
+            paid,
             paymentDetails,
         } = req.body;
 
@@ -45,7 +47,7 @@ export const registerUserEvent = async (req: Request, res: Response) => {
                     users: {
                         userId: userId,
                         registrationDate: registrationDate,
-                        paymentStatus: paymentStatus,
+                        paid: paid,
                         paymentDetails: paymentDetails,
                     },
                 },
@@ -61,7 +63,7 @@ export const registerUserEvent = async (req: Request, res: Response) => {
                     events: {
                         eventId: eventId,
                         registrationDate: registrationDate,
-                        paymentStatus: paymentStatus,
+                        paid: paid,
                         paymentDetails: paymentDetails,
                     },
                 },
@@ -121,13 +123,17 @@ export const removeRegistration = async (req: Request, res: Response) => {
     }
 };
 
-export const updatePaymentStatus = async (req: Request, res: Response) => {
+export const updatePaid = async (req: Request, res: Response) => {
     try {
         const { userId, eventId } = req.params;
-        const { paymentStatus } = req.body;
+        const { paid } = req.body;
 
-        if (!paymentStatus) {
-            throw new Error("Payment status was not provided");
+        if (typeof paid != "boolean") {
+            throw new Error("Paid status is not a boolean");
+        }
+
+        if (paid === undefined || paid === null) {
+            throw new Error("Paid status was not provided");
         }
 
         // Check if user is registered under the event
@@ -136,7 +142,7 @@ export const updatePaymentStatus = async (req: Request, res: Response) => {
             users: { $elemMatch: { userId: userId } },
         });
 
-        // If registration already exists, update payment status, otherwise return error
+        // If registration already exists, update paid status, otherwise return error
         if (eventData != null) {
             await Event.updateOne(
                 {
@@ -144,7 +150,7 @@ export const updatePaymentStatus = async (req: Request, res: Response) => {
                     "users.userId": userId,
                 },
                 {
-                    $set: { "users.$.paymentStatus": paymentStatus },
+                    $set: { "users.$.paid": paid },
                 }
             );
 
@@ -154,11 +160,11 @@ export const updatePaymentStatus = async (req: Request, res: Response) => {
                     "events.eventId": eventId,
                 },
                 {
-                    $set: { "events.$.paymentStatus": paymentStatus },
+                    $set: { "events.$.paid": paid },
                 }
             );
             res.status(200).json({
-                message: "Payment status has been updated",
+                message: "Paid status has been updated",
             });
         } else {
             throw new Error("Unable to update registration, it does not exist");

@@ -3,7 +3,7 @@ import { Model, Schema, Types, model } from "mongoose";
 export interface RegistrationRecordUser {
   eventId: Types.ObjectId;
   registrationDate: Date;
-  paymentStatus: string;
+  paid: boolean;
   paymentDetails: object;
 }
 
@@ -39,7 +39,7 @@ const userSchema = new Schema<IUser>({
     new Schema<RegistrationRecordUser>({
       eventId: Types.ObjectId,
       registrationDate: Date,
-      paymentStatus: String,
+      paid: Boolean,
       paymentDetails: Object,
     }),
   ],

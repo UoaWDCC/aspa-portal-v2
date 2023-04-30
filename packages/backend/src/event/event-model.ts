@@ -1,9 +1,10 @@
 import { Model, Schema, Types, model } from "mongoose";
 
+// TODO: payment controller contributes to payment status and details
 export interface RegistrationRecordEvent {
   userId: Types.ObjectId;
   registrationDate: Date;
-  paymentStatus: string;
+  paid: boolean;
   paymentDetails: object;
 }
 
@@ -12,7 +13,7 @@ interface IEvent {
   eventDescription: string;
   eventLocation: string;
   eventTime: Date;
-  eventLink?: string;
+  stripeProductId: string;
   users?: RegistrationRecordEvent[];
 }
 
@@ -21,7 +22,7 @@ type EventDocumentProps = {
   eventDescription: string;
   eventLocation: string;
   eventTime: Date;
-  eventLink?: string;
+  stripeProductId: string;
   users?: Types.DocumentArray<RegistrationRecordEvent>;
 };
 type EventModelType = Model<IEvent, object, EventDocumentProps>;
@@ -31,13 +32,13 @@ const eventSchema = new Schema<IEvent>({
   eventDescription: { type: String, required: true },
   eventLocation: { type: String, required: true },
   eventTime: { type: Date, required: true },
-  eventLink: String,
+  stripeProductId: String,
 
   users: [
     new Schema<RegistrationRecordEvent>({
       userId: Types.ObjectId,
       registrationDate: Date,
-      paymentStatus: String,
+      paid: Boolean,
       paymentDetails: Object,
     }),
   ],

@@ -1,4 +1,4 @@
-import { User, RegistrationRecordUser } from "./user-model";
+import { User } from "./user-model";
 import { Request, Response } from "express";
 
 /**
@@ -104,73 +104,6 @@ export const updateUser = async (req: Request, res: Response) => {
   }
 };
 
-/**
- * Add an event to a user's list of events
- *
- * Now can be deleted as its not used
- */
-export const addEvent = async (req: Request, res: Response) => {
-  try {
-    const { userId } = req.params;
-
-    const { eventId, registrationDate, paymentStatus, paymentDetails } =
-      req.body;
-
-    const event = {
-      eventId,
-      registrationDate,
-      paymentStatus,
-      paymentDetails,
-    };
-
-    const user = await User.findById(userId);
-
-    const eventAlreadyPresent = user?.events?.find(
-      (e: RegistrationRecordUser) =>
-        e.eventId.toHexString() === eventId.toString()
-    );
-    if (eventAlreadyPresent) {
-      const err: Error = new Error();
-      err.message = "Event already present in user's list of events";
-      throw err;
-    }
-
-    const updatedUser = await User.findByIdAndUpdate(
-      userId,
-      { $addToSet: { events: event } },
-      { new: true }
-    );
-
-    res.status(200).json(updatedUser);
-  } catch (error) {
-    console.error(error);
-    res.status(400).json(error);
-  }
-};
-
-/**
- * Remove an event from a user's list of events
- *
- * Now can be deleted as its not used
- */
-export const removeEvent = async (req: Request, res: Response) => {
-  try {
-    const { userId } = req.params;
-
-    const { eventId } = req.body;
-
-    const updatedUser = await User.findByIdAndUpdate(
-      userId,
-      { $pull: { events: { eventId: eventId } } },
-      { new: true }
-    );
-
-    res.status(200).json(updatedUser);
-  } catch (error) {
-    console.error(error);
-    res.status(400).json(error);
-  }
-};
 
 /**
  * Delete a user from the database
