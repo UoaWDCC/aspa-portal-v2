@@ -7,8 +7,9 @@ const verifyToken = async (req: any, res: any, next: NextFunction) => {
   const authToken = req.headers.authorization?.split(" ")[1];
 
   if (!authToken) {
-    // Do guest stuff maybe?
-    return res.status(401).json({ error: "You are not authorized" });
+    // No authentication token: assume guest user
+    req.user = null;
+    return next();
   }
 
   try {

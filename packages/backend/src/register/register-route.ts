@@ -8,10 +8,7 @@ const verifyToken = require("../middleware/verifyToken");
 
 const router = express.Router();
 
-// verify the token for all register routes
-router.use(verifyToken);
-
-router.post("/", registerUserEvent);
+router.post("/", verifyToken, registerUserEvent);
 router.delete("/:userId/:eventId", removeRegistration);
 router.patch("/status/:userId/:eventId", updatePaymentStatus);
 
