@@ -1250,6 +1250,7 @@
   dependencies:
     text-decoding "^1.0.0"
 
+<<<<<<< HEAD
 "@firebase/analytics-compat@0.2.6":
   version "0.2.6"
   resolved "https://registry.yarnpkg.com/@firebase/analytics-compat/-/analytics-compat-0.2.6.tgz#50063978c42f13eb800e037e96ac4b17236841f4"
@@ -1320,11 +1321,14 @@
     "@firebase/util" "1.9.3"
     tslib "^2.1.0"
 
+=======
+>>>>>>> 0641ead (refactor: modify to userId)
 "@firebase/app-types@0.9.0":
   version "0.9.0"
   resolved "https://registry.npmjs.org/@firebase/app-types/-/app-types-0.9.0.tgz"
   integrity sha512-AeweANOIo0Mb8GiYm3xhTEBVCmPwTYAu9Hcd2qSkLuga/6+j9b1Jskl5bpiSQWy9eJ/j5pavxj6eYogmnuzm+Q==
 
+<<<<<<< HEAD
 "@firebase/app@0.9.9":
   version "0.9.9"
   resolved "https://registry.yarnpkg.com/@firebase/app/-/app-0.9.9.tgz#0b9fe2eeaedc93ced8b04736269b2c4019ec9ea3"
@@ -1348,11 +1352,14 @@
     node-fetch "2.6.7"
     tslib "^2.1.0"
 
+=======
+>>>>>>> 0641ead (refactor: modify to userId)
 "@firebase/auth-interop-types@0.2.1":
   version "0.2.1"
   resolved "https://registry.npmjs.org/@firebase/auth-interop-types/-/auth-interop-types-0.2.1.tgz"
   integrity sha512-VOaGzKp65MY6P5FI84TfYKBXEPi6LmOCSMMzys6o2BN2LOsqy7pCuZCup7NYnfbk5OkkQKzvIfHOzTm0UDpkyg==
 
+<<<<<<< HEAD
 "@firebase/auth-types@0.12.0":
   version "0.12.0"
   resolved "https://registry.yarnpkg.com/@firebase/auth-types/-/auth-types-0.12.0.tgz#f28e1b68ac3b208ad02a15854c585be6da3e8e79"
@@ -1369,6 +1376,8 @@
     node-fetch "2.6.7"
     tslib "^2.1.0"
 
+=======
+>>>>>>> 0641ead (refactor: modify to userId)
 "@firebase/component@0.6.4":
   version "0.6.4"
   resolved "https://registry.npmjs.org/@firebase/component/-/component-0.6.4.tgz"
@@ -1377,7 +1386,11 @@
     "@firebase/util" "1.9.3"
     tslib "^2.1.0"
 
+<<<<<<< HEAD
 "@firebase/database-compat@0.3.4", "@firebase/database-compat@^0.3.4":
+=======
+"@firebase/database-compat@^0.3.4":
+>>>>>>> 0641ead (refactor: modify to userId)
   version "0.3.4"
   resolved "https://registry.npmjs.org/@firebase/database-compat/-/database-compat-0.3.4.tgz"
   integrity sha512-kuAW+l+sLMUKBThnvxvUZ+Q1ZrF/vFJ58iUY9kAcbX48U03nVzIF6Tmkf0p3WVQwMqiXguSgtOPIB6ZCeF+5Gg==
@@ -1409,6 +1422,7 @@
     faye-websocket "0.11.4"
     tslib "^2.1.0"
 
+<<<<<<< HEAD
 "@firebase/firestore-compat@0.3.8":
   version "0.3.8"
   resolved "https://registry.yarnpkg.com/@firebase/firestore-compat/-/firestore-compat-0.3.8.tgz#b8bc23bdfed468dea71718b80fa640dc6e90edde"
@@ -1494,6 +1508,8 @@
     idb "7.0.1"
     tslib "^2.1.0"
 
+=======
+>>>>>>> 0641ead (refactor: modify to userId)
 "@firebase/logger@0.4.0":
   version "0.4.0"
   resolved "https://registry.npmjs.org/@firebase/logger/-/logger-0.4.0.tgz"
@@ -1501,6 +1517,7 @@
   dependencies:
     tslib "^2.1.0"
 
+<<<<<<< HEAD
 "@firebase/messaging-compat@0.2.4":
   version "0.2.4"
   resolved "https://registry.yarnpkg.com/@firebase/messaging-compat/-/messaging-compat-0.2.4.tgz#323ca48deef77065b4fcda3cfd662c4337dffcfd"
@@ -1610,6 +1627,8 @@
     node-fetch "2.6.7"
     tslib "^2.1.0"
 
+=======
+>>>>>>> 0641ead (refactor: modify to userId)
 "@firebase/util@1.9.3":
   version "1.9.3"
   resolved "https://registry.npmjs.org/@firebase/util/-/util-1.9.3.tgz"
@@ -1617,11 +1636,14 @@
   dependencies:
     tslib "^2.1.0"
 
+<<<<<<< HEAD
 "@firebase/webchannel-wrapper@0.10.0":
   version "0.10.0"
   resolved "https://registry.yarnpkg.com/@firebase/webchannel-wrapper/-/webchannel-wrapper-0.10.0.tgz#92ee8c88682bb1ff0938b751f88f108e7a73165a"
   integrity sha512-2I8y+vJVrPfPFJrnRGpao1Qc2Gu7wmYoo5ed2s5zK/DUGgcyY1Yr/xC0YdnKM4pi7rG3HqwW9ehAKUXoTMLdoA==
 
+=======
+>>>>>>> 0641ead (refactor: modify to userId)
 "@google-cloud/firestore@^6.5.0":
   version "6.5.0"
   resolved "https://registry.npmjs.org/@google-cloud/firestore/-/firestore-6.5.0.tgz"
@@ -1673,6 +1695,7 @@
     teeny-request "^8.0.0"
     uuid "^8.0.0"
 
+<<<<<<< HEAD
 "@grpc/grpc-js@~1.7.0":
   version "1.7.3"
   resolved "https://registry.yarnpkg.com/@grpc/grpc-js/-/grpc-js-1.7.3.tgz#f2ea79f65e31622d7f86d4b4c9ae38f13ccab99a"
@@ -1681,6 +1704,8 @@
     "@grpc/proto-loader" "^0.7.0"
     "@types/node" ">=12.12.47"
 
+=======
+>>>>>>> 0641ead (refactor: modify to userId)
 "@grpc/grpc-js@~1.8.0":
   version "1.8.14"
   resolved "https://registry.npmjs.org/@grpc/grpc-js/-/grpc-js-1.8.14.tgz"
@@ -1689,6 +1714,7 @@
     "@grpc/proto-loader" "^0.7.0"
     "@types/node" ">=12.12.47"
 
+<<<<<<< HEAD
 "@grpc/proto-loader@^0.6.13":
   version "0.6.13"
   resolved "https://registry.yarnpkg.com/@grpc/proto-loader/-/proto-loader-0.6.13.tgz#008f989b72a40c60c96cd4088522f09b05ac66bc"
@@ -1700,6 +1726,8 @@
     protobufjs "^6.11.3"
     yargs "^16.2.0"
 
+=======
+>>>>>>> 0641ead (refactor: modify to userId)
 "@grpc/proto-loader@^0.7.0":
   version "0.7.6"
   resolved "https://registry.npmjs.org/@grpc/proto-loader/-/proto-loader-0.7.6.tgz"
@@ -6138,12 +6166,16 @@ icss-utils@^5.0.0, icss-utils@^5.1.0:
   resolved "https://registry.npmjs.org/icss-utils/-/icss-utils-5.1.0.tgz"
   integrity sha512-soFhflCVWLfRNOPU3iv5Z9VUdT44xFRbzjLsEzSr5AQmgqPMTHdU3PMT1Cf1ssx8fLNJDA1juftYl+PUcv3MqA==
 
+<<<<<<< HEAD
 idb@7.0.1:
   version "7.0.1"
   resolved "https://registry.yarnpkg.com/idb/-/idb-7.0.1.tgz#d2875b3a2f205d854ee307f6d196f246fea590a7"
   integrity sha512-UUxlE7vGWK5RfB/fDwEGgRf84DY/ieqNha6msMV99UsEMQhJ1RwbCd8AYBj3QMgnE3VZnfQvm4oKVCJTYlqIgg==
 
 idb@7.1.1, idb@^7.0.1:
+=======
+idb@^7.0.1:
+>>>>>>> 0641ead (refactor: modify to userId)
   version "7.1.1"
   resolved "https://registry.npmjs.org/idb/-/idb-7.1.1.tgz"
   integrity sha512-gchesWBzyvGHRO9W8tzUWFDycow5gwjvFKfyV9FF32Y7F50yZMp7mP+T2mJIWFx49zicqyC4uefHM17o6xKIVQ==
@@ -7829,6 +7861,7 @@ no-case@^3.0.4:
     lower-case "^2.0.2"
     tslib "^2.0.3"
 
+<<<<<<< HEAD
 node-fetch@2.6.7:
   version "2.6.7"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.7.tgz#24de9fba827e3b4ae44dc8b20256a379160052ad"
@@ -7836,6 +7869,8 @@ node-fetch@2.6.7:
   dependencies:
     whatwg-url "^5.0.0"
 
+=======
+>>>>>>> 0641ead (refactor: modify to userId)
 node-fetch@^2.6.1, node-fetch@^2.6.7:
   version "2.6.9"
   resolved "https://registry.npmjs.org/node-fetch/-/node-fetch-2.6.9.tgz"
