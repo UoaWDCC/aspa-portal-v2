@@ -1,6 +1,6 @@
 import { NextFunction } from "express";
 
-const User = require("../models/user");
+const User = require("../user/user-model");
 const admin = require("firebase-admin");
 
 const verifyToken = async (req: any, res: any, next: NextFunction) => {
