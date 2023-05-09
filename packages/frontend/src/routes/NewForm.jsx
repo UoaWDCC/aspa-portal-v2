@@ -31,12 +31,22 @@ const Create = () => {
     fetchEvent();
   }, [eventId]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const player = { firstName, lastName, email, paymentType };
+    const player = { firstName, lastName, email, paymentType, eventId };
     console.log(player);
     setIsPending(true);
-    // Make API call or perform other actions here
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/register",
+        player
+      );
+      console.log(response.data);
+      setIsPending(false);
+    } catch (error) {
+      console.log(error);
+      setIsPending(false);
+    }
   };
 
   return (
