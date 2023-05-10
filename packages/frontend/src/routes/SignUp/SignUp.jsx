@@ -6,6 +6,9 @@ import { fadeUpInView } from "../animation/utils";
 // import axios from "axios";
 import { useState } from "react";
 import { MdOutlineMailOutline } from "react-icons/md";
+//import { useAuth } from "../../contexts/AuthContext";
+import { auth } from "../../firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 export default function SignUp() {
   const [firstName, setFirstName] = useState("");
@@ -14,25 +17,27 @@ export default function SignUp() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordError, setPasswordError] = useState(false);
+  //const { signup, currentUser } = useAuth();
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  async function handleSubmit(e) {
+    e.preventDefault();
+
     if (password !== confirmPassword) {
       setPasswordError(true);
     } else {
       setPasswordError(false);
-      const formData = { firstName, lastName, email, password };
-      console.log(formData);
-      // axios
-      //   .post("api/endpoint", formData)
-      //   .then((response) => {
-      //     console.log(response);
-      //   })
-      //   .catch((error) => {
-      //     console.log(error);
-      //   });
+      setLoading(true);
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredentials) => {
+          console.log(userCredentials);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }
-  };
+    setLoading(false);
+  }
 
   return (
     <>
@@ -49,7 +54,7 @@ export default function SignUp() {
         >
           {/* form header */}
           <div className="flex flex-col gap-2 text-center mb-10">
-            <h1 className="text-5xl">Sign Up</h1>
+            <h1 className="text-5xl">Sign Up </h1>
           </div>
           {/* First row of inputs, first name and last name */}
           <div className="w-full flex flex-col gap-4 mb-8">
@@ -157,7 +162,10 @@ export default function SignUp() {
           </div>
           {/* sign up button */}
           <div className="flex flex-col gap-4 items-center w-full">
-            <button className="border-2 border-white rounded-full text-lg px-12 py-2 w-[80%] hover:text-black hover:bg-white transition duration-300 ease-in-out">
+            <button
+              disabled={loading}
+              className="border-2 border-white rounded-full text-lg px-12 py-2 w-[80%] hover:text-black hover:bg-white transition duration-300 ease-in-out"
+            >
               Sign Up
             </button>
             <p>

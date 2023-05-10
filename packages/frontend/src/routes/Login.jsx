@@ -3,8 +3,9 @@ import React from "react";
 import { MdOutlineMailOutline } from "react-icons/md";
 import { BsKey } from "react-icons/bs";
 import { fadeUpInView } from "./animation/utils";
-// import axios from "axios";
 import { useState } from "react";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -12,16 +13,13 @@ export default function Login() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const formData = { email, password };
-    console.log(formData);
-    // axios
-    //   .post("api/endpoint", formData)
-    //   .then((response) => {
-    //     console.log(response);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredentials) => {
+        console.log(userCredentials);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
