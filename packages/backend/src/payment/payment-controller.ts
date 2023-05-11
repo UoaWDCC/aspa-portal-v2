@@ -25,7 +25,7 @@ const stripe = new Stripe(`${process.env.STRIPE_SECRET_KEY}`, { apiVersion: '202
 export const checkout = async (req: Request, res: Response) => {
 
     assert(req.params.eventId, "Missing req.params.eventId");
-    assert(req.params.userId, "Missing req.params.userId")
+    assert(req.params.userId, "Missing req.params.userId");
 
     // Retrieve the event data from MongoDB
     const event = await Event.findById(req.params.eventId);
@@ -48,7 +48,7 @@ export const checkout = async (req: Request, res: Response) => {
         payment_method_types: ['card'],
 
         line_items: [{
-            // there is an adjustable quantity option
+            // there is an adjustable quantity option btw
             price: product.default_price.toString(),
             quantity: 1,
         }],
