@@ -4,8 +4,6 @@ import { User, RegistrationRecordUser } from "../user/user-model";
 
 /**
  * Register user to an event and event to a user
- * 
- * TODO: JWT token
  */
 export const registerUserEvent = async (req: Request, res: Response) => {
     try {
@@ -123,3 +121,54 @@ export const removeRegistration = async (req: Request, res: Response) => {
     }
 };
 
+export const updatePaid = async (req: Request, res: Response) => {
+    try {
+        const { userId, eventId } = req.params;
+        const { paid } = req.body;
+
+        if (typeof paid != "boolean") {
+            throw new Error("Paid status is not a boolean");
+        }
+
+        if (paid === undefined || paid === null) {
+            throw new Error("Paid status was not provided");
+        }
+
+        // Check if user is registered under the event
+        const eventData = await Event.findOne({
+            _id: eventId,
+            users: { $elemMatch: { userId: userId } },
+        });
+
+        // If registration already exists, update paid status, otherwise return error
+        if (eventData != null) {
+            await Event.updateOne(
+                {
+                    _id: eventId,
+                    "users.userId": userId,
+                },
+                {
+                    $set: { "users.$.paid": paid },
+                }
+            );
+
+            await User.updateOne(
+                {
+                    _id: userId,
+                    "events.eventId": eventId,
+                },
+                {
+                    $set: { "events.$.paid": paid },
+                }
+            );
+            res.status(200).json({
+                message: "Paid status has been updated",
+            });
+        } else {
+            throw new Error("Unable to update registration, it does not exist");
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(400).json(error);
+    }
+};
