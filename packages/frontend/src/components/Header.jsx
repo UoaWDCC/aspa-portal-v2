@@ -1,12 +1,40 @@
 import { AnimatePresence, motion } from "framer-motion";
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { Link } from "react-router-dom";
 import Logo from "../assets/logo.svg";
+import { auth } from "../firebase";
+import { signOut } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 function Header({ absolute = false }) {
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
+  useEffect(() => {
+    setIsOpen(false); // Close the mobile menu when the authentication status changes
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        setLoggedIn(true);
+      } else {
+        setLoggedIn(false);
+      }
+    });
+
+    return unsubscribe; // Unsubscribe from the onAuthStateChanged listener on component unmount
+  }, []);
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      setLoggedIn(false);
+      navigate("/");
+      console.log("User has LOGGED OUT");
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const mobileMenuVariants = {
     open: {
@@ -70,12 +98,18 @@ function Header({ absolute = false }) {
           </Link>
         </div>
         <div className="hidden gap-8 font-bold items-center md:flex">
-          {/*<Link to="/" className="flex gap-2 items-center">
-            <IoSearch size="20" />
-            <span>Search</span>
-          </Link>*/}
-          <Link to="/login">Login</Link>
-          <Link to="/sign-up">Sign Up</Link>
+          {loggedIn && (
+            <>
+              <p>Welcome, {auth?.currentUser?.email}</p>
+              <button onClick={(e) => handleLogout(e)}>Logout</button>
+            </>
+          )}
+          {!loggedIn && (
+            <div>
+              <Link to="/login">Login</Link>
+              <Link to="/sign-up">Sign Up</Link>
+            </div>
+          )}
         </div>
       </nav>
       <AnimatePresence>

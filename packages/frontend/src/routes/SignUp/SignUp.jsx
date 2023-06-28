@@ -6,6 +6,11 @@ import { fadeUpInView } from "../animation/utils";
 // import axios from "axios";
 import { useState } from "react";
 import { MdOutlineMailOutline } from "react-icons/md";
+import { auth } from "../../firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { useContext } from "react";
+import { AuthContext } from "../../AuthContext";
+import { useNavigate } from "react-router-dom";
 
 export default function SignUp() {
   const [firstName, setFirstName] = useState("");
@@ -14,25 +19,34 @@ export default function SignUp() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordError, setPasswordError] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const { setCurrentUser } = useContext(AuthContext);
+  const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  async function handleSubmit(e) {
+    e.preventDefault();
+
     if (password !== confirmPassword) {
       setPasswordError(true);
-    } else {
-      setPasswordError(false);
-      const formData = { firstName, lastName, email, password };
-      console.log(formData);
-      // axios
-      //   .post("api/endpoint", formData)
-      //   .then((response) => {
-      //     console.log(response);
-      //   })
-      //   .catch((error) => {
-      //     console.log(error);
-      //   });
+      return;
     }
-  };
+    setPasswordError(false);
+    setLoading(true);
+
+    try {
+      await createUserWithEmailAndPassword(auth, email, password).then(
+        (userCredential) => {
+          const user = userCredential.user;
+          console.log("User SIGNED UP ith the email", auth?.currentUser?.email);
+          setCurrentUser(user);
+          navigate("/");
+        }
+      );
+    } catch (error) {
+      console.log(error);
+    }
+    setLoading(false);
+  }
 
   return (
     <>
@@ -49,7 +63,7 @@ export default function SignUp() {
         >
           {/* form header */}
           <div className="flex flex-col gap-2 text-center mb-10">
-            <h1 className="text-5xl">Sign Up</h1>
+            <h1 className="text-5xl">Sign Up </h1>
           </div>
           {/* First row of inputs, first name and last name */}
           <div className="w-full flex flex-col gap-4 mb-8">
@@ -157,7 +171,10 @@ export default function SignUp() {
           </div>
           {/* sign up button */}
           <div className="flex flex-col gap-4 items-center w-full">
-            <button className="border-2 border-white rounded-full text-lg px-12 py-2 w-[80%] hover:text-black hover:bg-white transition duration-300 ease-in-out">
+            <button
+              disabled={loading}
+              className="border-2 border-white rounded-full text-lg px-12 py-2 w-[80%] hover:text-black hover:bg-white transition duration-300 ease-in-out"
+            >
               Sign Up
             </button>
             <p>

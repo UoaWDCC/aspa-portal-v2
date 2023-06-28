@@ -3,25 +3,35 @@ import React from "react";
 import { MdOutlineMailOutline } from "react-icons/md";
 import { BsKey } from "react-icons/bs";
 import { fadeUpInView } from "./animation/utils";
-// import axios from "axios";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { AuthContext } from "../AuthContext";
+import { useNavigate } from "react-router-dom";
+import { auth } from "../firebase";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { setCurrentUser } = useContext(AuthContext);
+  const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
+  const logIn = async (event) => {
     event.preventDefault();
-    const formData = { email, password };
-    console.log(formData);
-    // axios
-    //   .post("api/endpoint", formData)
-    //   .then((response) => {
-    //     console.log(response);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
+    try {
+      await signInWithEmailAndPassword(auth, email, password).then(
+        (userCredentials) => {
+          const user = userCredentials.user;
+          setCurrentUser(user);
+          console.log(
+            "User LOGGED IN with the email;",
+            auth?.currentUser?.email
+          );
+          navigate("/");
+        }
+      );
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -34,7 +44,7 @@ export default function Login() {
         <motion.form
           {...fadeUpInView()}
           className="flex flex-col justify-center items-center min-w-[28%] max-w-2xl px-4"
-          onSubmit={handleSubmit}
+          onSubmit={logIn}
         >
           {/* form header */}
           <div className="flex flex-col gap-2 text-center mb-10">
