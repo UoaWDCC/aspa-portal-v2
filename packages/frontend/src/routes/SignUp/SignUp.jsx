@@ -6,9 +6,11 @@ import { fadeUpInView } from "../animation/utils";
 // import axios from "axios";
 import { useState } from "react";
 import { MdOutlineMailOutline } from "react-icons/md";
-//import { useAuth } from "../../contexts/AuthContext";
 import { auth } from "../../firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { useContext } from "react";
+import { AuthContext } from "../../AuthContext";
+import { useNavigate } from "react-router-dom";
 
 export default function SignUp() {
   const [firstName, setFirstName] = useState("");
@@ -17,24 +19,31 @@ export default function SignUp() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordError, setPasswordError] = useState(false);
-  //const { signup, currentUser } = useAuth();
   const [loading, setLoading] = useState(false);
+  const { setCurrentUser } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   async function handleSubmit(e) {
     e.preventDefault();
 
     if (password !== confirmPassword) {
       setPasswordError(true);
-    } else {
-      setPasswordError(false);
-      setLoading(true);
-      createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredentials) => {
-          console.log(userCredentials);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      return;
+    }
+    setPasswordError(false);
+    setLoading(true);
+
+    try {
+      await createUserWithEmailAndPassword(auth, email, password).then(
+        (userCredential) => {
+          const user = userCredential.user;
+          console.log("User SIGNED UP ith the email", auth?.currentUser?.email);
+          setCurrentUser(user);
+          navigate("/");
+        }
+      );
+    } catch (error) {
+      console.log(error);
     }
     setLoading(false);
   }
