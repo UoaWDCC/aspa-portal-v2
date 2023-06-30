@@ -1,10 +1,10 @@
 import express from "express";
 import {
-  registerUserEvent,
-  removeRegistration,
-  updatePaymentStatus,
+    registerUserEvent,
+    removeRegistration,
+    updatePaymentStatus,
 } from "./register-controller";
-const verifyToken = require("../middleware/verifyToken");
+import { verifyToken } from "../middleware/verifyToken";
 
 const router = express.Router();
 

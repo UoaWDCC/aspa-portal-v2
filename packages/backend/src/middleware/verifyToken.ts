@@ -1,7 +1,6 @@
 import { NextFunction } from "express";
 
-const User = require("../user/user-model");
-const admin = require("firebase-admin");
+import admin from "firebase-admin";
 
 const verifyToken = async (req: any, res: any, next: NextFunction) => {
     const authToken = req.headers.authorization?.split(" ")[1];
@@ -22,4 +21,4 @@ const verifyToken = async (req: any, res: any, next: NextFunction) => {
     }
 };
 
-module.exports = verifyToken;
+export { verifyToken };
