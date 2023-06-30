@@ -1,7 +1,6 @@
-import { Event, RegistrationRecordEvent } from "./event-model";
+import { Event } from "./event-model";
 import { Request, Response } from "express";
 import mongoose from "mongoose";
-import { v4 as uuidv4 } from "uuid";
 
 export const getEvents = async (req: Request, res: Response) => {
     try {
@@ -98,76 +97,6 @@ export const updateEvent = async (req: Request, res: Response) => {
         }
     } catch (error) {
         res.json(error);
-    }
-};
-
-/**
- *  Register a user to an event
- *
- * Now can be deleted as its not used
- */
-// TODO: test this with an actual token (DO NOT MERGE)
-export const registerUser = async (req: Request, res: Response) => {
-    try {
-        const { eventId } = req.params;
-        let userId = req.userId;
-        const { registrationDate, paymentStatus, paymentDetails } = req.body;
-        // TODO: modify so it adds an actual user (?)
-        if (userId == null) {
-            userId = uuidv4();
-        }
-
-        const user = {
-            userId,
-            registrationDate,
-            paymentStatus,
-            paymentDetails,
-        };
-
-        const event = await Event.findById(eventId);
-
-        const userAlreadyPresent = event?.users?.find(
-            (e: RegistrationRecordEvent) =>
-                e.userId.toHexString() === userId!.toString()
-        );
-        if (userAlreadyPresent) {
-            const err: Error = new Error();
-            err.message = "User already registered for this event";
-            throw err;
-        }
-
-        const updatedEvent = await Event.findByIdAndUpdate(
-            eventId,
-            { $addToSet: { users: user } },
-            { new: true }
-        );
-
-        res.status(200).json(updatedEvent);
-    } catch (error) {
-        console.error(error);
-        res.status(400).json(error);
-    }
-};
-
-/*
- *  Remove a user from an event's list of registered users
- *  Now can be deleted as its not used
- */
-export const removeUser = async (req: Request, res: Response) => {
-    try {
-        const { eventId } = req.params;
-        const { userId } = req.body;
-
-        const updatedEvent = await Event.findByIdAndUpdate(
-            eventId,
-            { $pull: { users: { userId: userId } } },
-            { new: true }
-        );
-
-        res.status(200).json(updatedEvent);
-    } catch (error) {
-        console.error(error);
-        res.status(400).json(error);
     }
 };
 
