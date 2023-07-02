@@ -4,11 +4,10 @@ import {
     removeRegistration,
     updatePaymentStatus,
 } from "./register-controller";
-import { verifyToken } from "../middleware/verifyToken";
 
 const router = express.Router();
 
-router.post("/", verifyToken, registerUserEvent);
+router.post("/", registerUserEvent);
 router.delete("/:userId/:eventId", removeRegistration);
 router.patch("/status/:userId/:eventId", updatePaymentStatus);
 
