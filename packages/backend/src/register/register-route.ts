@@ -1,8 +1,8 @@
 import express from "express";
 import {
-    registerUserEvent,
-    removeRegistration,
-    updatePaymentStatus,
+  registerUserEvent,
+  removeRegistration,
+  updatePaymentStatus,
 } from "./register-controller";
 
 const router = express.Router();

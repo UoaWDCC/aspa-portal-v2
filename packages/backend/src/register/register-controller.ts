@@ -7,13 +7,20 @@ import { User, RegistrationRecordUser } from "../user/user-model";
  */
 export const registerUserEvent = async (req: Request, res: Response) => {
   try {
-    const { eventId, registrationDate, paymentStatus, paymentDetails } =
+    const { eventId, email, registrationDate, paymentStatus, paymentDetails } =
       req.body;
 
     // Check if user is guest
     if (req.userFbId === "guest") {
-      // Get guests email (or something else) from request body
-      // See if user with same email is present or some other information and maybe add that to the register information under event
+      // check if the event is already registerd to the user
+      const event = await Event.findById(eventId);
+
+      const userAlreadyPresent = event?.users?.find(
+        (e: RegistrationRecordEvent) => e.email?.toString() === email.toString()
+      );
+      if (userAlreadyPresent) {
+        throw new Error("User already registered for this event");
+      }
     } else {
       // If it is a registered user check if they are already registered and then register the event to the user
       const user = await User.findOne({ firebaseId: req.userFbId });
@@ -63,8 +70,8 @@ export const registerUserEvent = async (req: Request, res: Response) => {
       {
         $push: {
           users: {
-            // May want to change the userId to something else atm just says guest if not registered may want to use email or something
             userId: req.userFbId,
+            email: email,
             registrationDate: registrationDate,
             paymentStatus: paymentStatus,
             paymentDetails: paymentDetails,
@@ -81,6 +88,7 @@ export const registerUserEvent = async (req: Request, res: Response) => {
   }
 };
 
+// TODO Fix the remove registration to account for guest stuff
 export const removeRegistration = async (req: Request, res: Response) => {
   try {
     const { userId, eventId } = req.params;
@@ -127,6 +135,7 @@ export const removeRegistration = async (req: Request, res: Response) => {
   }
 };
 
+// TODO Fix the updatePaymentStatus to account for guest stuff
 export const updatePaymentStatus = async (req: Request, res: Response) => {
   try {
     const { userId, eventId } = req.params;

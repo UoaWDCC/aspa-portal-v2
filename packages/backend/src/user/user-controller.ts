@@ -54,6 +54,11 @@ export const createUser = async (req: Request, res: Response) => {
 
     const firebaseId = req.userFbId;
 
+    // Check if that user already exists
+    if (await User.findOne({ firebaseId: firebaseId })) {
+      res.status(400).json({ message: "User already exists" });
+    }
+
     if (firstName && lastName && email) {
       const newUser = await User.create({
         firstName,
