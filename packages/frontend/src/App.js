@@ -9,6 +9,7 @@ import UpcomingEvents from "./routes/UpcomingEvents";
 import SignUp from "./routes/SignUp/SignUp";
 import FailedPayment from "./routes/FailedPayment";
 import SuccessPayment from "./routes/SuccessPayment";
+import PaymentSuccess from "./routes/CheckPaymentResult";
 
 export default function App() {
   return (
@@ -24,6 +25,7 @@ export default function App() {
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/failed-payment" element={<FailedPayment />} />
           <Route path="/success-payment" element={<SuccessPayment />} />
+          <Route path="/check-payment-result" element={<PaymentSuccess />} />
         </Route>
       </Routes>
     </div>
