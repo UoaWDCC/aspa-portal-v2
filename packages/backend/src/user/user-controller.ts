@@ -29,6 +29,20 @@ export const getUser = async (req: Request, res: Response) => {
 };
 
 /**
+ *  Get user by their firebaseId
+ */
+export const getUserByFirebaseId = async (req: Request, res: Response) => {
+  try {
+    const { firebaseId } = req.params;
+    const user = await User.findOne({ firebaseId: firebaseId });
+    res.status(200).json(user);
+  } catch (error) {
+    console.error(error);
+    res.status(404).json(error);
+  }
+};
+
+/**
  * Create a user.
  * Required fields: firstName, lastName, email, university, skillLevel.
  * Optional fields: studentId
@@ -38,11 +52,19 @@ export const createUser = async (req: Request, res: Response) => {
     const { firstName, lastName, email, university, studentId, skillLevel } =
       req.body;
 
+    const firebaseId = req.userFbId;
+
+    // Check if that user already exists
+    if (await User.findOne({ firebaseId: firebaseId })) {
+      res.status(400).json({ message: "User already exists" });
+    }
+
     if (firstName && lastName && email) {
       const newUser = await User.create({
         firstName,
         lastName,
         email,
+        firebaseId,
         university,
         studentId,
         skillLevel,
@@ -74,12 +96,20 @@ export const updateUser = async (req: Request, res: Response) => {
     const { userId } = req.params;
     const user = await User.findById(userId);
 
-    let { firstName, lastName, email, university, studentId, skillLevel } =
-      req.body;
+    let {
+      firstName,
+      lastName,
+      email,
+      firebaseId,
+      university,
+      studentId,
+      skillLevel,
+    } = req.body;
 
     if (!firstName) firstName = user?.firstName;
     if (!lastName) lastName = user?.lastName;
     if (!email) email = user?.email;
+    if (!firebaseId) firebaseId = user?.firebaseId;
     if (!university) university = user?.university;
     if (!studentId) studentId = user?.studentId;
     if (!skillLevel) skillLevel = user?.skillLevel;
@@ -90,78 +120,11 @@ export const updateUser = async (req: Request, res: Response) => {
         firstName,
         lastName,
         email,
+        firebaseId,
         university,
         studentId,
         skillLevel,
       },
-      { new: true }
-    );
-
-    res.status(200).json(updatedUser);
-  } catch (error) {
-    console.error(error);
-    res.status(400).json(error);
-  }
-};
-
-/**
- * Add an event to a user's list of events
- *
- * Now can be deleted as its not used
- */
-export const addEvent = async (req: Request, res: Response) => {
-  try {
-    const { userId } = req.params;
-
-    const { eventId, registrationDate, paymentStatus, paymentDetails } =
-      req.body;
-
-    const event = {
-      eventId,
-      registrationDate,
-      paymentStatus,
-      paymentDetails,
-    };
-
-    const user = await User.findById(userId);
-
-    const eventAlreadyPresent = user?.events?.find(
-      (e: RegistrationRecordUser) =>
-        e.eventId.toHexString() === eventId.toString()
-    );
-    if (eventAlreadyPresent) {
-      const err: Error = new Error();
-      err.message = "Event already present in user's list of events";
-      throw err;
-    }
-
-    const updatedUser = await User.findByIdAndUpdate(
-      userId,
-      { $addToSet: { events: event } },
-      { new: true }
-    );
-
-    res.status(200).json(updatedUser);
-  } catch (error) {
-    console.error(error);
-    res.status(400).json(error);
-  }
-};
-
-/**
- * Remove an event from a user's list of events
- *
- * Now can be deleted as its not used
- */
-export const removeEvent = async (req: Request, res: Response) => {
-  try {
-    const { userId } = req.params;
-
-    const { eventId } = req.body;
-
-    const updatedUser = await User.findByIdAndUpdate(
-      userId,
-      { $pull: { events: { eventId: eventId } } },
       { new: true }
     );
 
