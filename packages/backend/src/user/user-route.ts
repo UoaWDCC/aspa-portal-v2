@@ -6,6 +6,7 @@ import {
   createUser,
   updateUser,
   deleteUser,
+  makeUserAdmin,
 } from "./user-controller";
 
 const router = express.Router();
@@ -15,6 +16,7 @@ router.get("/:userId", getUser);
 router.get("/:firebaseId", getUserByFirebaseId);
 router.post("/", createUser);
 router.patch("/:userId", updateUser);
+router.patch("/:userId", makeUserAdmin);
 router.delete("/:userId", deleteUser);
 
 export default router;
