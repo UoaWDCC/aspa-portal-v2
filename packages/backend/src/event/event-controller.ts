@@ -112,7 +112,7 @@ export const deleteEvent = async (req: Request, res: Response) => {
 
 /**
  * Get users info for a particular event
- * This returns an event object, with a new property usersInfo, which is an array of the user info (note: this is currently separate from the existing users property which contains the users registration/payment details)
+ * This returns an event object, with a new property finalUsersInfo (array), which contains the users info and corresponding event registration details)
  */
 export const getEventUsersInfo = async (req: Request, res: Response) => {
   try {
@@ -135,6 +135,37 @@ export const getEventUsersInfo = async (req: Request, res: Response) => {
           localField: "users.userId",
           foreignField: "_id",
           as: "usersInfo",
+        },
+      },
+      {
+        $addFields: {
+          finalUsersInfo: {
+            $map: {
+              input: "$users",
+              as: "user",
+              in: {
+                $mergeObjects: [
+                  "$$user",
+                  {
+                    $arrayElemAt: [
+                      {
+                        $filter: {
+                          input: "$usersInfo",
+                          cond: { $eq: ["$$this._id", "$$user.userId"] },
+                        },
+                      },
+                      0,
+                    ],
+                  },
+                ],
+              },
+            },
+          },
+        },
+      },
+      {
+        $project: {
+          usersInfo: 0,
         },
       },
     ]);
