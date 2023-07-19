@@ -6,6 +6,10 @@ import Home from "./routes/Home";
 import Login from "./routes/Login";
 import Register from "./routes/NewForm";
 import UpcomingEvents from "./routes/UpcomingEvents";
+import AdminHome from "./routes/dashboard/admin/AdminHome";
+import AdminLayout from "./routes/dashboard/admin/AdminLayout";
+import AdminEvents from "./routes/dashboard/admin/AdminEvents";
+import AdminUsers from "./routes/dashboard/admin/AdminUsers";
 
 export default function App() {
   return (
@@ -18,6 +22,11 @@ export default function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/upcoming-events" element={<UpcomingEvents />} />
+        </Route>
+        <Route path="/admin-dashboard" element={<AdminLayout />}>
+          <Route index element={<AdminHome />} />
+          <Route path="events" element={<AdminEvents />} />
+          <Route path="users" element={<AdminUsers />} />
         </Route>
       </Routes>
     </div>
