@@ -3,9 +3,10 @@ import { Model, Schema, Types, model } from "mongoose";
 export interface RegistrationRecordEvent {
   userId: string;
   email: string;
-  registrationDate: Date;
-  paymentStatus: string;
-  paymentDetails: object;
+  firstName: string;
+  lastName: string;
+  paymentType: "Cash" | "Bank Transfer";
+  isPaid: Boolean;
 }
 
 interface IEvent {
@@ -38,9 +39,9 @@ const eventSchema = new Schema<IEvent>({
     new Schema<RegistrationRecordEvent>({
       userId: String,
       email: String,
-      registrationDate: Date,
-      paymentStatus: String,
-      paymentDetails: Object,
+      firstName: String,
+      lastName: String,
+      isPaid: Boolean,
     }),
   ],
 });

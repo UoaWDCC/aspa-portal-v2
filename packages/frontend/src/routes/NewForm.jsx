@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { AuthContext } from "../AuthContext";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import "./FormStyles.css";
@@ -18,6 +19,7 @@ const Create = () => {
   const url = useLocation();
   const queryParams = new URLSearchParams(url.search);
   const eventId = queryParams.get("eventId");
+  const { currentUser } = useContext(AuthContext);
 
   useEffect(() => {
     async function fetchEvent() {
@@ -33,13 +35,16 @@ const Create = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const token = await currentUser.getIdToken();
+    const headers = { Authorization: `Bearer ${token}` };
     const player = { firstName, lastName, email, paymentType, eventId };
     console.log(player);
     setIsPending(true);
     try {
       const response = await axios.post(
         "http://localhost:5000/register",
-        player
+        player,
+        { headers }
       );
       console.log(response.data);
       setIsPending(false);
