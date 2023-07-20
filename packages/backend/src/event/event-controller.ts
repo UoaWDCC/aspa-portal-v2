@@ -117,15 +117,12 @@ export const deleteEvent = async (req: Request, res: Response) => {
 export const getEventUsersInfo = async (req: Request, res: Response) => {
   try {
     const { eventId } = req.params;
-    console.log("Start getEventUsers");
 
     if (!mongoose.Types.ObjectId.isValid(eventId)) {
       return res.status(404).json({ error: "No such event" });
     }
 
     const eventIdObject = new mongoose.Types.ObjectId(eventId);
-    console.log("Valid event");
-    console.log(eventIdObject);
 
     const event = await Event.aggregate([
       { $match: { _id: eventIdObject } },
@@ -169,9 +166,6 @@ export const getEventUsersInfo = async (req: Request, res: Response) => {
         },
       },
     ]);
-
-    console.log("Performed join");
-    console.log(event);
 
     if (!event || event.length == 0) {
       return res.status(404).json({ error: "No such event" });
