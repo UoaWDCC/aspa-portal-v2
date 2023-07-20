@@ -129,3 +129,70 @@ export const deleteEvent = async (req: Request, res: Response) => {
 
   res.status(200).json(event);
 };
+
+/**
+ * Get users info for a particular event
+ * This returns an event object, with a new property finalUsersInfo (array), which contains the users info and corresponding event registration details)
+ */
+export const getEventUsersInfo = async (req: Request, res: Response) => {
+  try {
+    const { eventId } = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(eventId)) {
+      return res.status(404).json({ error: "No such event" });
+    }
+
+    const eventIdObject = new mongoose.Types.ObjectId(eventId);
+
+    const event = await Event.aggregate([
+      { $match: { _id: eventIdObject } },
+      {
+        $lookup: {
+          from: "users",
+          localField: "users.userId",
+          foreignField: "_id",
+          as: "usersInfo",
+        },
+      },
+      {
+        $addFields: {
+          finalUsersInfo: {
+            $map: {
+              input: "$users",
+              as: "user",
+              in: {
+                $mergeObjects: [
+                  "$$user",
+                  {
+                    $arrayElemAt: [
+                      {
+                        $filter: {
+                          input: "$usersInfo",
+                          cond: { $eq: ["$$this._id", "$$user.userId"] },
+                        },
+                      },
+                      0,
+                    ],
+                  },
+                ],
+              },
+            },
+          },
+        },
+      },
+      {
+        $project: {
+          usersInfo: 0,
+        },
+      },
+    ]);
+
+    if (!event || event.length == 0) {
+      return res.status(404).json({ error: "No such event" });
+    }
+
+    res.status(200).json(event);
+  } catch (error) {
+    console.log(error);
+  }
+};

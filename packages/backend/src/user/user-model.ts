@@ -23,6 +23,7 @@ interface IUser {
   firstName: string;
   lastName: string;
   email: string;
+  firebaseId?: string;
   university?: string;
   studentId?: number;
   skillLevel?: string;
@@ -33,6 +34,8 @@ interface IUser {
 type UserDocumentProps = {
   firstName: string;
   lastName: string;
+  email: string;
+  firebaseId?: string;
   university?: string;
   studentId?: number;
   skillLevel?: string;
@@ -44,6 +47,7 @@ const userSchema = new Schema<IUser>({
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
   email: { type: String, required: true },
+  firebaseId: String,
   university: String,
   studentId: Number,
   skillLevel: String,

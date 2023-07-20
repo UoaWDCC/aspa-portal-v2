@@ -10,7 +10,8 @@ import { Model, Schema, Types, model } from "mongoose";
  * 
  */
 export interface RegistrationRecordEvent {
-  userId: Types.ObjectId;
+  userId: string;
+  email: string;
   registrationDate: Date;
   paid: boolean;
   paymentDetails: object;
@@ -48,7 +49,8 @@ const eventSchema = new Schema<IEvent>({
 
   users: [
     new Schema<RegistrationRecordEvent>({
-      userId: Types.ObjectId,
+      userId: String,
+      email: String,
       registrationDate: Date,
       paid: Boolean,
       paymentDetails: Object,

@@ -8,44 +8,80 @@ import { User, RegistrationRecordUser } from "../user/user-model";
 export const registerUserEvent = async (req: Request, res: Response) => {
     try {
         const {
-            userId,
             eventId,
+            email,
             registrationDate,
-            paid,
+            paymentStatus,
             paymentDetails,
         } = req.body;
 
-        // Check if the user is already registered to the event
-        const user = await User.findById(userId);
+        // Check if user is guest
+        if (req.userFbId === "guest") {
+            // check if the event is already registerd to the user
+            const event = await Event.findById(eventId);
 
-        const eventAlreadyPresent = user?.events?.find(
-            (e: RegistrationRecordUser) =>
-                e.eventId.toHexString() === eventId.toString()
-        );
-        if (eventAlreadyPresent) {
-            throw new Error("Event already present in user's list of events");
+            const userAlreadyPresent = event?.users?.find(
+                (e: RegistrationRecordEvent) =>
+                    e.email?.toString() === email.toString()
+            );
+            if (userAlreadyPresent) {
+                throw new Error("User already registered for this event");
+            }
+        } else {
+            // If it is a registered user check if they are already registered and then register the event to the user
+            const user = await User.findOne({ firebaseId: req.userFbId });
+            const userId = user?._id;
+
+            // Check if the user is already registered to the event
+            //const user = await User.findById(userId);
+
+            const eventAlreadyPresent = user?.events?.find(
+                (e: RegistrationRecordUser) =>
+                    e.eventId.toHexString() === eventId.toString()
+            );
+            if (eventAlreadyPresent) {
+                throw new Error(
+                    "Event already present in user's list of events"
+                );
+            }
+
+            // check if the event is already registerd to the user
+            const event = await Event.findById(eventId);
+
+            const userAlreadyPresent = event?.users?.find(
+                (e: RegistrationRecordEvent) =>
+                    e.userId.toString() === userId?.toString()
+            );
+            if (userAlreadyPresent) {
+                throw new Error("User already registered for this event");
+            }
+
+            // Add the event to the user
+            await User.findByIdAndUpdate(
+                userId,
+                {
+                    $push: {
+                        events: {
+                            eventId: eventId,
+                            registrationDate: registrationDate,
+                            paymentStatus: paymentStatus,
+                            paymentDetails: paymentDetails,
+                        },
+                    },
+                },
+                { new: true }
+            );
         }
-
-        // check if the event is already registerd to the user
-        const event = await Event.findById(eventId);
-
-        const userAlreadyPresent = event?.users?.find(
-            (e: RegistrationRecordEvent) =>
-                e.userId.toHexString() === userId.toString()
-        );
-        if (userAlreadyPresent) {
-            throw new Error("User already registered for this event");
-        }
-
-        // Add the user to the event
+        // Add the user to the event (if it is a guest it is only added to the event)
         await Event.findByIdAndUpdate(
             eventId,
             {
                 $push: {
                     users: {
-                        userId: userId,
+                        userId: req.userFbId,
+                        email: email,
                         registrationDate: registrationDate,
-                        paid: paid,
+                        paid: paymentStatus,
                         paymentDetails: paymentDetails,
                     },
                 },
@@ -53,28 +89,14 @@ export const registerUserEvent = async (req: Request, res: Response) => {
             { new: true }
         );
 
-        // Add the event to the user
-        await User.findByIdAndUpdate(
-            userId,
-            {
-                $push: {
-                    events: {
-                        eventId: eventId,
-                        registrationDate: registrationDate,
-                        paid: paid,
-                        paymentDetails: paymentDetails,
-                    },
-                },
-            },
-            { new: true }
-        );
         res.status(200).json({ message: "User registered to event" });
     } catch (error) {
         console.error(error);
-        res.status(400).json(error);
+        res.status(400).json((error as Error).message);
     }
 };
 
+// TODO Fix the remove registration to account for guest stuff
 export const removeRegistration = async (req: Request, res: Response) => {
     try {
         const { userId, eventId } = req.params;
@@ -121,7 +143,8 @@ export const removeRegistration = async (req: Request, res: Response) => {
     }
 };
 
-export const updatePaid = async (req: Request, res: Response) => {
+// TODO Fix the updatePaymentStatus to account for guest stuff
+export const updatePaymentStatus = async (req: Request, res: Response) => {
     try {
         const { userId, eventId } = req.params;
         const { paid } = req.body;
