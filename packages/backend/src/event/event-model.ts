@@ -2,18 +2,18 @@ import { Model, Schema, Types, model } from "mongoose";
 
 /**
  * A single user registered to an event
- * 
+ *
  * @property {mongoose.Types.ObjectId} userId - the id of the user
  * @property {Date} registrationDate - the date the user registered for the event
- * @property {boolean} paid - whether the user has already paid for the event
+ * @property {boolean} paymentStatus - whether the user has already paid for the event
  * @property {object} paymentDetails - the type of payment. For example, "card"
- * 
+ *
  */
 export interface RegistrationRecordEvent {
   userId: string;
   email: string;
   registrationDate: Date;
-  paid: boolean;
+  paymentStatus: boolean;
   paymentDetails: object;
 }
 
@@ -52,7 +52,7 @@ const eventSchema = new Schema<IEvent>({
       userId: String,
       email: String,
       registrationDate: Date,
-      paid: Boolean,
+      paymentStatus: Boolean,
       paymentDetails: Object,
     }),
   ],
