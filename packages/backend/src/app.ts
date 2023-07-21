@@ -6,6 +6,7 @@ import eventRoute from "./event/event-route";
 import userRoute from "./user/user-route";
 import registerRoute from "./register/register-route";
 import paymentRoute from "./payment/payment-route";
+import webhookRoute from "./webhook/webhook-route"
 import cors from "cors";
 import { verifyToken } from "./middleware/verifyToken";
 import firebase_admin from "firebase-admin";
@@ -37,6 +38,7 @@ app.use("/events", eventRoute);
 app.use("/users", userRoute);
 app.use("/register", registerRoute);
 app.use("/payment", paymentRoute);
+app.use("/stripe_webhooks", webhookRoute);
 
 mongoose
     .connect(dbURL)
