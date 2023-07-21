@@ -10,6 +10,7 @@ import AdminHome from "./routes/dashboard/admin/AdminHome";
 import AdminLayout from "./routes/dashboard/admin/AdminLayout";
 import AdminEvents from "./routes/dashboard/admin/AdminEvents";
 import AdminUsers from "./routes/dashboard/admin/AdminUsers";
+import AdminNewEvent from "./routes/dashboard/admin/AdminNewEvent";
 
 export default function App() {
   return (
@@ -27,6 +28,7 @@ export default function App() {
           <Route index element={<AdminHome />} />
           <Route path="events" element={<AdminEvents />} />
           <Route path="users" element={<AdminUsers />} />
+          <Route path="new-event" element={<AdminNewEvent />} />
         </Route>
       </Routes>
     </div>

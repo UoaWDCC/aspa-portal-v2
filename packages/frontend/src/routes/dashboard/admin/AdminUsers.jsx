@@ -1,6 +1,6 @@
 import React from "react";
 import { DataGrid } from "@mui/x-data-grid";
-import usersData from "./dummy";
+import usersData from "./usersData";
 
 export default function AdminEvents() {
   const columns = [
@@ -12,7 +12,9 @@ export default function AdminEvents() {
   return (
     <div>
       <div>
-        <h1>Users</h1>
+        <h1 className="text-4xl font-bold text-white ml-44 mt-10 mb-6">
+          Users
+        </h1>
         {usersData && usersData.length > 0 ? (
           <DataGrid
             className="w-9/12 mx-auto text-white"

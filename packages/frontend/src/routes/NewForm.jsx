@@ -73,8 +73,15 @@ const Create = () => {
           className="bg-transparent px-3 py-2 border-2 rounded-lg"
           onChange={(e) => setPaymentType(e.target.value)}
         >
-          <option value="bank transfer">Bank Transfer</option>
-          <option value="cash">Cash</option>
+          <option
+            value="bank transfer"
+            className="bg-transparent text-gray-800"
+          >
+            Bank Transfer
+          </option>
+          <option value="cash" className="bg-transparent text-gray-800">
+            Cash
+          </option>
         </select>
 
         {!isPending && (
