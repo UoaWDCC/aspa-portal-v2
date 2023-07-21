@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import React from "react";
+import axios from "axios";
 import { AiOutlineUser } from "react-icons/ai";
 import { BsKey } from "react-icons/bs";
 import { fadeUpInView } from "../animation/utils";
@@ -20,7 +21,7 @@ export default function SignUp() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordError, setPasswordError] = useState(false);
   const [loading, setLoading] = useState(false);
-  const { currentUser, setCurrentUser } = useContext(AuthContext);
+  const { setCurrentUser } = useContext(AuthContext);
   const navigate = useNavigate();
 
   async function handleSubmit(e) {
@@ -34,14 +35,29 @@ export default function SignUp() {
     setLoading(true);
 
     try {
-      await createUserWithEmailAndPassword(auth, email, password).then(
-        (userCredential) => {
-          const user = userCredential.user;
-          console.log("User SIGNED UP ith the email", auth?.currentUser?.email);
-          setCurrentUser(user);
-          navigate("/");
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = userCredential.user;
+      console.log("User SIGNED UP ith the email", auth?.currentUser?.email);
+      setCurrentUser(user);
+
+      const token = await user.getIdToken();
+      console.log("this is auth.currentUser", auth?.currentUser);
+      const headers = { Authorization: `Bearer ${token}` };
+      const player = { firstName, lastName, email };
+      const response = axios.post(
+        `${process.env.REACT_APP_API_URL}/users`,
+        player,
+        {
+          headers,
         }
       );
+      console.log("headers", headers);
+      console.log(response.data);
+      navigate("/");
     } catch (error) {
       console.log(error);
     }
