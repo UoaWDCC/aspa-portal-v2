@@ -45,7 +45,6 @@ export default function SignUp() {
       setCurrentUser(user);
 
       const token = await user.getIdToken();
-      console.log("this is auth.currentUser", auth?.currentUser);
       const headers = { Authorization: `Bearer ${token}` };
       const player = { firstName, lastName, email };
       const response = axios.post(
@@ -55,7 +54,6 @@ export default function SignUp() {
           headers,
         }
       );
-      console.log("headers", headers);
       console.log(response.data);
       navigate("/");
     } catch (error) {
