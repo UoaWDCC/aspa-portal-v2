@@ -31,7 +31,14 @@ const firebaseConfig = {
 };
 firebase_admin.initializeApp(firebaseConfig);
 app.use(cors());
-app.use(express.json());
+app.use((req, res, next) => {
+    if (req.originalUrl.startsWith('/stripe_webhooks')) {
+        // we need raw instead of json so that we can use webhook signing
+        next();
+    } else {
+        express.json()(req, res, next);
+    }
+})
 app.use(verifyToken);
 
 app.use("/events", eventRoute);
