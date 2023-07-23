@@ -9,6 +9,8 @@
 import { Request, Response } from "express";
 import Stripe from "stripe"
 import dotenv from "dotenv"
+import { User } from "../user/user-model";
+import { registerUserEvent } from "../register/register-controller";
 
 
 /**
@@ -65,15 +67,31 @@ export const handleWebhooks = async (req: Request, res: Response) => {
      * - Noam
      */
     switch (event.type) {
-        /* 
-         * // e.g. to handle the checkout.session.completed webhook, use:
-         * case "checkout.session.completed":
-         *     // insert business logic here, or better yet, write a new function and call it here.
-         *     break;
-         */
+        case "checkout.session.completed":
+            const session = event.data.object as Stripe.Checkout.Session;
+
+            const metadata = session.metadata;
+            if (!metadata) {
+                throw new Error("no metadata attached");
+            }
+
+            let fbId = (await User.findById(metadata.userId))?.firebaseId;
+            if (!fbId) {
+                fbId = 'guest'
+            }
+            req.userFbId = fbId;
+            req.body.eventId = metadata.eventId;
+            req.body.registrationDate = metadata.registrationDate;
+            req.body.email = session.customer_email;
+            req.body.paymentStatus = true;
+            req.body.paymentDetails = "stripe";
+
+            registerUserEvent(req, res);
+            // registerUserEvent will have set the status code
+            res.end();
+            break;
         default:
+            res.status(200).end();
             break;
     }
-
-    res.status(200).end();
 };
