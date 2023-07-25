@@ -5,8 +5,8 @@ const eventsData = [
     description: "This is Event 11",
     location: "Location 11",
     price: 25,
-    date: "2023-09-20",
-    completed: new Date("2023-09-20") < new Date(),
+    date: "2023-07-20",
+    completed: new Date("2023-07-20") < new Date(),
   },
   {
     id: 12,

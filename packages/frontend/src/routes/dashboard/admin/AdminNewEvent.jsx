@@ -66,7 +66,7 @@ const AdminNewEvent = () => {
             Price:
           </label>
           <input
-            type="number"
+            type="text"
             id="price"
             name="price"
             ref={priceRef}
