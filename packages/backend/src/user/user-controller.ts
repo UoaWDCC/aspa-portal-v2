@@ -49,8 +49,7 @@ export const getUserByFirebaseId = async (req: Request, res: Response) => {
  */
 export const createUser = async (req: Request, res: Response) => {
   try {
-    const { firstName, lastName, email, university, studentId, skillLevel } =
-      req.body;
+    const { firstName, lastName, email } = req.body;
 
     const firebaseId = req.userFbId;
 
@@ -65,12 +64,7 @@ export const createUser = async (req: Request, res: Response) => {
         lastName,
         email,
         firebaseId,
-        university,
-        studentId,
-        skillLevel,
       });
-
-      if (studentId) newUser.studentId = studentId;
 
       res.status(201).json(newUser);
     } else {

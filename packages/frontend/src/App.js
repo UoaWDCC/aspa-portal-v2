@@ -7,6 +7,7 @@ import Login from "./routes/Login";
 import Register from "./routes/NewForm";
 import UpcomingEvents from "./routes/UpcomingEvents";
 import SignUp from "./routes/SignUp/SignUp";
+import UserProfile from "./routes/User Profile/";
 import FailedPayment from "./routes/FailedPayment";
 import SuccessPayment from "./routes/SuccessPayment";
 import PaymentSuccess from "./routes/CheckPaymentResult";
@@ -23,6 +24,7 @@ export default function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/upcoming-events" element={<UpcomingEvents />} />
           <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/my-profile" element={<UserProfile />} />
           <Route path="/failed-payment" element={<FailedPayment />} />
           <Route path="/success-payment" element={<SuccessPayment />} />
           <Route path="/check-payment-result" element={<PaymentSuccess />} />

@@ -5,10 +5,19 @@ import { User, RegistrationRecordUser } from "../user/user-model";
 /**
  * Register user to an event and event to a user
  */
+
+interface registerUserEventRequest {
+  eventId: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  paymentType: "Cash" | "Bank Transfer";
+}
+
 export const registerUserEvent = async (req: Request, res: Response) => {
   try {
-    const { eventId, email, registrationDate, paymentStatus, paymentDetails } =
-      req.body;
+    const { eventId, firstName, lastName, email, paymentType } =
+      req.body as registerUserEventRequest;
 
     // Check if user is guest
     if (req.userFbId === "guest") {
@@ -16,7 +25,7 @@ export const registerUserEvent = async (req: Request, res: Response) => {
       const event = await Event.findById(eventId);
 
       const userAlreadyPresent = event?.users?.find(
-        (e: RegistrationRecordEvent) => e.email?.toString() === email.toString()
+        (e: RegistrationRecordEvent) => e.email === email
       );
       if (userAlreadyPresent) {
         throw new Error("User already registered for this event");
@@ -55,9 +64,8 @@ export const registerUserEvent = async (req: Request, res: Response) => {
           $push: {
             events: {
               eventId: eventId,
-              registrationDate: registrationDate,
-              paymentStatus: paymentStatus,
-              paymentDetails: paymentDetails,
+              paymentType,
+              isPaid: false,
             },
           },
         },
@@ -72,9 +80,9 @@ export const registerUserEvent = async (req: Request, res: Response) => {
           users: {
             userId: req.userFbId,
             email: email,
-            registrationDate: registrationDate,
-            paymentStatus: paymentStatus,
-            paymentDetails: paymentDetails,
+            firstName,
+            lastName,
+            isPaid: false,
           },
         },
       },
