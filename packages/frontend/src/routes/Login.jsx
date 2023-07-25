@@ -21,6 +21,8 @@ export default function Login() {
       await signInWithEmailAndPassword(auth, email, password).then(
         (userCredentials) => {
           const user = userCredentials.user;
+          const token = user.getIdToken();
+          localStorage.setItem('authToken', token);
           setCurrentUser(user);
           console.log(
             "User LOGGED IN with the email;",

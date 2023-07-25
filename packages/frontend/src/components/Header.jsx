@@ -106,7 +106,9 @@ function Header({ absolute = false }) {
           )}
           {!loggedIn && (
             <div>
-              <Link to="/login">Login</Link>
+              <Link className="mr-8" to="/login">
+                Login
+              </Link>
               <Link to="/sign-up">Sign Up</Link>
             </div>
           )}
