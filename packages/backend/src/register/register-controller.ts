@@ -143,18 +143,18 @@ export const removeRegistration = async (req: Request, res: Response) => {
   }
 };
 
-// TODO Fix the updatePaymentStatus to account for guest stuff
-export const updatePaymentStatus = async (req: Request, res: Response) => {
+// TODO Fix the updateIsPaid to account for guest stuff
+export const updateIsPaid = async (req: Request, res: Response) => {
   try {
     const { userId, eventId } = req.params;
-    const { paymentStatus } = req.body;
+    const { isPaid } = req.body;
 
-    if (typeof paymentStatus != "boolean") {
-      throw new Error("Payment status is not a boolean");
+    if (typeof isPaid != "boolean") {
+      throw new Error("isPaid is not a boolean");
     }
 
-    if (paymentStatus === undefined || paymentStatus === null) {
-      throw new Error("Payment status was not provided");
+    if (isPaid === undefined || isPaid === null) {
+      throw new Error("isPaid was not provided");
     }
 
     // Check if user is registered under the event
@@ -163,7 +163,7 @@ export const updatePaymentStatus = async (req: Request, res: Response) => {
       users: { $elemMatch: { userId: userId } },
     });
 
-    // If registration already exists, update payment status, otherwise return error
+    // If registration already exists, update isPaid, otherwise return error
     if (eventData != null) {
       await Event.updateOne(
         {
@@ -171,7 +171,7 @@ export const updatePaymentStatus = async (req: Request, res: Response) => {
           "users.userId": userId,
         },
         {
-          $set: { "users.$.paymentStatus": paymentStatus },
+          $set: { "users.$.isPaid": isPaid },
         }
       );
 
@@ -181,11 +181,11 @@ export const updatePaymentStatus = async (req: Request, res: Response) => {
           "events.eventId": eventId,
         },
         {
-          $set: { "events.$.paymentStatus": paymentStatus },
+          $set: { "events.$.isPaid": isPaid },
         }
       );
       res.status(200).json({
-        message: "Payment status has been updated",
+        message: "isPaid has been updated",
       });
     } else {
       throw new Error("Unable to update registration, it does not exist");
