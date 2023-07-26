@@ -83,7 +83,7 @@ export const handleWebhooks = async (req: Request, res: Response) => {
             req.body.eventId = metadata.eventId;
             req.body.registrationDate = metadata.registrationDate;
             req.body.email = session.customer_email;
-            req.body.paymentStatus = true;
+            req.body.isPaid = true;
             req.body.paymentDetails = "stripe";
 
             registerUserEvent(req, res);
