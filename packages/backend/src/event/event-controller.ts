@@ -3,6 +3,9 @@ import { Request, Response } from "express";
 import mongoose from "mongoose";
 import Stripe from "stripe";
 
+/**
+ * Get all events
+ */
 export const getEvents = async (req: Request, res: Response) => {
   try {
     const events = await Event.find({});
@@ -12,6 +15,9 @@ export const getEvents = async (req: Request, res: Response) => {
   }
 };
 
+/**
+ * Get a particular event by its id
+ */
 export const getEvent = async (req: Request, res: Response) => {
   try {
     const { eventId } = req.params;
@@ -32,6 +38,10 @@ export const getEvent = async (req: Request, res: Response) => {
   }
 };
 
+/**
+ * Create an event in the database and on Stripe
+ * Need to provide title, description, location, time in request body
+ */
 export const createEvent = async (req: Request, res: Response) => {
   try {
     if (
@@ -78,6 +88,9 @@ export const createEvent = async (req: Request, res: Response) => {
   }
 };
 
+/**
+ * Update event detail e.g. title, description, location, time
+ */
 export const updateEvent = async (req: Request, res: Response) => {
   try {
     const { eventId } = req.params;
@@ -114,6 +127,9 @@ export const updateEvent = async (req: Request, res: Response) => {
   }
 };
 
+/**
+ * Delete event from database
+ */
 export const deleteEvent = async (req: Request, res: Response) => {
   const { eventId } = req.params;
 
@@ -144,6 +160,7 @@ export const getEventUsersInfo = async (req: Request, res: Response) => {
 
     const eventIdObject = new mongoose.Types.ObjectId(eventId);
 
+    // Finds the event in the events database, retrieves the information from the users database, then merges the user info from both databases into the finalUsersInfo property
     const event = await Event.aggregate([
       { $match: { _id: eventIdObject } },
       {
