@@ -1,9 +1,12 @@
 import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
+
 import eventRoute from "./event/event-route";
 import userRoute from "./user/user-route";
 import registerRoute from "./register/register-route";
+import paymentRoute from "./payment/payment-route";
+import webhookRoute from "./webhook/webhook-route"
 import cors from "cors";
 import { verifyToken } from "./middleware/verifyToken";
 import firebase_admin from "firebase-admin";
@@ -28,12 +31,21 @@ const firebaseConfig = {
 };
 firebase_admin.initializeApp(firebaseConfig);
 app.use(cors());
-app.use(express.json());
+app.use((req, res, next) => {
+    if (req.originalUrl.startsWith('/stripe_webhooks')) {
+        // we need raw instead of json so that we can use webhook signing
+        next();
+    } else {
+        express.json()(req, res, next);
+    }
+})
 app.use(verifyToken);
 
 app.use("/events", eventRoute);
 app.use("/users", userRoute);
 app.use("/register", registerRoute);
+app.use("/payment", paymentRoute);
+app.use("/stripe_webhooks", webhookRoute);
 
 mongoose
     .connect(dbURL)
