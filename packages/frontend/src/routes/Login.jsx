@@ -22,7 +22,7 @@ export default function Login() {
         (userCredentials) => {
           const user = userCredentials.user;
           const token = user.getIdToken();
-          localStorage.setItem('authToken', token);
+          localStorage.setItem("authToken", token);
           setCurrentUser(user);
           console.log(
             "User LOGGED IN with the email;",
