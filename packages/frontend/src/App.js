@@ -6,6 +6,11 @@ import Home from "./routes/Home";
 import Login from "./routes/Login";
 import Register from "./routes/NewForm";
 import UpcomingEvents from "./routes/UpcomingEvents";
+import AdminHome from "./routes/dashboard/admin/AdminHome";
+import AdminLayout from "./routes/dashboard/admin/AdminLayout";
+import AdminEvents from "./routes/dashboard/admin/AdminEvents";
+import AdminUsers from "./routes/dashboard/admin/AdminUsers";
+import AdminNewEvent from "./routes/dashboard/admin/AdminNewEvent";
 import SignUp from "./routes/SignUp/SignUp";
 import UserProfile from "./routes/User Profile/";
 import FailedPayment from "./routes/FailedPayment";
@@ -26,6 +31,12 @@ export default function App() {
           <Route path="/my-profile" element={<UserProfile />} />
           <Route path="/failed-payment" element={<FailedPayment />} />
           <Route path="/success-payment" element={<SuccessPayment />} />
+        </Route>
+        <Route path="/admin-dashboard" element={<AdminLayout />}>
+          <Route index element={<AdminHome />} />
+          <Route path="events" element={<AdminEvents />} />
+          <Route path="users" element={<AdminUsers />} />
+          <Route path="new-event" element={<AdminNewEvent />} />
         </Route>
       </Routes>
     </div>
