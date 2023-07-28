@@ -11,6 +11,10 @@ import AdminLayout from "./routes/dashboard/admin/AdminLayout";
 import AdminEvents from "./routes/dashboard/admin/AdminEvents";
 import AdminUsers from "./routes/dashboard/admin/AdminUsers";
 import AdminNewEvent from "./routes/dashboard/admin/AdminNewEvent";
+import SignUp from "./routes/SignUp/SignUp";
+import UserProfile from "./routes/User Profile/";
+import FailedPayment from "./routes/FailedPayment";
+import SuccessPayment from "./routes/SuccessPayment";
 
 export default function App() {
   return (
@@ -23,6 +27,10 @@ export default function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/upcoming-events" element={<UpcomingEvents />} />
+          <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/my-profile" element={<UserProfile />} />
+          <Route path="/failed-payment" element={<FailedPayment />} />
+          <Route path="/success-payment" element={<SuccessPayment />} />
         </Route>
         <Route path="/admin-dashboard" element={<AdminLayout />}>
           <Route index element={<AdminHome />} />
