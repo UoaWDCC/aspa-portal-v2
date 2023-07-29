@@ -52,7 +52,7 @@ export const createUser = async (req: Request, res: Response) => {
     const { firstName, lastName, email } = req.body;
 
     const firebaseId = req.userFbId;
-
+    const role = "user";
     // Check if that user already exists
     if (await User.findOne({ firebaseId: firebaseId })) {
       res.status(400).json({ message: "User already exists" });
@@ -63,6 +63,7 @@ export const createUser = async (req: Request, res: Response) => {
         firstName,
         lastName,
         email,
+        role,
         firebaseId,
       });
 
@@ -137,6 +138,27 @@ export const deleteUser = async (req: Request, res: Response) => {
     const { userId } = req.params;
     const deletedUser = await User.findByIdAndDelete(userId);
     res.status(200).json(deletedUser);
+  } catch (error) {
+    console.error(error);
+    res.status(400).json(error);
+  }
+};
+
+// Make a user admin
+// TODO make it so that only admin users can call this
+export const makeUserAdmin = async (req: Request, res: Response) => {
+  try {
+    const { userId } = req.params;
+
+    const updatedUser = await User.findByIdAndUpdate(
+      userId,
+      {
+        role: "admin",
+      },
+      { new: true }
+    );
+
+    res.status(200).json(updatedUser);
   } catch (error) {
     console.error(error);
     res.status(400).json(error);
