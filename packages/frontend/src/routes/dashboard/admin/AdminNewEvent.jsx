@@ -20,6 +20,18 @@ const AdminNewEvent = () => {
     );
   };
 
+  // const onEventFormSubmit = async (e) => {
+  //   e.preventDefault;
+
+  //   const newEvent = {
+  //     name: nameRef.current.value,
+  //     description: descriptionRef.current.value,
+  //     location: locationRef.current.value,
+  //     price: priceRef.current.value,
+  //     date: dateRef.current.value,
+  //   };
+  // };
+
   return (
     <div className="flex justify-center items-center h-screen ">
       <motion.form
@@ -75,13 +87,25 @@ const AdminNewEvent = () => {
         </div>
         <div className="mb-4">
           <label htmlFor="date" className="text-white">
-            Date:
+            Date Time:
           </label>
           <input
-            type="date"
-            id="date"
-            name="date"
+            type="datetime-local"
+            id="datetime-local"
+            name="datetime-local"
             ref={dateRef}
+            className="w-full py-2 px-3 bg-gray-800 border border-gray-600 rounded-md text-white focus:outline-none focus:border-blue-500"
+          />
+        </div>
+        <div className="mb-4">
+          <label htmlFor="price" className="text-white">
+            Poster:
+          </label>
+          <input
+            type="file"
+            id="price"
+            name="price"
+            ref={priceRef}
             className="w-full py-2 px-3 bg-gray-800 border border-gray-600 rounded-md text-white focus:outline-none focus:border-blue-500"
           />
         </div>
