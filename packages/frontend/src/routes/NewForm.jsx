@@ -39,9 +39,7 @@ const Create = () => {
     const token = await currentUser.getIdToken();
     const headers = { Authorization: `Bearer ${token}` };
     const player = { firstName, lastName, email, paymentType, eventId };
-    console.log(player);
     setIsPending(true);
-    console.log("first axios");
     try {
       const response = await axios.post(
         "http://localhost:5000/register",
@@ -54,7 +52,6 @@ const Create = () => {
       console.log(error);
       setIsPending(false);
     }
-    console.log("second axios");
     try {
       const response = await axios.post(
         `http://localhost:5000/payment//create-checkout-session/${uid}/${eventId}`
