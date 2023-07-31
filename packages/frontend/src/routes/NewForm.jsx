@@ -144,7 +144,7 @@ const Create = () => {
           >
             Bank Transfer
           </option>
-          <option value="cash" className="bg-transparent text-gray-800">
+          {/* <option value="cash" className="bg-transparent text-gray-800"> */}
           <option className="option" value="bank transfer">
             Bank Transfer
           </option>
