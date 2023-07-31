@@ -20,6 +20,7 @@ const Create = () => {
   const queryParams = new URLSearchParams(url.search);
   const eventId = queryParams.get("eventId");
   const { currentUser } = useContext(AuthContext);
+  const { uid } = useContext(AuthContext);
 
   useEffect(() => {
     async function fetchEvent() {
@@ -40,6 +41,7 @@ const Create = () => {
     const player = { firstName, lastName, email, paymentType, eventId };
     console.log(player);
     setIsPending(true);
+    console.log("first axios");
     try {
       const response = await axios.post(
         "http://localhost:5000/register",
@@ -51,6 +53,18 @@ const Create = () => {
     } catch (error) {
       console.log(error);
       setIsPending(false);
+    }
+    console.log("second axios");
+    try {
+      const response = await axios.post(
+        `http://localhost:5000/payment//create-checkout-session/${uid}/${eventId}`
+      );
+      console.log(response.data);
+
+      // Redirect the user to the Stripe checkout page
+      window.location.href = response.data.redirect;
+    } catch (error) {
+      console.log(error);
     }
   };
 
