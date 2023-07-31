@@ -22,6 +22,7 @@ export default function SignUp() {
   const [passwordError, setPasswordError] = useState(false);
   const [loading, setLoading] = useState(false);
   const { setCurrentUser } = useContext(AuthContext);
+  const { uid, setUid } = useContext(AuthContext);
   const navigate = useNavigate();
 
   async function handleSubmit(e) {
@@ -54,13 +55,17 @@ export default function SignUp() {
           headers,
         }
       );
-      console.log(response.data);
+      //console.log((await response).data.id);
+      setUid((await response).data._id);
+      console.log("this is UID from auth context", uid);
       navigate("/");
     } catch (error) {
       console.log(error);
     }
     setLoading(false);
   }
+
+  console.log("this is UID from auth context outside of try block", uid);
 
   return (
     <>
