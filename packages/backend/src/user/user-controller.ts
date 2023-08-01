@@ -145,8 +145,10 @@ export const deleteUser = async (req: Request, res: Response) => {
 };
 
 // Make a user admin
-// TODO make it so that only admin users can call this
 export const makeUserAdmin = async (req: Request, res: Response) => {
+  if (req.userRole !== "admin") {
+    return res.status(401).json({ error: "Unauthorized" });
+  }
   try {
     const { userId } = req.params;
 

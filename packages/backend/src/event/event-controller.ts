@@ -8,7 +8,14 @@ import Stripe from "stripe";
  */
 export const getEvents = async (req: Request, res: Response) => {
   try {
-    const events = await Event.find({});
+    let events;
+
+    if (req.userRole === "admin") {
+      const events = await Event.find({});
+    } else {
+      const events = await Event.find({}, { users: 0 });
+    }
+
     res.status(200).json(events);
   } catch (error) {
     console.log(error);
@@ -25,8 +32,13 @@ export const getEvent = async (req: Request, res: Response) => {
     if (!mongoose.Types.ObjectId.isValid(eventId)) {
       return res.status(404).json({ error: "No such event" });
     }
+    let event;
 
-    const event = await Event.findById(eventId);
+    if (req.userRole === "admin") {
+      const event = await Event.findById(eventId);
+    } else {
+      const event = await Event.findById(eventId, { users: 0 });
+    }
 
     if (!event) {
       return res.status(404).json({ error: "No such event" });
@@ -43,6 +55,10 @@ export const getEvent = async (req: Request, res: Response) => {
  * Need to provide title, description, location, time in request body
  */
 export const createEvent = async (req: Request, res: Response) => {
+  if (req.userRole !== "admin") {
+    return res.status(401).json({ error: "Unauthorized" });
+  }
+
   try {
     if (
       req.body.eventTitle &&
@@ -92,6 +108,9 @@ export const createEvent = async (req: Request, res: Response) => {
  * Update event detail e.g. title, description, location, time
  */
 export const updateEvent = async (req: Request, res: Response) => {
+  if (req.userRole !== "admin") {
+    return res.status(401).json({ error: "Unauthorized" });
+  }
   try {
     const { eventId } = req.params;
 
@@ -131,6 +150,9 @@ export const updateEvent = async (req: Request, res: Response) => {
  * Delete event from database
  */
 export const deleteEvent = async (req: Request, res: Response) => {
+  if (req.userRole !== "admin") {
+    return res.status(401).json({ error: "Unauthorized" });
+  }
   const { eventId } = req.params;
 
   if (!mongoose.Types.ObjectId.isValid(eventId)) {
@@ -151,6 +173,9 @@ export const deleteEvent = async (req: Request, res: Response) => {
  * This returns an event object, with a new property finalUsersInfo (array), which contains the users info and corresponding event registration details)
  */
 export const getEventUsersInfo = async (req: Request, res: Response) => {
+  if (req.userRole !== "admin") {
+    return res.status(401).json({ error: "Unauthorized" });
+  }
   try {
     const { eventId } = req.params;
 

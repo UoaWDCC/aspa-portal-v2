@@ -5,6 +5,7 @@ declare global {
     export interface Request {
       decodedToken?: DecodedIdToken;
       userFbId?: string;
+      userRole?: string;
     }
   }
 }
