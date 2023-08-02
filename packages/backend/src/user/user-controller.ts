@@ -15,6 +15,27 @@ export const getUsers = async (req: Request, res: Response) => {
 };
 
 /**
+ * Get a specific user's UID by their firebase id
+ */
+export const getUserId = async (req: Request, res: Response) => {
+  try {
+    const firebaseId = req.userFbId;
+    console.log("Firebase ID received from the request:", firebaseId); // Log the received firebaseId
+    const user = await User.findOne({ firebaseId: firebaseId });
+    if (user) {
+      const uid = user._id;
+      console.log("User found:", user);
+      res.status(200).json(uid);
+    } else {
+      res.status(404).json({ error: "User not found" });
+    }
+  } catch (error) {
+    console.log("new error", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+/**
  * Get a specific user by their id
  */
 export const getUser = async (req: Request, res: Response) => {
@@ -29,7 +50,7 @@ export const getUser = async (req: Request, res: Response) => {
 };
 
 /**
- *  Get user by their firebaseId
+ *  Get user OBJECT by their firebaseId
  */
 export const getUserByFirebaseId = async (req: Request, res: Response) => {
   try {

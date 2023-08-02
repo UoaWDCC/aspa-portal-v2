@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import React from "react";
+import { React } from "react";
 import axios from "axios";
 import { AiOutlineUser } from "react-icons/ai";
 import { BsKey } from "react-icons/bs";
@@ -21,8 +21,7 @@ export default function SignUp() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordError, setPasswordError] = useState(false);
   const [loading, setLoading] = useState(false);
-  const { setCurrentUser } = useContext(AuthContext);
-  const { uid, setUid } = useContext(AuthContext);
+  const { setCurrentUser, setUid } = useContext(AuthContext);
   const navigate = useNavigate();
 
   async function handleSubmit(e) {
@@ -42,30 +41,25 @@ export default function SignUp() {
         password
       );
       const user = userCredential.user;
-      console.log("User SIGNED UP ith the email", auth?.currentUser?.email);
       setCurrentUser(user);
 
       const token = await user.getIdToken();
       const headers = { Authorization: `Bearer ${token}` };
       const player = { firstName, lastName, email };
-      const response = axios.post(
+      const response = await axios.post(
         `${process.env.REACT_APP_API_URL}/users`,
         player,
         {
           headers,
         }
       );
-      //console.log((await response).data.id);
-      setUid((await response).data._id);
-      console.log("this is UID from auth context", uid);
+      setUid(response.data._id);
       navigate("/");
     } catch (error) {
       console.log(error);
     }
     setLoading(false);
   }
-
-  console.log("this is UID from auth context outside of try block", uid);
 
   return (
     <>
