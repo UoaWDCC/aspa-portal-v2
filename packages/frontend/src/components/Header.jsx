@@ -100,7 +100,9 @@ function Header({ absolute = false }) {
         <div className="hidden gap-8 font-bold items-center md:flex">
           {loggedIn && (
             <>
-              <p>Welcome, {auth?.currentUser?.email}</p>
+              <Link className="mr-8" to="/my-profile">
+                My Profile
+              </Link>
               <button onClick={(e) => handleLogout(e)}>Logout</button>
             </>
           )}
