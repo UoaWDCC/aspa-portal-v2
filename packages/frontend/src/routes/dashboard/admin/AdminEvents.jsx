@@ -1,11 +1,12 @@
 import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { FaTrash } from "react-icons/fa";
+import { FaTrash, FaArrowRight } from "react-icons/fa";
 
 export default function AdminEvents() {
   const [events, setEvents] = useState([]);
 
+  // fetch events from backend
   useEffect(() => {
     async function fetchAllEvents() {
       const response = await axios.get("http://localhost:5000/events");
@@ -15,6 +16,7 @@ export default function AdminEvents() {
     fetchAllEvents();
   }, [events]);
 
+  // delete event
   const handleDeleteEvent = async (eventId) => {
     console.log(`Deleting event with ID: ${eventId}`);
 
@@ -39,7 +41,7 @@ export default function AdminEvents() {
         {events.map((event) => (
           <div
             key={event._id}
-            className="bg-gray-800 p-6 rounded-md shadow-md border border-gray-700 mb-4 relative transition-transform duration-300 hover:bg-gray-700 cursor-pointer"
+            className="bg-gray-800 p-6 rounded-md shadow-md border border-gray-700 mb-4 relative "
           >
             <h2 className="text-2xl font-semibold text-white">
               {event.eventTitle}
@@ -57,9 +59,17 @@ export default function AdminEvents() {
             </p>
             <FaTrash
               size={20}
-              className="absolute top-4 right-4 text-white cursor-pointer"
+              className="absolute top-4 right-4 text-white cursor-pointer hover:opacity-75"
               onClick={() => handleDeleteEvent(event._id)}
             />
+
+            {/* link to individual event page */}
+            <a href={`events/${event._id}`}>
+              <FaArrowRight
+                size={22}
+                className="absolute bottom-4  right-4 cursor-pointer hover:opacity-75"
+              />
+            </a>
           </div>
         ))}
       </div>
