@@ -7,36 +7,46 @@ const AdminNewEvent = () => {
   const locationRef = useRef(null);
   const priceRef = useRef(null);
   const dateRef = useRef(null);
+  const fileRef = useRef(null);
 
-  const handleSubmit = (e) => {
+  const onEventFormSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(
-      nameRef.current.value,
-      descriptionRef.current.value,
-      locationRef.current.value,
-      priceRef.current.value,
-      dateRef.current.value
-    );
+    const date = new Date(dateRef.current.value);
+
+    const newEvent = {
+      eventTitle: nameRef.current.value,
+      eventDescription: descriptionRef.current.value,
+      eventLocation: locationRef.current.value,
+      eventTime: date.toISOString(),
+    };
+
+    const postResponse = await fetch("http://localhost:5000/events", {
+      method: "POST",
+      body: JSON.stringify(newEvent),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const postJson = await postResponse.json();
+
+    if (!postResponse.ok) {
+      console.log(postJson.error);
+    } else {
+      nameRef.current.value = "";
+      descriptionRef.current.value = "";
+      locationRef.current.value = "";
+      priceRef.current.value = "";
+      dateRef.current.value = "";
+    }
   };
-
-  // const onEventFormSubmit = async (e) => {
-  //   e.preventDefault;
-
-  //   const newEvent = {
-  //     name: nameRef.current.value,
-  //     description: descriptionRef.current.value,
-  //     location: locationRef.current.value,
-  //     price: priceRef.current.value,
-  //     date: dateRef.current.value,
-  //   };
-  // };
 
   return (
     <div className="flex justify-center items-center h-screen ">
       <motion.form
         className="bg-gray-900 p-20 rounded-xl shadow-lg"
-        onSubmit={handleSubmit}
+        onSubmit={onEventFormSubmit}
       >
         <div className="mb-4">
           <label htmlFor="name" className="text-white">
@@ -103,9 +113,9 @@ const AdminNewEvent = () => {
           </label>
           <input
             type="file"
-            id="price"
-            name="price"
-            ref={priceRef}
+            id="file"
+            name="file"
+            ref={fileRef}
             className="w-full py-2 px-3 bg-gray-800 border border-gray-600 rounded-md text-white focus:outline-none focus:border-blue-500"
           />
         </div>
