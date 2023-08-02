@@ -22,16 +22,16 @@ const Events = () => {
       {/* Left Navigation Pane */}
       <div className="w-1/4 pr-8">
         <div className="bg-gray-100 rounded-lg p-4">
-          <h2 className="text-lg font-bold mb-4">My Tickets</h2>
+          <h2 className="text-lg font-bold mb-4 text-black">My Tickets</h2>
           <ul className="space-y-2">
             <li
-              className="cursor-pointer"
+              className="cursor-pointer text-black"
               onClick={() => handleTabChange("upcoming")}
             >
               Upcoming Events
             </li>
             <li
-              className="cursor-pointer"
+              className="cursor-pointer text-black"
               onClick={() => handleTabChange("past")}
             >
               Past Events
@@ -39,10 +39,10 @@ const Events = () => {
           </ul>
         </div>
         <div className="mt-4 bg-gray-100 rounded-lg p-4">
-          <h2 className="text-lg font-bold mb-4">My Profile</h2>
+          <h2 className="text-lg font-bold mb-4 text-black">My Profile</h2>
           {/* Add more items in the user's profile */}
         </div>
-        <div className="mt-4 bg-gray-100 rounded-lg p-4">
+        <div className="mt-4 bg-gray-100 rounded-lg p-4 text-black">
           <h2 className="text-lg font-bold mb-4">My Settings</h2>
           {/* Add settings options here */}
         </div>
@@ -54,7 +54,10 @@ const Events = () => {
           <div>
             <h2 className="text-2xl font-bold mb-4">Upcoming Events</h2>
             {upcomingEvents.map((event) => (
-              <div key={event.id} className="bg-white rounded p-4 mb-2">
+              <div
+                key={event.id}
+                className="bg-white text-black rounded p-4 mb-2"
+              >
                 <h3 className="text-lg font-bold">{event.name}</h3>
                 <p>Date: {event.date}</p>
               </div>
@@ -62,9 +65,12 @@ const Events = () => {
           </div>
         ) : (
           <div>
-            <h2 className="text-2xl font-bold mb-4">Past Events</h2>
+            <h2 className="text-2xl font-bold mb-4 ">Past Events</h2>
             {pastEvents.map((event) => (
-              <div key={event.id} className="bg-white rounded p-4 mb-2">
+              <div
+                key={event.id}
+                className="bg-white text-black rounded p-4 mb-2"
+              >
                 <h3 className="text-lg font-bold">{event.name}</h3>
                 <p>Date: {event.date}</p>
               </div>
