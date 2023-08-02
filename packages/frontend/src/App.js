@@ -38,7 +38,7 @@ export default function App() {
           <Route path="events" element={<AdminEvents />} />
           <Route path="users" element={<AdminUsers />} />
           <Route path="new-event" element={<AdminNewEvent />} />
-          <Route path="/events/:eventId" element={<EventDetails />} />
+          <Route path="events/:eventId" element={<EventDetails />} />
         </Route>
       </Routes>
     </div>
