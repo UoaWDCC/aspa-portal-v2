@@ -11,6 +11,7 @@ import AdminLayout from "./routes/dashboard/admin/AdminLayout";
 import AdminEvents from "./routes/dashboard/admin/AdminEvents";
 import AdminUsers from "./routes/dashboard/admin/AdminUsers";
 import AdminNewEvent from "./routes/dashboard/admin/AdminNewEvent";
+import EventDetails from "./routes/dashboard/admin/EventDetails";
 import SignUp from "./routes/SignUp/SignUp";
 import UserProfile from "./routes/User Profile/";
 import FailedPayment from "./routes/FailedPayment";
@@ -37,6 +38,7 @@ export default function App() {
           <Route path="events" element={<AdminEvents />} />
           <Route path="users" element={<AdminUsers />} />
           <Route path="new-event" element={<AdminNewEvent />} />
+          <Route path="events/:eventId" element={<EventDetails />} />
         </Route>
       </Routes>
     </div>

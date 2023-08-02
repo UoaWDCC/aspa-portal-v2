@@ -9,7 +9,7 @@ export default function AdminSidebar() {
   const location = useLocation();
 
   return (
-    <div className="h-screen w-24 bg-gray-800 absolute top-0 left-0">
+    <div className="h-screen w-22 bg-gray-800 absolute top-0 left-0">
       <nav className="flex flex-col items-center justify-between w-full h-full p-4 pt-6 pb-6">
         <Link to="/admin-dashboard">
           <img src={Logo} alt="" className="src" />
