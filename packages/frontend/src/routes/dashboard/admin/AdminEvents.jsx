@@ -13,10 +13,23 @@ export default function AdminEvents() {
       setEvents(data);
     }
     fetchAllEvents();
-  }, []);
+  }, [events]);
 
-  const handleDeleteEvent = (eventId) => {
+  const handleDeleteEvent = async (eventId) => {
     console.log(`Deleting event with ID: ${eventId}`);
+
+    const response = await fetch(`http://localhost:5000/events/${eventId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const json = await response.json();
+
+    if (!response.ok) {
+      console.log(json.error);
+    }
   };
 
   return (
