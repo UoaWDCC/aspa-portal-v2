@@ -20,6 +20,7 @@ const Create = () => {
   const queryParams = new URLSearchParams(url.search);
   const eventId = queryParams.get("eventId");
   const { currentUser } = useContext(AuthContext);
+  const { uid } = useContext(AuthContext);
 
   useEffect(() => {
     async function fetchEvent() {
@@ -38,7 +39,6 @@ const Create = () => {
     const token = await currentUser.getIdToken();
     const headers = { Authorization: `Bearer ${token}` };
     const player = { firstName, lastName, email, paymentType, eventId };
-    console.log(player);
     setIsPending(true);
     try {
       const response = await axios.post(
@@ -51,6 +51,17 @@ const Create = () => {
     } catch (error) {
       console.log(error);
       setIsPending(false);
+    }
+    try {
+      const response = await axios.post(
+        `http://localhost:5000/payment//create-checkout-session/${uid}/${eventId}`
+      );
+      console.log(response.data);
+
+      // Redirect the user to the Stripe checkout page
+      window.location.href = response.data.redirect;
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -144,7 +155,7 @@ const Create = () => {
           >
             Bank Transfer
           </option>
-          <option value="cash" className="bg-transparent text-gray-800">
+          {/* <option value="cash" className="bg-transparent text-gray-800"> */}
           <option className="option" value="bank transfer">
             Bank Transfer
           </option>

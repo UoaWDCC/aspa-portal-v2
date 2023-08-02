@@ -11,6 +11,7 @@ export function useAuth() {
 export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [uid, setUid] = useState("");
   //const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -24,6 +25,8 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const value = {
+    uid,
+    setUid,
     currentUser,
     setCurrentUser,
     isLoggedIn,
