@@ -21,7 +21,7 @@ export default function SignUp() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordError, setPasswordError] = useState(false);
   const [loading, setLoading] = useState(false);
-  const { setCurrentUser, uid, setUid } = useContext(AuthContext);
+  const { setCurrentUser, setUid } = useContext(AuthContext);
   const navigate = useNavigate();
 
   async function handleSubmit(e) {
