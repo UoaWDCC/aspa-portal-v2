@@ -19,8 +19,7 @@ const Create = () => {
   const url = useLocation();
   const queryParams = new URLSearchParams(url.search);
   const eventId = queryParams.get("eventId");
-  const { currentUser } = useContext(AuthContext);
-  const { uid } = useContext(AuthContext);
+  const { currentUser, uid } = useContext(AuthContext);
 
   useEffect(() => {
     async function fetchEvent() {
@@ -54,7 +53,7 @@ const Create = () => {
     }
     try {
       const response = await axios.post(
-        `http://localhost:5000/payment//create-checkout-session/${uid}/${eventId}`
+        `http://localhost:5000/payment/create-checkout-session/${uid}/${eventId}`
       );
       console.log(response.data);
 

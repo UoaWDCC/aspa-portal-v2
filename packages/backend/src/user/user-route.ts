@@ -2,6 +2,7 @@ import express from "express";
 import {
   getUsers,
   getUser,
+  getUserId,
   getUserByFirebaseId,
   createUser,
   updateUser,
@@ -12,6 +13,7 @@ import {
 const router = express.Router();
 
 router.get("/", getUsers);
+router.get("/getUserId", getUserId);
 router.get("/:userId", getUser);
 router.get("/fbId/:firebaseId", getUserByFirebaseId);
 router.post("/", createUser);

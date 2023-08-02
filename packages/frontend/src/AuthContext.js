@@ -1,6 +1,7 @@
 import { createContext, useState, useEffect, useContext } from "react";
 import { auth } from "./firebase";
 import { PropTypes } from "prop-types";
+import axios from "axios";
 
 export const AuthContext = createContext();
 
@@ -15,10 +16,22 @@ export const AuthProvider = ({ children }) => {
   //const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
+    const unsubscribe = auth.onAuthStateChanged(async (user) => {
       setCurrentUser(user);
       setIsLoggedIn(user !== null);
-      //setLoading(false);
+      if (user) {
+        try {
+          const token = await user.getIdToken();
+          const headers = { Authorization: `Bearer ${token}` };
+          const response = await axios.get(
+            `${process.env.REACT_APP_API_URL}/users/getUserId`,
+            { headers }
+          );
+          setUid(response.data);
+        } catch (error) {
+          console.log(error);
+        }
+      }
     });
 
     return unsubscribe;
