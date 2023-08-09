@@ -89,6 +89,10 @@ export const handleWebhooks = async (req: Request, res: Response) => {
       req.body.email = session.customer_email;
       req.body.isPaid = true;
       req.body.paymentDetails = "stripe";
+      req.body.firstName = metadata.firstName;
+      req.body.lastName = metadata.lastName;
+      req.body.email = metadata.email;
+      req.body.paymentType = metadata.paymentType;
 
       registerUserEvent(req, res);
       // registerUserEvent will have set the status code

@@ -62,7 +62,8 @@ const Create = () => {
         console.log(currentUser);
         console.log("id: " + uid);
         const response = await axios.post(
-          `http://localhost:5000/payment/create-checkout-session/${uid}/${eventId}`
+          `http://localhost:5000/payment/create-checkout-session/${uid}/${eventId}`,
+          player
         );
         console.log(response.data);
 
