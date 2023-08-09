@@ -13,7 +13,7 @@ import AdminUsers from "./routes/dashboard/admin/AdminUsers";
 import AdminNewEvent from "./routes/dashboard/admin/AdminNewEvent";
 import EventDetails from "./routes/dashboard/admin/EventDetails";
 import SignUp from "./routes/SignUp/SignUp";
-import UserProfile from "./routes/User Profile/";
+import UserProfile from "./routes/UserProfile/";
 import FailedPayment from "./routes/FailedPayment";
 import SuccessPayment from "./routes/SuccessPayment";
 
