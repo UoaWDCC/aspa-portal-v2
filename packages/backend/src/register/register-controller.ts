@@ -34,6 +34,8 @@ export const registerUserEvent = async (req: Request, res: Response) => {
       // If it is a registered user check if they are already registered and then register the event to the user
       const user = await User.findOne({ firebaseId: req.userFbId });
       const userId = user?._id;
+      console.log("user id, register: " + userId);
+      console.log("fb user id, register: " + req.userFbId);
 
       // Check if the user is already registered to the event
       //const user = await User.findById(userId);

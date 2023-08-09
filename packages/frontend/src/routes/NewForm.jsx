@@ -59,6 +59,8 @@ const Create = () => {
       // Payment type is bank transfer
       try {
         console.log("try stripe");
+        console.log(currentUser);
+        console.log("id: " + uid);
         const response = await axios.post(
           `http://localhost:5000/payment/create-checkout-session/${uid}/${eventId}`
         );
@@ -68,6 +70,7 @@ const Create = () => {
         window.location.href = response.data.redirect;
       } catch (error) {
         console.log(error);
+        setIsPending(false);
       }
     }
   };
