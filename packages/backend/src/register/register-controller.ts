@@ -67,7 +67,7 @@ export const registerUserEvent = async (req: Request, res: Response) => {
             events: {
               eventId: eventId,
               paymentType,
-              isPaid: false,
+              isPaid: req.body.isPaid || false,
             },
           },
         },
@@ -84,7 +84,7 @@ export const registerUserEvent = async (req: Request, res: Response) => {
             email: email,
             firstName,
             lastName,
-            isPaid: false,
+            isPaid: req.body.isPaid || false,
           },
         },
       },
