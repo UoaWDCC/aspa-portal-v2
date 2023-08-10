@@ -39,28 +39,40 @@ const Create = () => {
     const headers = { Authorization: `Bearer ${token}` };
     const player = { firstName, lastName, email, paymentType, eventId };
     setIsPending(true);
-    try {
-      const response = await axios.post(
-        "http://localhost:5000/register",
-        player,
-        { headers }
-      );
-      console.log(response.data);
-      setIsPending(false);
-    } catch (error) {
-      console.log(error);
-      setIsPending(false);
-    }
-    try {
-      const response = await axios.post(
-        `http://localhost:5000/payment/create-checkout-session/${uid}/${eventId}`
-      );
-      console.log(response.data);
+    console.log("payment type: " + paymentType);
 
-      // Redirect the user to the Stripe checkout page
-      window.location.href = response.data.redirect;
-    } catch (error) {
-      console.log(error);
+    if (paymentType == "cash") {
+      try {
+        console.log("try register");
+        const response = await axios.post(
+          "http://localhost:5000/register",
+          player,
+          { headers }
+        );
+        console.log(response.data);
+        setIsPending(false);
+      } catch (error) {
+        console.log(error);
+        setIsPending(false);
+      }
+    } else {
+      // Payment type is bank transfer
+      try {
+        console.log("try stripe");
+        console.log(currentUser);
+        console.log("id: " + uid);
+        const response = await axios.post(
+          `http://localhost:5000/payment/create-checkout-session/${uid}/${eventId}`,
+          player
+        );
+        console.log(response.data);
+
+        // Redirect the user to the Stripe checkout page
+        window.location.href = response.data.redirect;
+      } catch (error) {
+        console.log(error);
+        setIsPending(false);
+      }
     }
   };
 
