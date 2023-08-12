@@ -1,5 +1,6 @@
 import { User } from "./user-model";
 import { Request, Response } from "express";
+import { Event } from "../event/event-model";
 
 /**
  * Get all users in the database
@@ -182,6 +183,28 @@ export const makeUserAdmin = async (req: Request, res: Response) => {
     );
 
     res.status(200).json(updatedUser);
+  } catch (error) {
+    console.error(error);
+    res.status(400).json(error);
+  }
+};
+
+/**
+ * Get a users registered events
+ */
+export const getUserEvents = async (req: Request, res: Response) => {
+  try {
+    const user = await User.findOne({ firebaseId: req.userFbId });
+    if (req.userRole === "admin") {
+      const userId = req.params.userId;
+      const user = await User.findById(userId);
+    }
+
+    const eventIds = user?.events?.map((event) => event.eventId);
+
+    const events = await Event.find({ _id: { $in: eventIds } }, { users: 0 });
+
+    res.status(200).json(events);
   } catch (error) {
     console.error(error);
     res.status(400).json(error);

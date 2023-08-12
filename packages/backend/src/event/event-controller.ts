@@ -51,6 +51,54 @@ export const getEvent = async (req: Request, res: Response) => {
 };
 
 /**
+ *
+ * Get all past events
+ *
+ */
+export const getPastEvents = async (req: Request, res: Response) => {
+  try {
+    let events;
+
+    if (req.userRole === "admin") {
+      const events = await Event.find({ eventTime: { $lt: new Date() } });
+    } else {
+      const events = await Event.find(
+        { eventTime: { $lt: new Date() } },
+        { users: 0 }
+      );
+    }
+    res.status(200).json(events);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+/**
+ *
+ * Get all upcoming events
+ *
+ *
+ */
+export const getUpcomingEvents = async (req: Request, res: Response) => {
+  try {
+    let events;
+
+    if (req.userRole === "admin") {
+      const events = await Event.find({ eventTime: { $gt: new Date() } });
+    } else {
+      const events = await Event.find(
+        { eventTime: { $gt: new Date() } },
+        { users: 0 }
+      );
+    }
+
+    res.status(200).json(events);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+/**
  * Create an event in the database and on Stripe
  * Need to provide title, description, location, time in request body
  */
