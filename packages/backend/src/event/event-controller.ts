@@ -8,11 +8,14 @@ import Stripe from "stripe";
  */
 export const getEvents = async (req: Request, res: Response) => {
   try {
+    let events;
+
     if (req.userRole === "admin") {
-      const events = await Event.find({});
-      res.status(200).json(events);
+      events = await Event.find({});
+    } else {
+      events = await Event.find({}, { users: 0 });
     }
-    const events = await Event.find({}, { users: 0 });
+
     res.status(200).json(events);
   } catch (error) {
     console.log(error);
