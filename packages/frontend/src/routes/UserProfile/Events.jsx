@@ -14,7 +14,6 @@ const Events = () => {
     const fetchUsersEvents = async () => {
       try {
         const token = await currentUser.getIdToken();
-        console.log("Token:", token); // Log the token to the console
         const headers = { Authorization: `Bearer ${token}` };
         const response = await axios.get(
           `${process.env.REACT_APP_API_URL}/users/${uid}`,

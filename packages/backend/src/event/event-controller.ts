@@ -150,7 +150,6 @@ export const updateEvent = async (req: Request, res: Response) => {
  * Delete event from database
  */
 export const deleteEvent = async (req: Request, res: Response) => {
-  console.log(req)
   if (req.userRole !== "admin") {
     return res.status(401).json({ error: "Unauthorized" });
   }

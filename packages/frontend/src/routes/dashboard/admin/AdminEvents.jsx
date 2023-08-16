@@ -24,10 +24,8 @@ export default function AdminEvents() {
   // delete event
   const handleDeleteEvent = async (eventId) => {
     console.log(`Deleting event with ID: ${eventId}`);
-    console.log(currentUser.getIdToken());
 
     const token = await currentUser.getIdToken();
-    console.log(token);
 
     const response = await fetch(`http://localhost:5000/events/${eventId}`, {
       method: "DELETE",
