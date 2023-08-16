@@ -2,16 +2,25 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { FaArrowLeft } from "react-icons/fa";
+import { useContext } from "react";
+import { AuthContext } from "../../../AuthContext";
 
 const EventDetails = () => {
   const [events, setEvents] = useState([]);
   const [matchedEvent, setMatchedEvent] = useState({});
   const { eventId } = useParams();
   const navigate = useNavigate();
+  const { currentUser } = useContext(AuthContext);
 
   useEffect(() => {
     async function fetchAllEvents() {
-      const response = await axios.get("http://localhost:5000/events");
+      const token = await currentUser.getIdToken();
+
+      const response = await axios.get("http://localhost:5000/events", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       const data = response.data;
       setEvents(data);
     }

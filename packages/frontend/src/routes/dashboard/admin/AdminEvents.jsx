@@ -16,9 +16,10 @@ export default function AdminEvents() {
       const response = await axios.get("http://localhost:5000/events");
       const data = response.data;
       setEvents(data);
+      setFilteredEvents(data);
     }
     fetchAllEvents();
-  }, [events]);
+  }, []);
 
   // delete event
   const handleDeleteEvent = async (eventId) => {
@@ -26,6 +27,7 @@ export default function AdminEvents() {
     console.log(currentUser.getIdToken());
 
     const token = await currentUser.getIdToken();
+    console.log(token);
 
     const response = await fetch(`http://localhost:5000/events/${eventId}`, {
       method: "DELETE",
