@@ -35,9 +35,9 @@ export const getEvent = async (req: Request, res: Response) => {
     let event;
 
     if (req.userRole === "admin") {
-      const event = await Event.findById(eventId);
+      event = await Event.findById(eventId);
     } else {
-      const event = await Event.findById(eventId, { users: 0 });
+      event = await Event.findById(eventId, { users: 0 });
     }
 
     if (!event) {
