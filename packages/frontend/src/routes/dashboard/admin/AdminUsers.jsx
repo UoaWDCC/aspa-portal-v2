@@ -4,7 +4,7 @@ import usersData from "./usersData";
 
 export default function AdminEvents() {
   const columns = [
-    { field: "id", headerName: "ID", flex: 1 },
+    { field: "id", headerName: "ID", flex: 1, sortable: true }, // Set sortable to true
     { field: "name", headerName: "Name", flex: 1 },
     { field: "email", headerName: "Email", flex: 1 },
   ];
@@ -17,18 +17,38 @@ export default function AdminEvents() {
         </h1>
         {usersData && usersData.length > 0 ? (
           <DataGrid
-            className="w-9/12 mx-auto text-white"
+            className="w-9/12 mx-auto"
             rows={usersData}
             columns={columns}
-            initialState={{
-              pagination: { paginationModel: { page: 0, pageSize: 10 } },
+            components={{
+              LoadingOverlay: CustomLoadingOverlay,
             }}
-            pageSizeOptions={[5, 10, 20, 50]}
+            rowsPerPageOptions={[5, 10, 20, 50]}
+            pageSize={10}
+            pagination
+            autoHeight
+            disableColumnMenu
+            disableSelectionOnClick
+            headerHeight={40}
+            density="compact"
+            disableExtendRowFullWidth={true}
             sx={{
-              boxShadow: 2,
-              border: 2,
-              borderColor: "white",
-              color: "white",
+              "& .MuiDataGrid-root": {
+                backgroundColor: "transparent",
+              },
+              "& .MuiDataGrid-cell": {
+                color: "white",
+              },
+              "& .MuiTablePagination-root": {
+                color: "white",
+              },
+              "& .MuiDataGrid-toolbar": {
+                backgroundColor: "#333",
+              },
+              "& .MuiDataGrid-columnHeader, .MuiDataGrid-cell": {
+                borderBottom: "none",
+                color: "white",
+              },
             }}
           />
         ) : (
@@ -38,3 +58,19 @@ export default function AdminEvents() {
     </div>
   );
 }
+
+const CustomLoadingOverlay = () => (
+  <div
+    style={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      height: "100%",
+      width: "100%",
+      background: "rgba(0, 0, 0, 0.3)",
+      color: "white",
+    }}
+  >
+    Loading...
+  </div>
+);

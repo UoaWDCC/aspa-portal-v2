@@ -1,5 +1,7 @@
 import React, { useRef } from "react";
 import { motion } from "framer-motion";
+import { useContext } from "react";
+import { AuthContext } from "../../../AuthContext";
 
 const AdminNewEvent = () => {
   const nameRef = useRef(null);
@@ -8,6 +10,7 @@ const AdminNewEvent = () => {
   const priceRef = useRef(null);
   const dateRef = useRef(null);
   const fileRef = useRef(null);
+  const { currentUser } = useContext(AuthContext);
 
   const onEventFormSubmit = async (e) => {
     e.preventDefault();
@@ -21,11 +24,14 @@ const AdminNewEvent = () => {
       eventTime: date.toISOString(),
     };
 
+    const token = await currentUser.getIdToken();
+
     const postResponse = await fetch("http://localhost:5000/events", {
       method: "POST",
       body: JSON.stringify(newEvent),
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
     });
 
