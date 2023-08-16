@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { FaTrash, FaArrowRight } from "react-icons/fa";
+import { AuthContext } from "../../../AuthContext";
 
 export default function AdminEvents() {
   const [events, setEvents] = useState([]);
   const [selectedFilter, setSelectedFilter] = useState("all");
   const [filteredEvents, setFilteredEvents] = useState([]);
+  const { currentUser } = useContext(AuthContext);
 
   // fetch events from backend
   useEffect(() => {
@@ -21,11 +23,15 @@ export default function AdminEvents() {
   // delete event
   const handleDeleteEvent = async (eventId) => {
     console.log(`Deleting event with ID: ${eventId}`);
+    console.log(currentUser.getIdToken());
+
+    const token = await currentUser.getIdToken();
 
     const response = await fetch(`http://localhost:5000/events/${eventId}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
     });
 
