@@ -1,12 +1,25 @@
 /* Event.css */
 .events-container {
-  /* Add any styles for the container div */
+  padding-left: 10vw;
+  padding-right: 10vw;
 }
 
 .upcoming-event {
-  /* Add any styles for the upcoming event container */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  justify-items: center;
+}
+
+@media (max-width: 768px) {
+  .upcoming-event {
+    grid-template-columns: 1fr; /* Single column for mobile */
+  }
+}
+
+.spinner{
   display: flex;
-  flex-wrap: wrap; /* Use flexbox to wrap the event cards */
+  justify-content: center;
+  align-items: center;
 }
 
 .event-title {
