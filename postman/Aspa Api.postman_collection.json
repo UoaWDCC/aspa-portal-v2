@@ -1,0 +1,1376 @@
+{
+	"info": {
+		"_postman_id": "f9909a93-3084-4963-bb7c-c4d93d8a5914",
+		"name": "Aspa Api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Events",
+			"item": [
+				{
+					"name": "Multiple Events",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}/events",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"events"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 Ok",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api_url}}/events",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "892"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"37c-AYiYr5F+62Be3w2PGS6wDfU64Cg\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 28 Aug 2023 06:21:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"_id\": \"64c769241957151554cdc550\",\n        \"eventTitle\": \"50 cent cheapest event\",\n        \"eventDescription\": \"50 cent cheapest event\",\n        \"eventLocation\": \"orange pool club\",\n        \"eventTime\": \"2023-04-15T01:30:00.000Z\",\n        \"stripeProductId\": \"prod_OMa8etNkOOIxz8\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64dc5292dde50705d6b86706\",\n        \"eventTitle\": \"Best pool event ever\",\n        \"eventDescription\": \"Literally the best\",\n        \"eventLocation\": \"Auckland CBD\",\n        \"eventTime\": \"2023-09-02T04:37:00.000Z\",\n        \"stripeProductId\": \"prod_OSWajE0nbjUlnx\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64dc69a9cf35ce182afe3594\",\n        \"eventTitle\": \"HAHAHA\",\n        \"eventDescription\": \"hahahahah\",\n        \"eventLocation\": \"1 haha street \",\n        \"eventTime\": \"2023-08-03T06:13:00.000Z\",\n        \"stripeProductId\": \"prod_OSYBMKwAFk4sFt\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64dc7a925a7193f8c79cddfd\",\n        \"eventTitle\": \"BEST POOL EVENT \",\n        \"eventDescription\": \"the best\",\n        \"eventLocation\": \"AUCKLAND CBD\",\n        \"eventTime\": \"2023-08-24T07:28:00.000Z\",\n        \"stripeProductId\": \"prod_OSZHHKxOAl4qwM\",\n        \"__v\": 0\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Single Event",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}/events/:eventId",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"events",
+								":eventId"
+							],
+							"variable": [
+								{
+									"key": "eventId",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 Ok",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api_url}}/events/:eventId",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"events",
+										":eventId"
+									],
+									"variable": [
+										{
+											"key": "eventId",
+											"value": "64dc5292dde50705d6b86706"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "228"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"e4-kDu1J3svwqdUfP89VHTO3PjBjg4\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 28 Aug 2023 06:26:38 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"_id\": \"64dc5292dde50705d6b86706\",\n    \"eventTitle\": \"Best pool event ever\",\n    \"eventDescription\": \"Literally the best\",\n    \"eventLocation\": \"Auckland CBD\",\n    \"eventTime\": \"2023-09-02T04:37:00.000Z\",\n    \"stripeProductId\": \"prod_OSWajE0nbjUlnx\",\n    \"__v\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "Create Event (admin)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"eventTitle\": \"51 cent cheapest event\",\r\n    \"eventDescription\": \"51 cent cheapest event\",\r\n    \"eventLocation\": \"orange pool club\",\r\n    \"eventTime\": \"2023-04-15T01:30:00.000Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}/events",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"events"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "201 Created",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"eventTitle\": \"51 cent cheapest event\",\r\n    \"eventDescription\": \"51 cent cheapest event\",\r\n    \"eventLocation\": \"orange pool club\",\r\n    \"eventTime\": \"2023-04-15T01:30:00.000Z\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/events",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "249"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"f9-RInnSPYF6xpkMGPhvgdVGGtTC4s\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 28 Aug 2023 11:00:21 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"eventTitle\": \"51 cent cheapest event\",\n    \"eventDescription\": \"51 cent cheapest event\",\n    \"eventLocation\": \"orange pool club\",\n    \"eventTime\": \"2023-04-15T01:30:00.000Z\",\n    \"stripeProductId\": \"prod_OX7Q6R5M5JyQFp\",\n    \"_id\": \"64ec7e456bbebe597abd23d2\",\n    \"users\": [],\n    \"__v\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Event (admin)",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"eventTitle\": \"51 cent cheapest event\",\r\n    \"eventDescription\": \"51 cent cheapest event\",\r\n    \"eventLocation\": \"orange pool club\",\r\n    \"eventTime\": \"2023-04-15T01:30:00.000Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}/events/:eventId",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"events",
+								":eventId"
+							],
+							"variable": [
+								{
+									"key": "eventId",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 Ok",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"eventTitle\": \"51 cent cheapest event\",\r\n    \"eventDescription\": \"51 cent cheapest event\",\r\n    \"eventLocation\": \"orange pool club\",\r\n    \"eventTime\": \"2023-04-15T01:30:00.000Z\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/events/:eventId",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"events",
+										":eventId"
+									],
+									"variable": [
+										{
+											"key": "eventId",
+											"value": "64dc5292dde50705d6b86706"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "393"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"189-to+fu+nsLVx+kKpW8GyVGKLyVBg\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 30 Aug 2023 05:14:12 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"_id\": \"64dc5292dde50705d6b86706\",\n    \"eventTitle\": \"Best pool event ever\",\n    \"eventDescription\": \"Literally the best\",\n    \"eventLocation\": \"Auckland CBD\",\n    \"eventTime\": \"2023-09-02T04:37:00.000Z\",\n    \"stripeProductId\": \"prod_OSWajE0nbjUlnx\",\n    \"users\": [\n        {\n            \"userId\": \"WByilrTug4hCGzsC3EtDvXH85Un1\",\n            \"email\": \"fdsfs@fdsfsdf.sdf\",\n            \"firstName\": \"John\",\n            \"lastName\": \"Smith\",\n            \"isPaid\": true,\n            \"_id\": \"64dc7a2c5a7193f8c79cddeb\"\n        }\n    ],\n    \"__v\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Event (admin)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}/events/:eventId",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"events",
+								":eventId"
+							],
+							"variable": [
+								{
+									"key": "eventId",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 Ok",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{api_url}}/events/:eventId",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"events",
+										":eventId"
+									],
+									"variable": [
+										{
+											"key": "eventId",
+											"value": "64ec7e456bbebe597abd23d2"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "249"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"f9-fNyrXPCUOVAm2N1iT3oXWXxabeM\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 30 Aug 2023 05:18:09 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"_id\": \"64ec7e456bbebe597abd23d2\",\n    \"eventTitle\": \"51 cent cheapest event\",\n    \"eventDescription\": \"51 cent cheapest event\",\n    \"eventLocation\": \"orange pool club\",\n    \"eventTime\": \"2023-04-15T01:30:00.000Z\",\n    \"stripeProductId\": \"prod_OX7Q6R5M5JyQFp\",\n    \"users\": [],\n    \"__v\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "Users Info (admin)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}/events/usersInfo/:eventId",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"events",
+								"usersInfo",
+								":eventId"
+							],
+							"variable": [
+								{
+									"key": "eventId",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 Ok",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api_url}}/events/usersInfo/:eventId",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"events",
+										"usersInfo",
+										":eventId"
+									],
+									"variable": [
+										{
+											"key": "eventId",
+											"value": "64dc5292dde50705d6b86706"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "579"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"243-tJMpAoc9pHiO9NpsAOE8CgCInic\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 30 Aug 2023 05:21:02 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"_id\": \"64dc5292dde50705d6b86706\",\n        \"eventTitle\": \"51 cent cheapest event\",\n        \"eventDescription\": \"51 cent cheapest event\",\n        \"eventLocation\": \"orange pool club\",\n        \"eventTime\": \"2023-04-15T01:30:00.000Z\",\n        \"stripeProductId\": \"prod_OSWajE0nbjUlnx\",\n        \"users\": [\n            {\n                \"userId\": \"WByilrTug4hCGzsC3EtDvXH85Un1\",\n                \"email\": \"fdsfs@fdsfsdf.sdf\",\n                \"firstName\": \"John\",\n                \"lastName\": \"Smith\",\n                \"isPaid\": true,\n                \"_id\": \"64dc7a2c5a7193f8c79cddeb\"\n            }\n        ],\n        \"__v\": 0,\n        \"finalUsersInfo\": [\n            {\n                \"userId\": \"WByilrTug4hCGzsC3EtDvXH85Un1\",\n                \"email\": \"fdsfs@fdsfsdf.sdf\",\n                \"firstName\": \"John\",\n                \"lastName\": \"Smith\",\n                \"isPaid\": true,\n                \"_id\": \"64dc7a2c5a7193f8c79cddeb\"\n            }\n        ]\n    }\n]"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Register",
+			"item": [
+				{
+					"name": "Register User To Event",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"eventId\": \"64dc5292dde50705d6b86706\",\r\n    \"firstName\": \"exampleFirstName\",\r\n    \"lastName\": \"exampleLastName\",\r\n    \"email:\": \"example123@email.com\",\r\n    \"paymentType\": \"Cash\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}/register",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 Ok",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"eventId\": \"64dc5292dde50705d6b86706\",\r\n    \"firstName\": \"exampleFirstName\",\r\n    \"lastName\": \"exampleLastName\",\r\n    \"email:\": \"example123@email.com\",\r\n    \"paymentType\": \"Cash\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/register",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"register"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "38"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"26-qHnbKPvsI0ZZNwTpOpIDg6n0/YY\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 30 Aug 2023 05:31:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User registered to event\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Multiple Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}/users",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 Ok",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api_url}}/users",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "16222"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3f5e-DvrtB3ciKagFHGo9bg+sDKh8mSs\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 30 Aug 2023 08:06:06 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"_id\": \"6438bd765f499224377ab220\",\n        \"firstName\": \"John\",\n        \"lastName\": \"Doe\",\n        \"email\": \"test@gmail\",\n        \"university\": \"auckland\",\n        \"skillLevel\": \"noob\",\n        \"events\": [\n            {\n                \"eventId\": \"643773a147df09248ea03187\",\n                \"registrationDate\": \"2023-08-14T00:00:00.000Z\",\n                \"paymentStatus\": \"good\",\n                \"paymentDetails\": \"ok\",\n                \"_id\": \"6438bf4f5f499224377ab225\"\n            },\n            {\n                \"eventId\": \"64a113a4b48b38b2b2b5ad85\",\n                \"registrationDate\": \"2023-01-01T00:00:00.000Z\",\n                \"paymentStatus\": \"complete\",\n                \"paymentDetails\": \"hello world\",\n                \"_id\": \"64a4d79302b485b390cdb37b\"\n            }\n        ],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"6438c4d5d1fb4420faa27d3d\",\n        \"firstName\": \"Alex\",\n        \"lastName\": \"Doe\",\n        \"email\": \"test@gmail\",\n        \"university\": \"auckland\",\n        \"skillLevel\": \"noob\",\n        \"events\": [],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"643b5c442d01db6055a72b5b\",\n        \"firstName\": \"TestFN1\",\n        \"lastName\": \"TestLN1\",\n        \"email\": \"Test1@test1.com\",\n        \"university\": \"auckland1\",\n        \"skillLevel\": \"noob1\",\n        \"events\": [\n            {\n                \"eventId\": \"643b6c919c97a92df05fa95a\",\n                \"registrationDate\": \"2023-01-01T00:00:00.000Z\",\n                \"paymentStatus\": \"complete\",\n                \"paymentDetails\": \"this is my test number 2\",\n                \"_id\": \"6449e0c1b3a2abbb09a66586\"\n            },\n            {\n                \"eventId\": \"643b58fd1c53e98842457e6e\",\n                \"registrationDate\": \"2023-01-01T00:00:00.000Z\",\n                \"paymentStatus\": \"complete\",\n                \"paymentDetails\": \"this is my test number 2\",\n                \"_id\": \"645c2bceaf880405bd573ced\"\n            }\n        ],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"643b5c8c2d01db6055a72b5f\",\n        \"firstName\": \"TestFN2_NEW\",\n        \"lastName\": \"TestLN2\",\n        \"email\": \"Test@test2.com\",\n        \"university\": \"auckland2\",\n        \"studentId\": 123123,\n        \"skillLevel\": \"noob2\",\n        \"events\": [\n            {\n                \"eventId\": \"643b58fd1c53e98842457e6e\",\n                \"registrationDate\": \"2023-01-01T00:00:00.000Z\",\n                \"paymentStatus\": \"complete\",\n                \"paymentDetails\": \"this is my test\",\n                \"_id\": \"643f5bf5854109941be5e5c2\"\n            },\n            {\n                \"eventId\": \"643b6edb9c97a92df05fa965\",\n                \"registrationDate\": \"2023-04-19T00:00:00.000Z\",\n                \"paymentStatus\": \"testStatus2_NEW\",\n                \"paymentDetails\": \"testDetails2\",\n                \"_id\": \"643fb8be59397dd629c6ec95\"\n            }\n        ],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"6440bad8b7f347fb316a096a\",\n        \"firstName\": \"Chris\",\n        \"lastName\": \"Doe\",\n        \"email\": \"test@gmail\",\n        \"events\": [],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"645c51383c620ff9a2ee52d9\",\n        \"firstName\": \"Alex 123\",\n        \"lastName\": \"Doe\",\n        \"email\": \"test@gmail\",\n        \"university\": \"auckland\",\n        \"skillLevel\": \"noob\",\n        \"events\": [],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64a4dd81971f783636785d03\",\n        \"firstName\": \"John\",\n        \"lastName\": \"Cena\",\n        \"email\": \"test@gmail\",\n        \"firebaseId\": \"2W5qAIxs0Ph9BENPw9KdVMXOjt32\",\n        \"events\": [\n            {\n                \"eventId\": \"64a113a4b48b38b2b2b5ad85\",\n                \"registrationDate\": \"2023-01-01T00:00:00.000Z\",\n                \"paymentStatus\": \"complete\",\n                \"paymentDetails\": \"hello world\",\n                \"_id\": \"64a4dd94971f783636785d09\"\n            },\n            {\n                \"eventId\": \"643b58fd1c53e98842457e6e\",\n                \"registrationDate\": \"2023-01-01T00:00:00.000Z\",\n                \"paymentStatus\": \"complete\",\n                \"paymentDetails\": \"this is my test number 2\",\n                \"_id\": \"64a543bd7d125ca26381650b\"\n            }\n        ],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64b89a43c0bebc5c91488ccc\",\n        \"firstName\": \"michaelJacka\",\n        \"lastName\": \"michaelJacka\",\n        \"email\": \"michaelJacka@gmail.com\",\n        \"firebaseId\": \"guest\",\n        \"events\": [],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64b9cc097c7b3b0664bd79ba\",\n        \"firstName\": \"sadasd\",\n        \"lastName\": \"asda\",\n        \"email\": \"sdasdasdasdasd@gmail.com\",\n        \"firebaseId\": \"OcEIVYplCZfetaBqXq9QgzWmb8R2\",\n        \"events\": [\n            {\n                \"eventId\": \"64a113a4b48b38b2b2b5ad85\",\n                \"_id\": \"64b9cc517c7b3b0664bd7a13\"\n            }\n        ],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64b9cc977c7b3b0664bd7a23\",\n        \"firstName\": \"signuptestingfinal\",\n        \"lastName\": \"signuptestingfinal\",\n        \"email\": \"signuptestingfinal@gmail.com\",\n        \"firebaseId\": \"OoWKRzwc1Wb3Xzgx5IjIp8awlxL2\",\n        \"events\": [\n            {\n                \"eventId\": \"64a113a4b48b38b2b2b5ad85\",\n                \"_id\": \"64b9ccfa7c7b3b0664bd7a81\"\n            }\n        ],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64c724e0c313084889ac06e6\",\n        \"firstName\": \"testing731\",\n        \"lastName\": \"testing731\",\n        \"email\": \"testing731@gmail.com\",\n        \"firebaseId\": \"0UzmlJnaYkZzdQ5BZ2IU2jGDNMB3\",\n        \"events\": [\n            {\n                \"eventId\": \"64a113a4b48b38b2b2b5ad85\",\n                \"isPaid\": false,\n                \"_id\": \"64c72544c313084889ac0749\"\n            }\n        ],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64c7278e01e81a36a7b37212\",\n        \"firstName\": \"sadasdasdasd\",\n        \"lastName\": \"asdasdasd\",\n        \"email\": \"asdsadadasd@gmail.com\",\n        \"role\": \"user\",\n        \"firebaseId\": \"Ns6zRF8sOlXBwFBBgsamPxNAYJI3\",\n        \"events\": [\n            {\n                \"eventId\": \"64a113a4b48b38b2b2b5ad85\",\n                \"isPaid\": false,\n                \"_id\": \"64c727a201e81a36a7b37256\"\n            }\n        ],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64c75c7f08555e9ec498553e\",\n        \"firstName\": \"aa\",\n        \"lastName\": \"ss\",\n        \"email\": \"aass@gmail.com\",\n        \"firebaseId\": \"Jl9WxCeQKFYTkt7RBKoK6uVrc6V2\",\n        \"events\": [],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64c75cce8cf3f8ec59df5868\",\n        \"firstName\": \"testingasd123123\",\n        \"lastName\": \"testingasd123123\",\n        \"email\": \"testingasd123123@gmail.com\",\n        \"role\": \"user\",\n        \"firebaseId\": \"cTEPUndlrZUsJEGGCJBNFKMIp183\",\n        \"events\": [],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64c75d7108555e9ec4985541\",\n        \"firstName\": \"fff\",\n        \"lastName\": \"ffff\",\n        \"email\": \"ffff@gmail.com\",\n        \"firebaseId\": \"lgW159gt6Chdx0KvUwTJKNcMmC23\",\n        \"events\": [],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64c75d848cf3f8ec59df586b\",\n        \"firstName\": \"asdadsadadsadsd\",\n        \"lastName\": \"asdadsadadsadsd\",\n        \"email\": \"asdadsadadsadsd@gmail.com\",\n        \"role\": \"user\",\n        \"firebaseId\": \"RDSJm2mCFcMFRhDRqMth1zb0BaE2\",\n        \"events\": [],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64c75dff8cf3f8ec59df586e\",\n        \"firstName\": \"sadsadasdads\",\n        \"lastName\": \"sadsadasdads\",\n        \"email\": \"sadsadasdads@gmail.com\",\n        \"role\": \"user\",\n        \"firebaseId\": \"YlmYG3bv69d4C5fSM3iz2K9gMC32\",\n        \"events\": [],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64c75e1d08555e9ec4985544\",\n        \"firstName\": \"re\",\n        \"lastName\": \"re\",\n        \"email\": \"rere@gmail.com\",\n        \"firebaseId\": \"5eqkoKAailWLaYjoaWli5hnGXMf1\",\n        \"events\": [],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64c75e5d08555e9ec4985547\",\n        \"firstName\": \"assd\",\n        \"lastName\": \"assas\",\n        \"email\": \"asashd@gmail.com\",\n        \"firebaseId\": \"TJy6sHLRQdUxZyxtusnXHi38Dfn2\",\n        \"events\": [],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64c75e888cf3f8ec59df5871\",\n        \"firstName\": \"asdasdada\",\n        \"lastName\": \"asdasdada\",\n        \"email\": \"asdasdada@gmail.com\",\n        \"role\": \"user\",\n        \"firebaseId\": \"OQeIVeJdukhTtgXqIsIEjrPJhQB3\",\n        \"events\": [],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64c75e9a8cf3f8ec59df5874\",\n        \"firstName\": \"asdasdada\",\n        \"lastName\": \"asdasdada\",\n        \"email\": \"asdasdadaasdasda@gmail.com\",\n        \"role\": \"user\",\n        \"firebaseId\": \"fbi57NvyGqQwlVGTn3M4dUsQRsv2\",\n        \"events\": [],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64c75ec708555e9ec498554a\",\n        \"firstName\": \"sfsdfs\",\n        \"lastName\": \"sfsdsdf\",\n        \"email\": \"sfsdfsdf@gmail.com\",\n        \"firebaseId\": \"Of5FcwtMEuhg3pBGYr6qfMSNgYf1\",\n        \"events\": [],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64c75ecd8cf3f8ec59df5877\",\n        \"firstName\": \"sdasdasdadsad\",\n        \"lastName\": \"dadsadada\",\n        \"email\": \"dasdasdadasd213@gmail.com\",\n        \"role\": \"user\",\n        \"firebaseId\": \"14XZ1Sgzdrb3hXlmPABOmWsqTPA2\",\n        \"events\": [],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64c75f2d8cf3f8ec59df587a\",\n        \"firstName\": \"asdasdadssadsda\",\n        \"lastName\": \"dasdasdasda\",\n        \"email\": \"sdadasdsadasd123@gmail.com\",\n        \"role\": \"user\",\n        \"firebaseId\": \"uZ38AG7NP6RbUeDeSmHNRI3pDxH2\",\n        \"events\": [],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64c7614608555e9ec498554d\",\n        \"firstName\": \"does\",\n        \"lastName\": \"does\",\n        \"email\": \"does@gmail.com\",\n        \"firebaseId\": \"DfaWMKUt1dh1kjScqPWyJaJ12j42\",\n        \"events\": [],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64c7624cc672dc271131862b\",\n        \"firstName\": \"asdasdasdds\",\n        \"lastName\": \"asdasdasdds\",\n        \"email\": \"asdasdasddsasdasdasdds@gmail.com\",\n        \"role\": \"user\",\n        \"firebaseId\": \"jK2oaPMYa4R8AiELrPGlUJ4IXVD3\",\n        \"events\": [],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64c76284c672dc271131862e\",\n        \"firstName\": \"asdasdasdasd\",\n        \"lastName\": \"asdasdasdasd\",\n        \"email\": \"asdasdasdasdasdasdasdasd12313@gmail.com\",\n        \"role\": \"user\",\n        \"firebaseId\": \"nMLuhFcldCNygfk87RkiVp7lHSn1\",\n        \"events\": [\n            {\n                \"eventId\": \"64a113a4b48b38b2b2b5ad85\",\n                \"isPaid\": false,\n                \"_id\": \"64c763c8c672dc271131867c\"\n            }\n        ],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64c7671135832f3f64b17f67\",\n        \"firstName\": \"asdasdadsadasdad\",\n        \"lastName\": \"asdasdadsadasdad\",\n        \"email\": \"asdasdadsadasdadasdasdadsadasdad@gmail.com\",\n        \"role\": \"user\",\n        \"firebaseId\": \"ouZbMhIqADNehJK7N0SvbgmrCJM2\",\n        \"events\": [\n            {\n                \"eventId\": \"64a113a4b48b38b2b2b5ad85\",\n                \"isPaid\": false,\n                \"_id\": \"64c7671d35832f3f64b17fba\"\n            },\n            {\n                \"eventId\": \"64c7680f66248329d824d7dc\",\n                \"isPaid\": false,\n                \"_id\": \"64c76886962a328538ccd62d\"\n            },\n            {\n                \"eventId\": \"64c769241957151554cdc550\",\n                \"isPaid\": false,\n                \"_id\": \"64c7693c1957151554cdc57c\"\n            },\n            {\n                \"eventId\": \"64c769817f95da28849bdaa7\",\n                \"isPaid\": false,\n                \"_id\": \"64c7699c7f95da28849bdad6\"\n            }\n        ],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64c7752628c1735b745e1e10\",\n        \"firstName\": \"sadasdadasda\",\n        \"lastName\": \"sdasdadsasda\",\n        \"email\": \"d123123qasdase12@gmail.com\",\n        \"role\": \"user\",\n        \"firebaseId\": \"1XeYsxd8JwO6QXCIoeeOUG9t7vE2\",\n        \"events\": [\n            {\n                \"eventId\": \"64a113a4b48b38b2b2b5ad85\",\n                \"isPaid\": false,\n                \"_id\": \"64c7753128c1735b745e1e6e\"\n            },\n            {\n                \"eventId\": \"64c769817f95da28849bdaa7\",\n                \"isPaid\": false,\n                \"_id\": \"64c7758528c1735b745e1eee\"\n            }\n        ],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64c775b028c1735b745e1f2c\",\n        \"firstName\": \"asdasdasdadsad\",\n        \"lastName\": \"sadasdasdasd\",\n        \"email\": \"sadasdasdasf13123@gmail.com\",\n        \"role\": \"user\",\n        \"firebaseId\": \"UcxGUDSQlFVJzZzoCimxEsimd912\",\n        \"events\": [\n            {\n                \"eventId\": \"64c7680f66248329d824d7dc\",\n                \"isPaid\": false,\n                \"_id\": \"64c775c828c1735b745e1f61\"\n            },\n            {\n                \"eventId\": \"64c769241957151554cdc550\",\n                \"isPaid\": false,\n                \"_id\": \"64c775f928c1735b745e1faa\"\n            }\n        ],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64c7765428c1735b745e1fb9\",\n        \"firstName\": \"sadasdadsadsa\",\n        \"lastName\": \"asdasdas\",\n        \"email\": \"dasdasdasdasd@gmail.com\",\n        \"role\": \"user\",\n        \"firebaseId\": \"YXmbYErkESasPH1Wzwi20KsEhL73\",\n        \"events\": [\n            {\n                \"eventId\": \"64c769817f95da28849bdaa7\",\n                \"isPaid\": false,\n                \"_id\": \"64c7767428c1735b745e1ff5\"\n            },\n            {\n                \"eventId\": \"64c769241957151554cdc550\",\n                \"isPaid\": false,\n                \"_id\": \"64c7773b28c1735b745e2050\"\n            }\n        ],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64c7781628c1735b745e205e\",\n        \"firstName\": \"asdsadjasdasojd\",\n        \"lastName\": \"asdsadjasdasojd\",\n        \"email\": \"asdsadjasdasojd@testing.com\",\n        \"role\": \"user\",\n        \"firebaseId\": \"TQncEdHt9cVZOFFlm4BRyRVVJqD3\",\n        \"events\": [\n            {\n                \"eventId\": \"64a113a4b48b38b2b2b5ad85\",\n                \"isPaid\": false,\n                \"_id\": \"64c7783328c1735b745e20d3\"\n            },\n            {\n                \"eventId\": \"64c7680f66248329d824d7dc\",\n                \"isPaid\": false,\n                \"_id\": \"64c7786228c1735b745e217c\"\n            }\n        ],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64c779d028c1735b745e21aa\",\n        \"firstName\": \"asdaodasod\",\n        \"lastName\": \"asjdoasdjad\",\n        \"email\": \"asdkaspodasodjasjod@gmail.com\",\n        \"role\": \"user\",\n        \"firebaseId\": \"lgJsDWp4LlUQMccwMwIyFHTaSoB3\",\n        \"events\": [\n            {\n                \"eventId\": \"64a113a4b48b38b2b2b5ad85\",\n                \"isPaid\": false,\n                \"_id\": \"64c77b1828c1735b745e2305\"\n            },\n            {\n                \"eventId\": \"64c7680f66248329d824d7dc\",\n                \"isPaid\": false,\n                \"_id\": \"64c77b2b28c1735b745e2379\"\n            },\n            {\n                \"eventId\": \"64c769241957151554cdc550\",\n                \"isPaid\": false,\n                \"_id\": \"64c77b3d28c1735b745e23da\"\n            },\n            {\n                \"eventId\": \"64c769817f95da28849bdaa7\",\n                \"isPaid\": false,\n                \"_id\": \"64c77b8d28c1735b745e24a9\"\n            }\n        ],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64c77cb128c1735b745e24c5\",\n        \"firstName\": \"asdasd\",\n        \"lastName\": \"dasdas\",\n        \"email\": \"dasdasdasddasd1232@gmail.com\",\n        \"role\": \"user\",\n        \"firebaseId\": \"k7LgSKk4nMWcmeZnTgJXx6wk56Q2\",\n        \"events\": [\n            {\n                \"eventId\": \"64a113a4b48b38b2b2b5ad85\",\n                \"isPaid\": false,\n                \"_id\": \"64c77cc928c1735b745e254c\"\n            },\n            {\n                \"eventId\": \"64c769241957151554cdc550\",\n                \"isPaid\": false,\n                \"_id\": \"64c77cd528c1735b745e25c0\"\n            },\n            {\n                \"eventId\": \"64c769817f95da28849bdaa7\",\n                \"isPaid\": false,\n                \"_id\": \"64c77ce028c1735b745e2629\"\n            },\n            {\n                \"eventId\": \"64c778282a92585fe7545537\",\n                \"isPaid\": false,\n                \"_id\": \"64c77d5c28c1735b745e26a2\"\n            }\n        ],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64c77d8828c1735b745e26ac\",\n        \"firstName\": \"asdasdasda\",\n        \"lastName\": \"dasdasdad\",\n        \"email\": \"asdasdafasfaf212312@gmail.com\",\n        \"role\": \"user\",\n        \"firebaseId\": \"5ZgvWNaHo2eQzZUfYPp8u8lfmiE3\",\n        \"events\": [\n            {\n                \"eventId\": \"64c7680f66248329d824d7dc\",\n                \"isPaid\": false,\n                \"_id\": \"64c8309f3de1521643e44148\"\n            }\n        ],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64c832cd3de1521643e44157\",\n        \"firstName\": \"asdasdasd\",\n        \"lastName\": \"dasdasd\",\n        \"email\": \"sadasgfasgsag@gmail.com\",\n        \"role\": \"user\",\n        \"firebaseId\": \"iiHAaA1RhROlVno1QllxkHtnta63\",\n        \"events\": [\n            {\n                \"eventId\": \"64a113a4b48b38b2b2b5ad85\",\n                \"isPaid\": false,\n                \"_id\": \"64c832f83de1521643e441eb\"\n            },\n            {\n                \"eventId\": \"64c7680f66248329d824d7dc\",\n                \"isPaid\": false,\n                \"_id\": \"64c8330f3de1521643e4423d\"\n            }\n        ],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64c836d83de1521643e4424e\",\n        \"firstName\": \"asdasdasdasdadasd\",\n        \"lastName\": \"adsadsasdasd\",\n        \"email\": \"afasfafasfafa123@gmail.com\",\n        \"role\": \"user\",\n        \"firebaseId\": \"OHSYyAIGfZZ9ExsGHXOxkPfCOaY2\",\n        \"events\": [],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64c83af83de1521643e4442f\",\n        \"firstName\": \"dasdasdasdasd\",\n        \"lastName\": \"sdadssadaf\",\n        \"email\": \"afasfsafasff@gmail.com\",\n        \"role\": \"user\",\n        \"firebaseId\": \"DPJaObivXnbK7WiM0I7HU2syqSj1\",\n        \"events\": [],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64c843cc3de1521643e44432\",\n        \"firstName\": \"asdasdadada\",\n        \"lastName\": \"adasdasdas\",\n        \"email\": \"dasdasdasdasdasdf@gmail.com\",\n        \"role\": \"user\",\n        \"firebaseId\": \"YRLXF70SLrV2VK8g2d2MOQhblSC3\",\n        \"events\": [],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64c846133de1521643e44435\",\n        \"firstName\": \"dsadasdadada\",\n        \"lastName\": \"sadasdasdasd\",\n        \"email\": \"sadasfaasfasfasf@gmail.com\",\n        \"role\": \"user\",\n        \"firebaseId\": \"c4wX4lJu8kcwDSWhnEQNdo9C0Lm2\",\n        \"events\": [],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64c84bad3de1521643e44512\",\n        \"firstName\": \"asdsafsafasf\",\n        \"lastName\": \"sfasfasff\",\n        \"email\": \"asdasdasdasdasdasd@gmail.com\",\n        \"role\": \"user\",\n        \"firebaseId\": \"3bujlpUyyPS3MmulGSEB42MldNB2\",\n        \"events\": [],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64c9d06de10a20d1a7b8dc4e\",\n        \"firstName\": \"asdsdadsasd\",\n        \"lastName\": \"asdsdadsasd\",\n        \"email\": \"asdsdadsasd2141@gmail.com\",\n        \"role\": \"user\",\n        \"firebaseId\": \"iWd0BpmbFJZVqXAsee6rSgMG8uA2\",\n        \"events\": [],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64c9d4a7e10a20d1a7b8dd7f\",\n        \"firstName\": \"testingrn\",\n        \"lastName\": \"testingrn\",\n        \"email\": \"testingrn123@gmail.com\",\n        \"role\": \"user\",\n        \"firebaseId\": \"1MuOAujVEFdjeynFLLuN4TYewI73\",\n        \"events\": [\n            {\n                \"eventId\": \"64c769817f95da28849bdaa7\",\n                \"isPaid\": false,\n                \"_id\": \"64c9d5a5e10a20d1a7b8e120\"\n            }\n        ],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64c9d634e10a20d1a7b8e192\",\n        \"firstName\": \"afasfafafasf\",\n        \"lastName\": \"safasfasfas\",\n        \"email\": \"fasfsafasfafh1283@gmasdil.com\",\n        \"role\": \"user\",\n        \"firebaseId\": \"27F16VfrVnd64wSJUVizC6mBRSO2\",\n        \"events\": [],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64cadfe7a34c6c1f2e375453\",\n        \"firstName\": \"someFN\",\n        \"lastName\": \"someLN\",\n        \"email\": \"testing112233@gmail.com\",\n        \"role\": \"user\",\n        \"firebaseId\": \"QuS0u4qsI1WvaQb13LtH120wFd72\",\n        \"events\": [\n            {\n                \"eventId\": \"64c769241957151554cdc550\",\n                \"isPaid\": false,\n                \"_id\": \"64cae027a34c6c1f2e37555e\"\n            }\n        ],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64cae624a34c6c1f2e3755ed\",\n        \"firstName\": \"fname\",\n        \"lastName\": \"lname\",\n        \"email\": \"testing11223344@gmail.com\",\n        \"role\": \"user\",\n        \"firebaseId\": \"6vUW1mEzgVemrco2xLYpG0QTypI3\",\n        \"events\": [\n            {\n                \"eventId\": \"64caf6eef6e84976b15db6ea\",\n                \"isPaid\": false,\n                \"_id\": \"64d42f155909e1f956df6ad3\"\n            },\n            {\n                \"eventId\": \"64c769241957151554cdc550\",\n                \"isPaid\": true,\n                \"_id\": \"64d44077bc1df34c419461e9\"\n            },\n            {\n                \"eventId\": \"64d4325d9c99f3b98511fc32\",\n                \"isPaid\": false,\n                \"_id\": \"64d59e42fc56f615c3320eaa\"\n            }\n        ],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64cca3200fe30afd8170d5f0\",\n        \"firstName\": \"candyyyy\",\n        \"lastName\": \"candyyyy\",\n        \"email\": \"candyyyycandyyyy@gmail.com\",\n        \"role\": \"user\",\n        \"firebaseId\": \"UjIAMFeeU2Pl93bnwnhivaMPrfF2\",\n        \"events\": [\n            {\n                \"eventId\": \"64a113a4b48b38b2b2b5ad85\",\n                \"isPaid\": false,\n                \"_id\": \"64cca33f0fe30afd8170d71a\"\n            }\n        ],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64d41efb9c99f3b98511fb43\",\n        \"firstName\": \"asfsafafsaf\",\n        \"lastName\": \"afasfasf\",\n        \"email\": \"asfsafafsafasfsafafsaf@gmail.com\",\n        \"role\": \"user\",\n        \"firebaseId\": \"owHlZibIkNUUXrk889gA3vPqYQR2\",\n        \"events\": [],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64d431ba9c99f3b98511fc2c\",\n        \"firstName\": \"Andrew\",\n        \"lastName\": \"Ham\",\n        \"email\": \"andrewham12@gmail.com\",\n        \"role\": \"user\",\n        \"firebaseId\": \"eIWlKgVDmTYZQyhW9uE1KVjOy0i1\",\n        \"events\": [\n            {\n                \"eventId\": \"64d4325d9c99f3b98511fc32\",\n                \"isPaid\": false,\n                \"_id\": \"64d432aa9c99f3b985121413\"\n            }\n        ],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64d97f285bcfed6739fee920\",\n        \"firstName\": \"Bobby\",\n        \"lastName\": \"B\",\n        \"email\": \"bobbyb@gmail.com\",\n        \"role\": \"user\",\n        \"firebaseId\": \"t4Ta3g2Q6kgasLq6bPa3b4fgXiF3\",\n        \"events\": [],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64d9d82b77dad64420bc58cb\",\n        \"firstName\": \"test123\",\n        \"lastName\": \"test1\",\n        \"email\": \"test123@gmail.com\",\n        \"role\": \"user\",\n        \"firebaseId\": \"AgwQlNsVQrOaMGI6k77LUoPQANH3\",\n        \"events\": [],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64daef252fd904a7c4639e3d\",\n        \"firstName\": \"test\",\n        \"lastName\": \"test1234\",\n        \"email\": \"test12345@gmail.com\",\n        \"role\": \"user\",\n        \"firebaseId\": \"zPExogjcNpSiuujRf1Xk35RZjhm2\",\n        \"events\": [],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64dc10346cf82c356ffd9864\",\n        \"firstName\": \"Alpha\",\n        \"lastName\": \"Admin\",\n        \"email\": \"alphaadmin@gmail.com\",\n        \"role\": \"user\",\n        \"firebaseId\": \"guest\",\n        \"events\": [],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64dc107b2c42a6f46c70e4c2\",\n        \"firstName\": \"Alpha\",\n        \"lastName\": \"Admin\",\n        \"email\": \"alphaadmin@gmail.com\",\n        \"role\": \"user\",\n        \"firebaseId\": \"guest\",\n        \"events\": [],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64dc10cd72385d0401fb17ca\",\n        \"firstName\": \"Alpha\",\n        \"lastName\": \"Admin\",\n        \"email\": \"alphaadmin@gmail.com\",\n        \"role\": \"admin\",\n        \"firebaseId\": \"vZXp8IzUrITLWFJlU6i74kh0F3l2\",\n        \"events\": [],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64dc128eeed46080f1ce0f30\",\n        \"firstName\": \"beta\",\n        \"lastName\": \"user\",\n        \"email\": \"betauser@gmail.com\",\n        \"role\": \"user\",\n        \"firebaseId\": \"myOT2pr2rUVx76rN4w1fxYON9RF3\",\n        \"events\": [],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64dc1898368bba95df049357\",\n        \"firstName\": \"Connor\",\n        \"lastName\": \"Stevens\",\n        \"email\": \"connor@gmail\",\n        \"role\": \"admin\",\n        \"firebaseId\": \"oCgmLsV5BsbBV7bttDme09bMFqq1\",\n        \"events\": [\n            {\n                \"eventId\": \"64c769241957151554cdc550\",\n                \"isPaid\": false,\n                \"_id\": \"64dc23f3acf78ab2fa3cab6c\"\n            },\n            {\n                \"eventId\": \"64c769817f95da28849bdaa7\",\n                \"isPaid\": false,\n                \"_id\": \"64dc240bacf78ab2fa3cabba\"\n            },\n            {\n                \"eventId\": \"64dc5292dde50705d6b86706\",\n                \"isPaid\": false,\n                \"_id\": \"64eed4376bbebe597abd23ee\"\n            }\n        ],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64dc68364a5c71fbc32e844d\",\n        \"firstName\": \"hueuheu\",\n        \"lastName\": \"ehuehueh\",\n        \"email\": \"huehue@gmail.com\",\n        \"role\": \"user\",\n        \"firebaseId\": \"sHVGvrYKu0RuM2JXXGvmBKWQK712\",\n        \"events\": [],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64dc772d5a7193f8c79cdd3e\",\n        \"firstName\": \"HAHA\",\n        \"lastName\": \"AHahah\",\n        \"email\": \"ahahaha@gmail.com\",\n        \"role\": \"user\",\n        \"firebaseId\": \"5DeUb8kfsjcPpKCzTa5N9vNT8ct2\",\n        \"events\": [\n            {\n                \"eventId\": \"64c769241957151554cdc550\",\n                \"isPaid\": false,\n                \"_id\": \"64dc779d5a7193f8c79cdd8d\"\n            }\n        ],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64dc79dd5a7193f8c79cdddd\",\n        \"firstName\": \"John\",\n        \"lastName\": \"Smith\",\n        \"email\": \"johnsmith@mail.com\",\n        \"role\": \"user\",\n        \"firebaseId\": \"WByilrTug4hCGzsC3EtDvXH85Un1\",\n        \"events\": [\n            {\n                \"eventId\": \"64dc5292dde50705d6b86706\",\n                \"isPaid\": true,\n                \"_id\": \"64dc7a2c5a7193f8c79cdde8\"\n            }\n        ],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64ec48d06bbebe597abd23c5\",\n        \"firstName\": \"admin\",\n        \"lastName\": \"account\",\n        \"email\": \"adminaccount@email.com\",\n        \"role\": \"admin\",\n        \"firebaseId\": \"nHSn6CXuJcPZy1UJdBxwd5iMG7Q2\",\n        \"events\": [],\n        \"__v\": 0\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "User Id From Token",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}/users/getUserId",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"users",
+								"getUserId"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 Ok",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api_url}}/users/getUserId",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"users",
+										"getUserId"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "26"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1a-HkDM/PyJQpJH50haqs+cWQkYqxo\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 30 Aug 2023 08:08:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "\"64dc1898368bba95df049357\""
+						}
+					]
+				},
+				{
+					"name": "Single User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}/users/:userId",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"users",
+								":userId"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 Ok",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api_url}}/users/:userId",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"users",
+										":userId"
+									],
+									"variable": [
+										{
+											"key": "userId",
+											"value": "6438bd765f499224377ab220"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "493"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1ed-a0j/v+uE2TbisWkyi2HXA2rdsr8\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 30 Aug 2023 08:10:58 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"_id\": \"6438bd765f499224377ab220\",\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"email\": \"test@gmail\",\n    \"university\": \"auckland\",\n    \"skillLevel\": \"noob\",\n    \"events\": [\n        {\n            \"eventId\": \"643773a147df09248ea03187\",\n            \"registrationDate\": \"2023-08-14T00:00:00.000Z\",\n            \"paymentStatus\": \"good\",\n            \"paymentDetails\": \"ok\",\n            \"_id\": \"6438bf4f5f499224377ab225\"\n        },\n        {\n            \"eventId\": \"64a113a4b48b38b2b2b5ad85\",\n            \"registrationDate\": \"2023-01-01T00:00:00.000Z\",\n            \"paymentStatus\": \"complete\",\n            \"paymentDetails\": \"hello world\",\n            \"_id\": \"64a4d79302b485b390cdb37b\"\n        }\n    ],\n    \"__v\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "User from FirebaseId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}/users/fbId/:firebaseId",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"users",
+								"fbId",
+								":firebaseId"
+							],
+							"variable": [
+								{
+									"key": "firebaseId",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 Ok",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api_url}}/users/fbId/:firebaseId",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"users",
+										"fbId",
+										":firebaseId"
+									],
+									"variable": [
+										{
+											"key": "firebaseId",
+											"value": "RDSJm2mCFcMFRhDRqMth1zb0BaE2"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "207"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"cf-LhwxB0hyGIPW2cLf8k1x2HDt5Hg\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 30 Aug 2023 08:20:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"_id\": \"64c75d848cf3f8ec59df586b\",\n    \"firstName\": \"asdadsadadsadsd\",\n    \"lastName\": \"asdadsadadsadsd\",\n    \"email\": \"asdadsadadsadsd@gmail.com\",\n    \"role\": \"user\",\n    \"firebaseId\": \"RDSJm2mCFcMFRhDRqMth1zb0BaE2\",\n    \"events\": [],\n    \"__v\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "Create User",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"firstName\":\"asdf\",\"lastName\":\"asdf\",\"email\":\"asdf@sfsfasfs.com\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}/users",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "201 Created",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"firstName\":\"asdf\",\"lastName\":\"asdf\",\"email\":\"asdf@sfsfasfs.com\"}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/users",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "154"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9a-09a+G89l/wWGXOwiij9ZIzna/lQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 30 Aug 2023 09:03:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"firstName\": \"asdf\",\n    \"lastName\": \"asdf\",\n    \"email\": \"asdf@sfsfasfs.com\",\n    \"role\": \"user\",\n    \"firebaseId\": \"guest\",\n    \"_id\": \"64ef05cfaf85e70092a95dcc\",\n    \"events\": [],\n    \"__v\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"firstName\":\"modified name\",\"lastName\":\"asdf\",\"email\":\"asdf@sfsfasfs.com\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}/users/:userId",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"users",
+								":userId"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 Ok",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"firstName\":\"modified name\",\"lastName\":\"asdf\",\"email\":\"asdf@sfsfasfs.com\"}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/users/:userId",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"users",
+										":userId"
+									],
+									"variable": [
+										{
+											"key": "userId",
+											"value": "6438bd765f499224377ab220"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "510"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1fe-3Ea1zT3GWRiJcjRkOLzFOX6InPo\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 30 Aug 2023 09:16:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"_id\": \"6438bd765f499224377ab220\",\n    \"firstName\": \"modified name\",\n    \"lastName\": \"asdf\",\n    \"email\": \"asdf@sfsfasfs.com\",\n    \"university\": \"auckland\",\n    \"skillLevel\": \"noob\",\n    \"events\": [\n        {\n            \"eventId\": \"643773a147df09248ea03187\",\n            \"registrationDate\": \"2023-08-14T00:00:00.000Z\",\n            \"paymentStatus\": \"good\",\n            \"paymentDetails\": \"ok\",\n            \"_id\": \"6438bf4f5f499224377ab225\"\n        },\n        {\n            \"eventId\": \"64a113a4b48b38b2b2b5ad85\",\n            \"registrationDate\": \"2023-01-01T00:00:00.000Z\",\n            \"paymentStatus\": \"complete\",\n            \"paymentDetails\": \"hello world\",\n            \"_id\": \"64a4d79302b485b390cdb37b\"\n        }\n    ],\n    \"__v\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "Make User Admin (admin)",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}/users/admin/:userId",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"users",
+								"admin",
+								":userId"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 Ok",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"url": {
+									"raw": "{{api_url}}/users/admin/:userId",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"users",
+										"admin",
+										":userId"
+									],
+									"variable": [
+										{
+											"key": "userId",
+											"value": "6438bd765f499224377ab220"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "525"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"20d-KXGS1r21RShEH8f1KdDnOAm2mVg\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 30 Aug 2023 09:22:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"_id\": \"6438bd765f499224377ab220\",\n    \"firstName\": \"modified name\",\n    \"lastName\": \"asdf\",\n    \"email\": \"asdf@sfsfasfs.com\",\n    \"university\": \"auckland\",\n    \"skillLevel\": \"noob\",\n    \"events\": [\n        {\n            \"eventId\": \"643773a147df09248ea03187\",\n            \"registrationDate\": \"2023-08-14T00:00:00.000Z\",\n            \"paymentStatus\": \"good\",\n            \"paymentDetails\": \"ok\",\n            \"_id\": \"6438bf4f5f499224377ab225\"\n        },\n        {\n            \"eventId\": \"64a113a4b48b38b2b2b5ad85\",\n            \"registrationDate\": \"2023-01-01T00:00:00.000Z\",\n            \"paymentStatus\": \"complete\",\n            \"paymentDetails\": \"hello world\",\n            \"_id\": \"64a4d79302b485b390cdb37b\"\n        }\n    ],\n    \"__v\": 0,\n    \"role\": \"admin\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}/users/:userId",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"users",
+								":userId"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 Ok",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{api_url}}/users/:userId",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"users",
+										":userId"
+									],
+									"variable": [
+										{
+											"key": "userId",
+											"value": "64c75e1d08555e9ec4985544"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "156"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9c-3Q45Jo9NYT6mwhaLz5jg0E+2+QI\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 30 Aug 2023 09:34:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"_id\": \"64c75e1d08555e9ec4985544\",\n    \"firstName\": \"re\",\n    \"lastName\": \"re\",\n    \"email\": \"rere@gmail.com\",\n    \"firebaseId\": \"5eqkoKAailWLaYjoaWli5hnGXMf1\",\n    \"events\": [],\n    \"__v\": 0\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{authToken}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
