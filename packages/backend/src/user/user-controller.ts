@@ -168,7 +168,7 @@ export const deleteUser = async (req: Request, res: Response) => {
 
 // Make a user admin
 export const makeUserAdmin = async (req: Request, res: Response) => {
-  if (req.userRole !== "admin") {
+  if (req.userRole != "admin") {
     return res.status(401).json({ error: "Unauthorized" });
   }
   try {
@@ -194,13 +194,19 @@ export const makeUserAdmin = async (req: Request, res: Response) => {
  */
 export const getUserEvents = async (req: Request, res: Response) => {
   try {
-    const user = await User.findOne({ firebaseId: req.userFbId });
+    let user;
     if (req.userRole === "admin") {
       const userId = req.params.userId;
-      const user = await User.findById(userId);
+      user = await User.findById(userId);
+    } else {
+      user = await User.findOne({ firebaseId: req.userFbId });
     }
 
-    const eventIds = user?.events?.map((event) => event.eventId);
+    if (user == null) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    const eventIds = user.events.map((event) => event.eventId);
 
     const events = await Event.find({ _id: { $in: eventIds } }, { users: 0 });
 

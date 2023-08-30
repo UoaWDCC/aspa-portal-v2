@@ -11,9 +11,9 @@ export const getEvents = async (req: Request, res: Response) => {
     let events;
 
     if (req.userRole === "admin") {
-      const events = await Event.find({});
+      events = await Event.find({});
     } else {
-      const events = await Event.find({}, { users: 0 });
+      events = await Event.find({}, { users: 0 });
     }
 
     res.status(200).json(events);
@@ -35,9 +35,9 @@ export const getEvent = async (req: Request, res: Response) => {
     let event;
 
     if (req.userRole === "admin") {
-      const event = await Event.findById(eventId);
+      event = await Event.findById(eventId);
     } else {
-      const event = await Event.findById(eventId, { users: 0 });
+      event = await Event.findById(eventId, { users: 0 });
     }
 
     if (!event) {
@@ -58,11 +58,10 @@ export const getEvent = async (req: Request, res: Response) => {
 export const getPastEvents = async (req: Request, res: Response) => {
   try {
     let events;
-
     if (req.userRole === "admin") {
-      const events = await Event.find({ eventTime: { $lt: new Date() } });
+      events = await Event.find({ eventTime: { $lt: new Date() } });
     } else {
-      const events = await Event.find(
+      events = await Event.find(
         { eventTime: { $lt: new Date() } },
         { users: 0 }
       );
@@ -82,11 +81,10 @@ export const getPastEvents = async (req: Request, res: Response) => {
 export const getUpcomingEvents = async (req: Request, res: Response) => {
   try {
     let events;
-
     if (req.userRole === "admin") {
-      const events = await Event.find({ eventTime: { $gt: new Date() } });
+      events = await Event.find({ eventTime: { $gt: new Date() } });
     } else {
-      const events = await Event.find(
+      events = await Event.find(
         { eventTime: { $gt: new Date() } },
         { users: 0 }
       );
