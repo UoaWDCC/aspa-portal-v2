@@ -4,6 +4,8 @@ import * as Event from "./event-controller";
 const router = express.Router();
 
 router.get("/", Event.getEvents);
+router.get("/past", Event.getPastEvents);
+router.get("/upcoming", Event.getUpcomingEvents);
 router.get("/:eventId", Event.getEvent);
 router.post("/", Event.createEvent);
 router.patch("/:eventId", Event.updateEvent);

@@ -41,7 +41,7 @@ type UserDocumentProps = {
   university?: string;
   studentId?: number;
   skillLevel?: string;
-  events?: Types.DocumentArray<RegistrationRecordUser>;
+  events: Types.DocumentArray<RegistrationRecordUser>;
 };
 type UserModelType = Model<IUser, object, UserDocumentProps>;
 
