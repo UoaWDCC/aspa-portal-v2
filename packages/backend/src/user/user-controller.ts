@@ -4,6 +4,9 @@ import { Event } from "../event/event-model";
 
 /**
  * Get all users in the database
+ *
+ *
+ * TODO make only admins able to access this
  */
 export const getUsers = async (req: Request, res: Response) => {
   try {
@@ -75,6 +78,7 @@ export const createUser = async (req: Request, res: Response) => {
 
     const firebaseId = req.userFbId;
     const role = "user";
+    const points = 0;
     // Check if that user already exists
     if (await User.findOne({ firebaseId: firebaseId })) {
       res.status(400).json({ message: "User already exists" });
@@ -87,6 +91,7 @@ export const createUser = async (req: Request, res: Response) => {
         email,
         role,
         firebaseId,
+        points,
       });
 
       res.status(201).json(newUser);
@@ -121,6 +126,7 @@ export const updateUser = async (req: Request, res: Response) => {
       university,
       studentId,
       skillLevel,
+      points,
     } = req.body;
 
     if (!firstName) firstName = user?.firstName;
@@ -130,6 +136,7 @@ export const updateUser = async (req: Request, res: Response) => {
     if (!university) university = user?.university;
     if (!studentId) studentId = user?.studentId;
     if (!skillLevel) skillLevel = user?.skillLevel;
+    if (!points) points = user?.points;
 
     const updatedUser = await User.findByIdAndUpdate(
       userId,
@@ -141,6 +148,7 @@ export const updateUser = async (req: Request, res: Response) => {
         university,
         studentId,
         skillLevel,
+        points,
       },
       { new: true }
     );
@@ -211,6 +219,83 @@ export const getUserEvents = async (req: Request, res: Response) => {
     const events = await Event.find({ _id: { $in: eventIds } }, { users: 0 });
 
     res.status(200).json(events);
+  } catch (error) {
+    console.error(error);
+    res.status(400).json(error);
+  }
+};
+
+/**
+ * Get the amount of points a user has for calculating free event
+ */
+export const getUserPoints = async (req: Request, res: Response) => {
+  try {
+    let points = 0;
+
+    if (req.userFbId == "guest") {
+      return res.status(200).json(points);
+    }
+
+    const user = await User.findOne({ firebaseId: req.userFbId });
+
+    if (user == null) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    points = user.points;
+
+    res.status(200).json(points);
+  } catch (error) {
+    console.error(error);
+    res.status(400).json(error);
+  }
+};
+
+/**
+ * Add a point to the users points (mainly for test purposes) call when payment is successful
+ */
+export const addUserPoints = async (req: Request, res: Response) => {
+  try {
+    const user = await User.findOne({ firebaseId: req.userFbId });
+    if (user == null) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    const updatedUser = await User.findByIdAndUpdate(
+      user._id,
+      {
+        points: user.points + 1,
+      },
+      { new: true }
+    );
+
+    res.status(200).json(updatedUser);
+  } catch (error) {
+    console.error(error);
+    res.status(400).json(error);
+  }
+};
+
+/**
+ * Removes points from a user when free event is redeemed
+ */
+export const removeUserPoints = async (req: Request, res: Response) => {
+  try {
+    const pointsRemoved = req.body.pointsRemoved;
+    const user = await User.findOne({ firebaseId: req.userFbId });
+    if (user == null) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    const updatedUser = await User.findByIdAndUpdate(
+      user._id,
+      {
+        points: user.points - pointsRemoved,
+      },
+      { new: true }
+    );
+
+    res.status(200).json(updatedUser);
   } catch (error) {
     console.error(error);
     res.status(400).json(error);

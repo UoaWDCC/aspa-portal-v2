@@ -28,6 +28,7 @@ interface IUser {
   university?: string;
   studentId?: number;
   skillLevel?: string;
+  points?: number;
   events?: RegistrationRecordUser[];
 }
 
@@ -41,6 +42,7 @@ type UserDocumentProps = {
   university?: string;
   studentId?: number;
   skillLevel?: string;
+  points: number;
   events: Types.DocumentArray<RegistrationRecordUser>;
 };
 type UserModelType = Model<IUser, object, UserDocumentProps>;
@@ -54,6 +56,7 @@ const userSchema = new Schema<IUser>({
   university: String,
   studentId: Number,
   skillLevel: String,
+  points: { type: Number, default: 0 },
   events: [
     new Schema<RegistrationRecordUser>({
       eventId: Types.ObjectId,

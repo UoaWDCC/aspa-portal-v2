@@ -1,8 +1,9 @@
 {
 	"info": {
-		"_postman_id": "f9909a93-3084-4963-bb7c-c4d93d8a5914",
+		"_postman_id": "dbc9b7f0-4d86-458e-a45c-642451c552fd",
 		"name": "Aspa Api",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26786864"
 	},
 	"item": [
 		{
@@ -1339,6 +1340,101 @@
 							"body": "{\n    \"_id\": \"64c75e1d08555e9ec4985544\",\n    \"firstName\": \"re\",\n    \"lastName\": \"re\",\n    \"email\": \"rere@gmail.com\",\n    \"firebaseId\": \"5eqkoKAailWLaYjoaWli5hnGXMf1\",\n    \"events\": [],\n    \"__v\": 0\n}"
 						}
 					]
+				},
+				{
+					"name": "Get Users Points",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImM2MGI5ZGUwODBmZmFmYmZjMTgzMzllY2Q0NGFjNzdmN2ZhNGU4ZDMiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vYXNwYS04YWYwNCIsImF1ZCI6ImFzcGEtOGFmMDQiLCJhdXRoX3RpbWUiOjE2OTM3MjI0OTAsInVzZXJfaWQiOiJMMFM2UldneU9hZzJaSjJ5Y05BWU5icHU3ZnQyIiwic3ViIjoiTDBTNlJXZ3lPYWcyWkoyeWNOQVlOYnB1N2Z0MiIsImlhdCI6MTY5MzcyMjQ5MCwiZXhwIjoxNjkzNzI2MDkwLCJlbWFpbCI6InBvaW50c0BnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZW1haWwiOlsicG9pbnRzQGdtYWlsLmNvbSJdfSwic2lnbl9pbl9wcm92aWRlciI6InBhc3N3b3JkIn19.TinyBQ6nje7mXN0o8q6ScWk1UtHlrndWeyT8n8Ahe9j3a5N9223k5hrZ7Vi_UCf9lm2j4IMH1XG7H3qM0IIe5bhAygf_ku6XVzaEsA35e21z2soyGSstGn6KnGumps764k4DFQzzDMwNcY_BsFPhQFMN7XGs6xytT01bllcOiypFrBZk4Sd6MmlPgjDhEzDLMIMAmiR8m4i9RUQv3YMAQBkCRL1-Gk-CyYxUvRdl9Gxze162Pmw0IW03tF4rGKfIxd17y9CFVdqMff7b_NhkW6cAooiDywYHo0Cs4ZrZcTIamMSpAamXyByHZemJXPdF2XczfO2XxnWZ0FkNbPhLDA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}/users/points",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"users",
+								"points"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Points",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImM2MGI5ZGUwODBmZmFmYmZjMTgzMzllY2Q0NGFjNzdmN2ZhNGU4ZDMiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vYXNwYS04YWYwNCIsImF1ZCI6ImFzcGEtOGFmMDQiLCJhdXRoX3RpbWUiOjE2OTM3MjI0OTAsInVzZXJfaWQiOiJMMFM2UldneU9hZzJaSjJ5Y05BWU5icHU3ZnQyIiwic3ViIjoiTDBTNlJXZ3lPYWcyWkoyeWNOQVlOYnB1N2Z0MiIsImlhdCI6MTY5MzcyMjQ5MCwiZXhwIjoxNjkzNzI2MDkwLCJlbWFpbCI6InBvaW50c0BnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZW1haWwiOlsicG9pbnRzQGdtYWlsLmNvbSJdfSwic2lnbl9pbl9wcm92aWRlciI6InBhc3N3b3JkIn19.TinyBQ6nje7mXN0o8q6ScWk1UtHlrndWeyT8n8Ahe9j3a5N9223k5hrZ7Vi_UCf9lm2j4IMH1XG7H3qM0IIe5bhAygf_ku6XVzaEsA35e21z2soyGSstGn6KnGumps764k4DFQzzDMwNcY_BsFPhQFMN7XGs6xytT01bllcOiypFrBZk4Sd6MmlPgjDhEzDLMIMAmiR8m4i9RUQv3YMAQBkCRL1-Gk-CyYxUvRdl9Gxze162Pmw0IW03tF4rGKfIxd17y9CFVdqMff7b_NhkW6cAooiDywYHo0Cs4ZrZcTIamMSpAamXyByHZemJXPdF2XczfO2XxnWZ0FkNbPhLDA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"pointsRemoved\":\"5\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}/users/points/remove",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"users",
+								"points",
+								"remove"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Points",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImM2MGI5ZGUwODBmZmFmYmZjMTgzMzllY2Q0NGFjNzdmN2ZhNGU4ZDMiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vYXNwYS04YWYwNCIsImF1ZCI6ImFzcGEtOGFmMDQiLCJhdXRoX3RpbWUiOjE2OTM3MjI0OTAsInVzZXJfaWQiOiJMMFM2UldneU9hZzJaSjJ5Y05BWU5icHU3ZnQyIiwic3ViIjoiTDBTNlJXZ3lPYWcyWkoyeWNOQVlOYnB1N2Z0MiIsImlhdCI6MTY5MzcyMjQ5MCwiZXhwIjoxNjkzNzI2MDkwLCJlbWFpbCI6InBvaW50c0BnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZW1haWwiOlsicG9pbnRzQGdtYWlsLmNvbSJdfSwic2lnbl9pbl9wcm92aWRlciI6InBhc3N3b3JkIn19.TinyBQ6nje7mXN0o8q6ScWk1UtHlrndWeyT8n8Ahe9j3a5N9223k5hrZ7Vi_UCf9lm2j4IMH1XG7H3qM0IIe5bhAygf_ku6XVzaEsA35e21z2soyGSstGn6KnGumps764k4DFQzzDMwNcY_BsFPhQFMN7XGs6xytT01bllcOiypFrBZk4Sd6MmlPgjDhEzDLMIMAmiR8m4i9RUQv3YMAQBkCRL1-Gk-CyYxUvRdl9Gxze162Pmw0IW03tF4rGKfIxd17y9CFVdqMff7b_NhkW6cAooiDywYHo0Cs4ZrZcTIamMSpAamXyByHZemJXPdF2XczfO2XxnWZ0FkNbPhLDA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}/users/points/add",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"users",
+								"points",
+								"add"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}
