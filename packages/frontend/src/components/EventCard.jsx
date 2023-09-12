@@ -23,7 +23,7 @@ const EventCard = (props) => {
         <p>Date: {date}</p>
         <p>Location: {location}</p>
         <div className="event-buttons">
-          <Link to={`/Register?eventId=${eventId}`}>Register</Link>
+          <Link to={`/event-register?eventId=${eventId}`}>Register</Link>
         </div>
       </div>
     </div>

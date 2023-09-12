@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { fadeUpInView } from "../animation/utils";
 import Events from "./Events";
+import UserPoints from "./GetPoints";
 import { useContext } from "react";
 import { AuthContext } from "../../AuthContext";
 
@@ -14,6 +15,7 @@ const UserProfile = () => {
           Welcome back! {currentUser?.email}
           {console.log(currentUser)}
         </h1>
+        <UserPoints />
         <Events />
       </div>
     </motion.div>

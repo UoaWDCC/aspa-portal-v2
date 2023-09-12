@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
-import { AuthContext } from "../AuthContext";
+import { AuthContext } from "../../AuthContext";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import "./FormStyles.css";
 import { AiOutlineDollar } from "react-icons/ai";
 import { IoLocationOutline, IoTimeOutline } from "react-icons/io5";
 import { useLocation } from "react-router-dom";
-import { fadeUpInView } from "./animation/utils";
+import { fadeUpInView } from "../animation/utils";
 import { motion } from "framer-motion";
 
 const Create = () => {
@@ -20,7 +20,9 @@ const Create = () => {
   const queryParams = new URLSearchParams(url.search);
   const eventId = queryParams.get("eventId");
   const { currentUser, uid } = useContext(AuthContext);
+  const [points, setPoints] = useState(null);
 
+  // This gets the event data for the form
   useEffect(() => {
     async function fetchEvent() {
       const response = await axios.get(
@@ -30,6 +32,22 @@ const Create = () => {
       setEvent(data);
       console.log(data);
     }
+    async function fetchUserPoints() {
+      try {
+        const token = await currentUser.getIdToken();
+        const headers = { Authorization: `Bearer ${token}` };
+        const response = await axios.get(
+          `${process.env.REACT_APP_API_URL}/users/points`,
+          { headers }
+        );
+        console.log(response);
+        setPoints(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    fetchUserPoints();
     fetchEvent();
   }, [eventId]);
 
@@ -50,6 +68,31 @@ const Create = () => {
           { headers }
         );
         console.log(response.data);
+        setIsPending(false);
+      } catch (error) {
+        console.log(error);
+        setIsPending(false);
+      }
+    } else if (paymentType == "points") {
+      try {
+        console.log("try register");
+        const response = await axios.post(
+          "http://localhost:5000/register",
+          player,
+          { headers }
+        );
+        console.log(response.data);
+
+        // Deduct 5 points from the user
+        // set the body parameters pointsRemoved to 5
+        const bodyParameters = { pointsRemoved: 5 };
+        const response2 = await axios.patch(
+          `${process.env.REACT_APP_API_URL}/users/points/remove`,
+          bodyParameters,
+          { headers }
+        );
+
+        console.log(response2.data);
         setIsPending(false);
       } catch (error) {
         console.log(error);
@@ -153,26 +196,25 @@ const Create = () => {
           onChange={(e) => setEmail(e.target.value)}
         />
 
-        <label htmlFor="paymentType">Payment Type:</label>
+        <label htmlFor="paymentType">Payment Options:</label>
         <select
           id="paymentType"
           value={paymentType}
           className="bg-transparent px-3 py-2 border-2 rounded-lg"
           onChange={(e) => setPaymentType(e.target.value)}
         >
-          <option
-            value="bank transfer"
-            className="bg-transparent text-gray-800"
-          >
-            Bank Transfer
-          </option>
-          {/* <option value="cash" className="bg-transparent text-gray-800"> */}
           <option className="option" value="bank transfer">
-            Bank Transfer
+            Online Payment
           </option>
           <option className="option" value="cash">
             Cash
           </option>
+          {/*display another option to use points but only if its above 5 */}
+          {points >= 5 && (
+            <option className="option" value="points">
+              Redeem 5 Points for a Free Ticket
+            </option>
+          )}
         </select>
 
         {!isPending && (
