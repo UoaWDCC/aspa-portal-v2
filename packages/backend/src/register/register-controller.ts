@@ -99,6 +99,10 @@ export const registerUserEvent = async (req: Request, res: Response) => {
 // TODO Fix the remove registration to account for guest stuff
 export const removeRegistration = async (req: Request, res: Response) => {
   try {
+    if (req.userRole !== "admin") {
+      return res.status(401).json({ error: "Unauthorized" });
+    }
+
     const { userFbId, eventId } = req.params;
 
     const user = await User.findOne({ firebaseId: userFbId });
@@ -149,6 +153,10 @@ export const removeRegistration = async (req: Request, res: Response) => {
 // TODO Fix the updateIsPaid to account for guest stuff
 export const updateIsPaid = async (req: Request, res: Response) => {
   try {
+    if (req.userRole !== "admin") {
+      return res.status(401).json({ error: "Unauthorized" });
+    }
+
     const { userFbId, eventId } = req.params;
     const { isPaid } = req.body;
 
