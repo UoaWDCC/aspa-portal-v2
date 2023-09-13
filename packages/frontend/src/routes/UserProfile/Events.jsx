@@ -6,7 +6,7 @@ import { useContext } from "react";
 const Events = () => {
   const [selectedTab, setSelectedTab] = useState("upcoming");
   const [userEvents, setUserEvents] = useState([]);
-  const { uid, currentUser } = useContext(AuthContext);
+  const { currentUser } = useContext(AuthContext);
   //const [pastEvents, setPastEvents] = useState([]);
   //const [upcomingEvents, setUpcomingEvents] = useState([])
 
@@ -16,19 +16,20 @@ const Events = () => {
         const token = await currentUser.getIdToken();
         const headers = { Authorization: `Bearer ${token}` };
         const response = await axios.get(
-          `${process.env.REACT_APP_API_URL}/users/${uid}`,
+          `${process.env.REACT_APP_API_URL}/users/userEvents/12414`,
           { headers }
         );
         const data = response.data;
-        if (response.data.events) {
-          setUserEvents(data.events);
+        if (data) {
+          setUserEvents(data);
+          console.log(data);
         }
       } catch (error) {
         console.error("Error fetching user events:", error);
       }
     };
     fetchUsersEvents();
-  }, []);
+  }, [currentUser]);
 
   const handleTabChange = (tab) => {
     setSelectedTab(tab);
@@ -97,8 +98,10 @@ const Events = () => {
             <h2 className="text-2xl font-bold mb-4">Upcoming Events</h2>
             {userEvents.map((event) => (
               <div key={event.id} className="bg-white rounded p-4 mb-2">
-                <h3 className="text-lg font-bold">{event.name}</h3>
-                <p>Date: {event.date}</p>
+                <h3 className="text-lg font-bold text-black">
+                  {event.eventDescription}
+                </h3>
+                <p className="text-black">Date: {event.date}</p>
               </div>
             ))}
           </div>
@@ -107,7 +110,7 @@ const Events = () => {
             <h2 className="text-2xl font-bold mb-4">Past Events</h2>
             {userEvents.map((event) => (
               <div key={event.id} className="bg-white rounded p-4 mb-2">
-                <h3 className="text-lg font-bold">{event.name}</h3>
+                <h3 className="text-lg font-bold text-black">{event.name}</h3>
                 <p>Date: {event.date}</p>
               </div>
             ))}
