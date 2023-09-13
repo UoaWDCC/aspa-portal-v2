@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "dbc9b7f0-4d86-458e-a45c-642451c552fd",
+		"_postman_id": "82c19178-31e7-4853-924e-512adf575c55",
 		"name": "Aspa Api",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "26786864"
+		"_exporter_id": "26765336"
 	},
 	"item": [
 		{
@@ -634,6 +634,220 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"message\": \"User registered to event\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Remove registration",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}/register/:userFbId/:eventId",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"register",
+								":userFbId",
+								":eventId"
+							],
+							"variable": [
+								{
+									"key": "userFbId",
+									"value": ""
+								},
+								{
+									"key": "eventId",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 Ok",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{api_url}}/register/:userFbId/:eventId",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"register",
+										":userFbId",
+										":eventId"
+									],
+									"variable": [
+										{
+											"key": "userFbId",
+											"value": "6vUW1mEzgVemrco2xLYpG0QTypI3"
+										},
+										{
+											"key": "eventId",
+											"value": "65018348e32b64f7950ec7c7"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "37"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"25-WYNofJUdOrkUrzboMnUs3155qUQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 13 Sep 2023 09:53:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User removed from event\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update isPaid property",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"isPaid\" : true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}/register/status/:userFbId/:eventId",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"register",
+								"status",
+								":userFbId",
+								":eventId"
+							],
+							"variable": [
+								{
+									"key": "userFbId",
+									"value": ""
+								},
+								{
+									"key": "eventId",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 Ok",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"isPaid\" : true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/register/status/:userFbId/:eventId",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"register",
+										"status",
+										":userFbId",
+										":eventId"
+									],
+									"variable": [
+										{
+											"key": "userFbId",
+											"value": "6vUW1mEzgVemrco2xLYpG0QTypI3"
+										},
+										{
+											"key": "eventId",
+											"value": "64dc69a9cf35ce182afe3594"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "37"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"25-hjm9nueZNtap/ph8dY55S7qebL0\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 13 Sep 2023 10:07:34 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"isPaid has been updated\"\n}"
 						}
 					]
 				}
