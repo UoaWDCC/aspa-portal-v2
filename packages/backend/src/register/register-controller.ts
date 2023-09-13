@@ -34,9 +34,7 @@ export const registerUserEvent = async (req: Request, res: Response) => {
       // If it is a registered user check if they are already registered and then register the event to the user
       const user = await User.findOne({ firebaseId: req.userFbId });
       const userId = user?._id;
-      console.log("user id, register: " + userId);
-      console.log("fb user id, register: " + req.userFbId);
-
+ 
       // Check if the user is already registered to the event
       //const user = await User.findById(userId);
 
@@ -151,8 +149,11 @@ export const removeRegistration = async (req: Request, res: Response) => {
 // TODO Fix the updateIsPaid to account for guest stuff
 export const updateIsPaid = async (req: Request, res: Response) => {
   try {
-    const { userId, eventId } = req.params;
+    const { userFbId, eventId } = req.params;
     const { isPaid } = req.body;
+
+    const user = await User.findOne({ firebaseId: userFbId });
+    const userId = user?._id;
 
     if (typeof isPaid != "boolean") {
       throw new Error("isPaid is not a boolean");
@@ -165,7 +166,7 @@ export const updateIsPaid = async (req: Request, res: Response) => {
     // Check if user is registered under the event
     const eventData = await Event.findOne({
       _id: eventId,
-      users: { $elemMatch: { userId: userId } },
+      users: { $elemMatch: { userId: userFbId } },
     });
 
     // If registration already exists, update isPaid, otherwise return error
@@ -173,7 +174,7 @@ export const updateIsPaid = async (req: Request, res: Response) => {
       await Event.updateOne(
         {
           _id: eventId,
-          "users.userId": userId,
+          "users.userId": userFbId,
         },
         {
           $set: { "users.$.isPaid": isPaid },

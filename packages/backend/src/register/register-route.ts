@@ -9,6 +9,6 @@ const router = express.Router();
 
 router.post("/", registerUserEvent);
 router.delete("/:userFbId/:eventId", removeRegistration);
-router.patch("/status/:userId/:eventId", updateIsPaid);
+router.patch("/status/:userFbId/:eventId", updateIsPaid);
 
 export default router;
