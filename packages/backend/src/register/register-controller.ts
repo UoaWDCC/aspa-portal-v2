@@ -101,12 +101,15 @@ export const registerUserEvent = async (req: Request, res: Response) => {
 // TODO Fix the remove registration to account for guest stuff
 export const removeRegistration = async (req: Request, res: Response) => {
   try {
-    const { userId, eventId } = req.params;
+    const { userFbId, eventId } = req.params;
+
+    const user = await User.findOne({ firebaseId: userFbId });
+    const userId = user?._id;
 
     // Check if user is registered under the event
     const eventData = await Event.findOne({
       _id: eventId,
-      users: { $elemMatch: { userId: userId } },
+      users: { $elemMatch: { userId: userFbId } },
     });
 
     if (eventData == null) {
@@ -118,7 +121,7 @@ export const removeRegistration = async (req: Request, res: Response) => {
         {
           $pull: {
             users: {
-              userId: userId,
+              userId: userFbId,
             },
           },
         },
