@@ -6,7 +6,8 @@ import { useContext } from "react";
 const Events = () => {
   const [selectedTab, setSelectedTab] = useState("upcoming");
   const [userEvents, setUserEvents] = useState([]);
-  const { currentUser } = useContext(AuthContext);
+  const { uid, currentUser } = useContext(AuthContext);
+  const [filteredEvents, setFilteredEvents] = useState([]);
   //const [pastEvents, setPastEvents] = useState([]);
   //const [upcomingEvents, setUpcomingEvents] = useState([])
 
@@ -16,12 +17,13 @@ const Events = () => {
         const token = await currentUser.getIdToken();
         const headers = { Authorization: `Bearer ${token}` };
         const response = await axios.get(
-          `${process.env.REACT_APP_API_URL}/users/userEvents/12414`,
+          `${process.env.REACT_APP_API_URL}/users/userEvents/${uid}`,
           { headers }
         );
         const data = response.data;
         if (data) {
           setUserEvents(data);
+          setFilteredEvents(data);
           console.log(data);
         }
       } catch (error) {
@@ -33,6 +35,19 @@ const Events = () => {
 
   const handleTabChange = (tab) => {
     setSelectedTab(tab);
+    const currentDate = new Date();
+
+    if (tab === "upcoming") {
+      const upcomingEvents = userEvents.filter(
+        (event) => new Date(event.eventTime) > currentDate
+      );
+      setFilteredEvents(upcomingEvents);
+    } else if (tab === "past") {
+      const pastEvents = userEvents.filter(
+        (event) => new Date(event.eventTime) < currentDate
+      );
+      setFilteredEvents(pastEvents);
+    }
   };
 
   return (
@@ -96,22 +111,27 @@ const Events = () => {
         {selectedTab === "upcoming" ? (
           <div>
             <h2 className="text-2xl font-bold mb-4">Upcoming Events</h2>
-            {userEvents.map((event) => (
+            {filteredEvents.map((event) => (
               <div key={event.id} className="bg-white rounded p-4 mb-2">
-                <h3 className="text-lg font-bold text-black">
-                  {event.eventDescription}
+                <h3 className="text-black text-lg font-bold">
+                  {event.eventTitle}
                 </h3>
-                <p className="text-black">Date: {event.date}</p>
+                <p className="text-black">Date: {event.eventTime}</p>
               </div>
             ))}
           </div>
         ) : (
           <div>
             <h2 className="text-2xl font-bold mb-4">Past Events</h2>
-            {userEvents.map((event) => (
+            {filteredEvents.map((event) => (
               <div key={event.id} className="bg-white rounded p-4 mb-2">
-                <h3 className="text-lg font-bold text-black">{event.name}</h3>
-                <p>Date: {event.date}</p>
+                <h3 className="text-black text-lg font-bold">
+                  {event.eventTitle}
+                </h3>
+                <p className="text-black">
+                  This event was held at: {event.eventLocation}
+                </p>
+                <p className="text-black">Date: {event.eventTime}</p>
               </div>
             ))}
           </div>
