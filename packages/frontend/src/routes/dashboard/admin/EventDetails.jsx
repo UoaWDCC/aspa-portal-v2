@@ -62,25 +62,21 @@ const EventDetails = () => {
     setEditingEvent(true);
   };
 
-  const submitEventUpdate = async (e) => {
-    e.preventDefault();
+  const submitEventUpdate = async () => {
+    const date = new Date(dateRef.current.value);
 
-    // const date = new Date(dateRef.current.value);
-
-    // const newEvent = {
-    //   eventTitle: nameRef.current.value,
-    //   eventDescription: descriptionRef.current.value,
-    //   eventLocation: locationRef.current.value,
-    //   eventTime: date.toISOString(),
-    // };
+    const newEvent = {
+      eventTitle: nameRef.current.value,
+      eventDescription: descriptionRef.current.value,
+      eventLocation: locationRef.current.value,
+      eventTime: date.toISOString(),
+    };
 
     const token = await currentUser.getIdToken();
 
-    const putResponse = await axios.put(
+    const putResponse = await axios.patch(
       `http://localhost:5000/events/${eventId}`,
-      {
-        eventTitle: "50 cent cheapest event test patching frontend",
-      },
+      newEvent,
       {
         headers: {
           "Content-Type": "application/json",
@@ -89,10 +85,8 @@ const EventDetails = () => {
       }
     );
 
-    const putJson = await putResponse.json();
-
-    if (!putResponse.ok) {
-      console.log(putJson.error);
+    if (putResponse.status !== 200) {
+      console.log(putResponse.data.error);
     } else {
       setEditingEvent(false);
     }
