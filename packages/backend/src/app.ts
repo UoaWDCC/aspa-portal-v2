@@ -7,6 +7,7 @@ import userRoute from "./user/user-route";
 import registerRoute from "./register/register-route";
 import paymentRoute from "./payment/payment-route";
 import webhookRoute from "./webhook/webhook-route";
+import emailRoute from "./email/email-route";
 import cors from "cors";
 import { verifyToken } from "./middleware/verifyToken";
 import { verifyAdmin } from "./middleware/verifyAdmin";
@@ -49,6 +50,7 @@ app.use("/users", userRoute);
 app.use("/register", registerRoute);
 app.use("/payment", paymentRoute);
 app.use("/stripe_webhooks", webhookRoute);
+app.use("/email", emailRoute);
 
 mongoose
   .connect(dbURL)
