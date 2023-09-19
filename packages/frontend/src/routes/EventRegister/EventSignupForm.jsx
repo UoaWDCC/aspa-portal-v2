@@ -14,7 +14,7 @@ const Create = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
-  const [paymentType, setPaymentType] = useState("bank transfer");
+  const [paymentType, setPaymentType] = useState("online payment");
   const [isPending, setIsPending] = useState(false);
   const url = useLocation();
   const queryParams = new URLSearchParams(url.search);
@@ -99,7 +99,7 @@ const Create = () => {
         setIsPending(false);
       }
     } else {
-      // Payment type is bank transfer
+      // Payment type is online payment
       try {
         console.log("try stripe");
         console.log(currentUser);
@@ -203,7 +203,7 @@ const Create = () => {
           className="bg-transparent px-3 py-2 border-2 rounded-lg"
           onChange={(e) => setPaymentType(e.target.value)}
         >
-          <option className="option" value="bank transfer">
+          <option className="option" value="online payment">
             Online Payment
           </option>
           <option className="option" value="cash">

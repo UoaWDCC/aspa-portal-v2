@@ -14,7 +14,7 @@ export interface RegistrationRecordEvent {
   email: string;
   firstName: string;
   lastName: string;
-  paymentType: "Cash" | "Bank Transfer";
+  paymentType: string;
   isPaid: Boolean;
 }
 
@@ -54,6 +54,7 @@ const eventSchema = new Schema<IEvent>({
       email: String,
       firstName: String,
       lastName: String,
+      paymentType: String,
       isPaid: Boolean,
     }),
   ],
