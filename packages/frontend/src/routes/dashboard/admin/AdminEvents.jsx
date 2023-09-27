@@ -106,7 +106,9 @@ export default function AdminEvents() {
             <p className="text-gray-400">
               Date: {new Date(event.eventTime).toLocaleDateString()}
             </p>
-            <p className="text-gray-400">Price: $7</p>
+            <p className="text-gray-400">
+              Price: ${event.eventPrice.toFixed(2)}
+            </p>
             <a href={`events/${event._id}`}>
               <FaArrowRight
                 size={18}
