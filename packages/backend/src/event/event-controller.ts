@@ -110,8 +110,24 @@ export const createEvent = async (req: Request, res: Response) => {
       req.body.eventTitle &&
       req.body.eventDescription &&
       req.body.eventLocation &&
-      req.body.eventTime
+      req.body.eventTime &&
+      req.body.eventPrice
     ) {
+      // Specify price in terms of dollars (e.g. 4 means $4.00, 4.5 means $4.50)
+      // Convert to string to float
+      let priceFloat = parseFloat(req.body.eventPrice);
+      let priceCents = 0;
+
+      if (!isNaN(priceFloat) && priceFloat > 0) {
+        priceCents = Math.round(priceFloat * 100);
+        console.log("success: " + priceCents);
+      } else {
+        console.log("fail");
+        throw new Error(
+          "Please provide valid price in dollars (e.g. 4 means $4.00, 4.5 means $4.50)"
+        );
+      }
+
       // Create product on stripe for the event
       const stripe = new Stripe(`${process.env.STRIPE_SECRET_KEY}`, {
         apiVersion: "2022-11-15",
@@ -124,7 +140,7 @@ export const createEvent = async (req: Request, res: Response) => {
       const price = await stripe.prices.create({
         product: productId,
         currency: "nzd",
-        unit_amount: 600, // Adjust the price amount in cents (e.g. 600 = $6)
+        unit_amount: priceCents, // Adjust the price amount in cents (e.g. 600 = $6)
       });
       await stripe.products.update(productId, {
         default_price: price.id,
@@ -138,6 +154,7 @@ export const createEvent = async (req: Request, res: Response) => {
         eventLocation: req.body.eventLocation,
         eventTime: new Date(req.body.eventTime),
         stripeProductId: productId,
+        eventPrice: priceFloat,
       });
       await event.save();
       res.status(201).json(event);

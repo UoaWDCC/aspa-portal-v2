@@ -163,7 +163,9 @@ const Create = () => {
               </div>
               <div className="flex gap-4 align-middle">
                 <AiOutlineDollar size={24} />
-                <p className="my-auto">$6.00 with ASPA membership</p>
+                <p className="my-auto">
+                  ${event.eventPrice.toFixed(2)} with ASPA membership
+                </p>
               </div>
             </div>
 
