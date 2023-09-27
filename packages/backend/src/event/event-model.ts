@@ -27,6 +27,7 @@ interface IEvent {
   eventLocation: string;
   eventTime: Date;
   stripeProductId: string;
+  eventPrice: number;
   users?: RegistrationRecordEvent[];
 }
 
@@ -37,6 +38,7 @@ type EventDocumentProps = {
   eventLocation: string;
   eventTime: Date;
   stripeProductId: string;
+  eventPrice: number;
   users?: Types.DocumentArray<RegistrationRecordEvent>;
 };
 type EventModelType = Model<IEvent, object, EventDocumentProps>;
@@ -47,6 +49,7 @@ const eventSchema = new Schema<IEvent>({
   eventLocation: { type: String, required: true },
   eventTime: { type: Date, required: true },
   stripeProductId: String,
+  eventPrice: Number,
 
   users: [
     new Schema<RegistrationRecordEvent>({

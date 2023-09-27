@@ -154,6 +154,7 @@ export const createEvent = async (req: Request, res: Response) => {
         eventLocation: req.body.eventLocation,
         eventTime: new Date(req.body.eventTime),
         stripeProductId: productId,
+        eventPrice: priceFloat,
       });
       await event.save();
       res.status(201).json(event);
