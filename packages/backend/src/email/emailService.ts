@@ -14,7 +14,7 @@ if (apiKey == null) {
 }
 sgMail.setApiKey(apiKey);
 export default class EmailService {
-    public static async sendEmail(
+    public static async _sendEmail(
         to: string,
         subject: string,
         name: string,
@@ -48,13 +48,20 @@ export default class EmailService {
             html,
         };
 
-        try {
-            await sgMail.send(msg);
-            console.log("Email sent");
-            return;
-        } catch (error) {
-            console.error(error);
-            throw new Error("Error sending email");
-        }
+        await sgMail.send(msg);
+        console.log("Email sent");
+        return;
+    }
+
+    public static async sendEventEmail(
+        toEmail: string,
+        name: string,
+        eventName: string
+    ) {
+        const subject = `ASPA UOA ${eventName} Registration`;
+        const title = "ASPA UOA";
+        const message = `You have registered for ${eventName} successfully! 
+        We look forward to seeing you there!`;
+        await this._sendEmail(toEmail, subject, name, title, message);
     }
 }
