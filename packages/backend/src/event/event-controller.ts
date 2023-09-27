@@ -117,13 +117,15 @@ export const createEvent = async (req: Request, res: Response) => {
       // Convert to string to float
       let priceFloat = parseFloat(req.body.eventPrice);
       let priceCents = 0;
-      
-      if (!isNaN(priceFloat)) {
+
+      if (!isNaN(priceFloat) && priceFloat > 0) {
         priceCents = Math.round(priceFloat * 100);
         console.log("success: " + priceCents);
       } else {
         console.log("fail");
-        throw new Error("Please provide valid price (e.g. 4 means $4.00, 4.5 means $4.50)");
+        throw new Error(
+          "Please provide valid price in dollars (e.g. 4 means $4.00, 4.5 means $4.50)"
+        );
       }
 
       // Create product on stripe for the event
