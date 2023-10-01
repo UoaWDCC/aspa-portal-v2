@@ -46,7 +46,7 @@ export default function AdminEvents() {
             pageSize={25}
             autoHeight
             initialState={{
-              pagination: { paginationModel: { pageSize: 5 } },
+              pagination: { paginationModel: { pageSize: 25 } },
             }}
             disableColumnMenu
             disableSelectionOnClick
