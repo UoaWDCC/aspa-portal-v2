@@ -1,53 +1,61 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import BG from "../../../assets/mainBG.jpg";
-import usersData from "./usersData";
+import { useContext } from "react";
+import { AuthContext } from "../../../AuthContext";
+import axios from "axios";
+import { Link } from "react-router-dom";
 
 export default function AdminHome() {
-  const firstThreeUsers = usersData.slice(
-    usersData.length - 3,
-    usersData.length
-  );
+  const { currentUser } = useContext(AuthContext);
+  const [events, setEvents] = useState([]);
+
+  useEffect(() => {
+    async function fetchAllEvents() {
+      const response = await axios.get("http://localhost:5000/events");
+      const data = response.data;
+      // Parse event dates into Date objects
+      data.forEach((event) => {
+        event.eventTime = new Date(event.eventTime);
+      });
+
+      // Sort events by date
+      data.sort((a, b) => a.eventTime - b.eventTime);
+
+      // Filter out past events
+      const currentDateTime = new Date();
+      const filteredEvents = data.filter(
+        (event) => event.eventTime.getTime() > currentDateTime.getTime()
+      );
+      setEvents(filteredEvents);
+    }
+    fetchAllEvents();
+  }, []);
 
   return (
     <div className="ml-36 mt-16 text-white z-10">
       <div>
-        <h2 className="text-5xl font-bold">Hi. *Admin Name*</h2>
+        <h2 className="text-4xl font-bold">Hi. {currentUser?.email}</h2>
         <div>
-          <h3 className="mt-10 mb-4 text-3xl font-semibold">
+          <h3 className="mt-16 mb-4 text-2xl font-semibold">
             Upcoming Scheduled Events
           </h3>
-          <div className="w-24 border-b-4 mb-10"></div>
-          <div className="flex gap-8">
-            <div
-              className="h-56 w-96 rounded-md grid place-items-center"
-              style={{
-                backgroundImage: `url(${BG})`,
-                backgroundSize: "contain",
-                backgroundRepeat: "no-repeat",
-              }}
-            >
-              <p>Name</p>
-            </div>
-            <div
-              className="h-56 w-96 rounded-md grid place-items-center"
-              style={{
-                backgroundImage: `url(${BG})`,
-                backgroundSize: "contain",
-                backgroundRepeat: "no-repeat",
-              }}
-            >
-              <p>Name</p>
-            </div>
-          </div>
-        </div>
-        <div>
-          <h3 className="pt-20 font-semibold text-3xl mb-4">New Users</h3>
-          <div className="w-24 border-b-4 mb-8"></div>
-          <div>
-            {firstThreeUsers.map((user, index) => (
-              <p className="text-xl" key={index}>
-                {user.name}
-              </p>
+          <div className="w-24 border-b-4 mb-12"></div>
+
+          <div className="flex flex-wrap gap-10">
+            {events.map((event, i) => (
+              <Link to={`events/${event._id}`} className="flex gap-8" key={i}>
+                <div
+                  className="h-56 w-96 rounded-md grid place-items-center cursor-pointer ease-in-out duration-300 hover:scale-105"
+                  style={{
+                    backgroundImage: `url(${BG})`,
+                    backgroundSize: "contain",
+                    backgroundRepeat: "no-repeat",
+                  }}
+                >
+                  <p className="text-lg font-bold ">{event.eventTitle}</p>
+                  <p>Time: {event.eventTime.toLocaleString()}</p>
+                </div>
+              </Link>
             ))}
           </div>
         </div>
