@@ -21,6 +21,7 @@ const AdminNewEvent = () => {
       eventTitle: nameRef.current.value,
       eventDescription: descriptionRef.current.value,
       eventLocation: locationRef.current.value,
+      eventPrice: priceRef.current.value,
       eventTime: date.toISOString(),
     };
 

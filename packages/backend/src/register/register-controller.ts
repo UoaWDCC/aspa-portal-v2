@@ -11,7 +11,7 @@ interface registerUserEventRequest {
   firstName: string;
   lastName: string;
   email: string;
-  paymentType: "Cash" | "Bank Transfer";
+  paymentType: string;
 }
 
 export const registerUserEvent = async (req: Request, res: Response) => {
@@ -82,6 +82,7 @@ export const registerUserEvent = async (req: Request, res: Response) => {
             email: email,
             firstName,
             lastName,
+            paymentType,
             isPaid: req.body.isPaid || false,
           },
         },
