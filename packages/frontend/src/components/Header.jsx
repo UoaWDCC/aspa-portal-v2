@@ -1,17 +1,22 @@
 import { AnimatePresence, motion } from "framer-motion";
 import PropTypes from "prop-types";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { Link } from "react-router-dom";
 import Logo from "../assets/logo.svg";
 import { auth } from "../firebase";
 import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../AuthContext";
+import axios from "axios";
 
 function Header({ absolute = false }) {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
+  const { currentUser } = useContext(AuthContext);
+  const [isAdmin, setIsAdmin] = useState(false);
+
   useEffect(() => {
     setIsOpen(false); // Close the mobile menu when the authentication status changes
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -24,6 +29,36 @@ function Header({ absolute = false }) {
 
     return unsubscribe; // Unsubscribe from the onAuthStateChanged listener on component unmount
   }, []);
+
+  // Check if logged in user is admin
+  useEffect(() => {
+    if (!currentUser) {
+      // Handle the case when currentUser is not available yet
+      return;
+    }
+
+    async function isUserAdmin() {
+      const token = await currentUser.getIdToken();
+
+      try {
+        const response = await axios.get(
+          "http://localhost:5000/users/isAdmin",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        const data = response.data;
+        setIsAdmin(data);
+        console.log(isAdmin, data);
+      } catch (error) {
+        console.error("Error fetching events:", error);
+      }
+    }
+
+    isUserAdmin();
+  }, [currentUser]);
 
   const handleLogout = async () => {
     try {
@@ -98,6 +133,13 @@ function Header({ absolute = false }) {
           </Link>
         </div>
         <div className="hidden gap-8 font-bold items-center md:flex">
+          {isAdmin ? (
+            <Link to="/admin-dashboard" className="mr-8">
+              My Dashboard
+            </Link>
+          ) : (
+            <></>
+          )}
           {loggedIn && (
             <>
               <Link className="mr-8" to="/my-profile">
@@ -125,6 +167,28 @@ function Header({ absolute = false }) {
             exit="closed"
             className="fixed inset-0 bg-gray-900 flex flex-col justify-center items-center p-4 gap-8 text-xl z-40 md:hidden"
           >
+            {isAdmin && (
+              <motion.span variants={menuLinkVariants}>
+                <Link
+                  onClick={() => setIsOpen(false)}
+                  to="/admin-dashboard"
+                  className="font-bold"
+                >
+                  My Dashboard
+                </Link>
+              </motion.span>
+            )}
+            {loggedIn && (
+              <motion.span variants={menuLinkVariants}>
+                <Link
+                  onClick={() => setIsOpen(false)}
+                  to="/my-profile"
+                  className="font-bold"
+                >
+                  My Profile
+                </Link>
+              </motion.span>
+            )}
             <motion.span variants={menuLinkVariants}>
               <Link onClick={() => setIsOpen(false)} to="/about">
                 About

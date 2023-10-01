@@ -1,13 +1,34 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
-import usersData from "./usersData";
+import axios from "axios";
+import { AuthContext } from "../../../AuthContext";
+import { useContext } from "react";
 
 export default function AdminEvents() {
   const columns = [
-    { field: "id", headerName: "ID", flex: 1, sortable: true }, // Set sortable to true
-    { field: "name", headerName: "Name", flex: 1 },
+    { field: "_id", headerName: "ID", flex: 1, sortable: true }, // Set sortable to true
+    { field: "firstName", headerName: "Name", flex: 1 },
+    { field: "lastName", headerName: "Name", flex: 1 },
     { field: "email", headerName: "Email", flex: 1 },
   ];
+
+  const { currentUser } = useContext(AuthContext);
+  const [users, setUsers] = useState("");
+
+  useEffect(() => {
+    async function fetchAllUsers() {
+      const token = await currentUser.getIdToken();
+
+      const response = await axios.get("http://localhost:5000/users", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const data = response.data;
+      setUsers(data);
+    }
+    fetchAllUsers();
+  });
 
   return (
     <div>
@@ -15,18 +36,18 @@ export default function AdminEvents() {
         <h1 className="text-4xl font-bold text-white ml-44 mt-10 mb-6">
           Users
         </h1>
-        {usersData && usersData.length > 0 ? (
+        {users && users.length > 0 ? (
           <DataGrid
+            getRowId={(row) => row._id}
             className="w-9/12 mx-auto"
-            rows={usersData}
+            rows={users}
             columns={columns}
-            components={{
-              LoadingOverlay: CustomLoadingOverlay,
-            }}
-            rowsPerPageOptions={[5, 10, 20, 50]}
-            pageSize={10}
-            pagination
+            pageSizeOptions={[5, 10, 25, 50, 100]}
+            pageSize={25}
             autoHeight
+            initialState={{
+              pagination: { paginationModel: { pageSize: 25 } },
+            }}
             disableColumnMenu
             disableSelectionOnClick
             headerHeight={40}
@@ -58,19 +79,3 @@ export default function AdminEvents() {
     </div>
   );
 }
-
-const CustomLoadingOverlay = () => (
-  <div
-    style={{
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      height: "100%",
-      width: "100%",
-      background: "rgba(0, 0, 0, 0.3)",
-      color: "white",
-    }}
-  >
-    Loading...
-  </div>
-);
