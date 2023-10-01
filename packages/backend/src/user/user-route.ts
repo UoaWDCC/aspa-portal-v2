@@ -6,6 +6,7 @@ const router = express.Router();
 router.get("/", User.getUsers);
 router.get("/getUserId", User.getUserId);
 router.get("/points", User.getUserPoints);
+router.get("/isAdmin", User.isAdmin);
 router.get("/:userId", User.getUser);
 router.get("/fbId/:firebaseId", User.getUserByFirebaseId);
 router.get("/userEvents/:userId", User.getUserEvents);
