@@ -167,6 +167,28 @@ function Header({ absolute = false }) {
             exit="closed"
             className="fixed inset-0 bg-gray-900 flex flex-col justify-center items-center p-4 gap-8 text-xl z-40 md:hidden"
           >
+            {isAdmin && (
+              <motion.span variants={menuLinkVariants}>
+                <Link
+                  onClick={() => setIsOpen(false)}
+                  to="/admin-dashboard"
+                  className="font-bold"
+                >
+                  My Dashboard
+                </Link>
+              </motion.span>
+            )}
+            {loggedIn && (
+              <motion.span variants={menuLinkVariants}>
+                <Link
+                  onClick={() => setIsOpen(false)}
+                  to="/my-profile"
+                  className="font-bold"
+                >
+                  My Profile
+                </Link>
+              </motion.span>
+            )}
             <motion.span variants={menuLinkVariants}>
               <Link onClick={() => setIsOpen(false)} to="/about">
                 About
