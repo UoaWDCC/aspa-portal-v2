@@ -133,7 +133,7 @@ function Header({ absolute = false }) {
           </Link>
         </div>
         <div className="hidden gap-8 font-bold items-center md:flex">
-          {isAdmin ? (
+          {loggedIn && isAdmin ? (
             <Link to="/admin-dashboard" className="mr-8">
               My Dashboard
             </Link>
@@ -167,7 +167,7 @@ function Header({ absolute = false }) {
             exit="closed"
             className="fixed inset-0 bg-gray-900 flex flex-col justify-center items-center p-4 gap-8 text-xl z-40 md:hidden"
           >
-            {isAdmin && (
+            {loggedIn && isAdmin && (
               <motion.span variants={menuLinkVariants}>
                 <Link
                   onClick={() => setIsOpen(false)}
