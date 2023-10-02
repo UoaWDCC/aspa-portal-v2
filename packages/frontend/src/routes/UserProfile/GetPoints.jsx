@@ -28,7 +28,11 @@ function UserPoints() {
 
   return (
     <div>
-      {points !== null ? <p>Reward Points: {points}</p> : <p>Loading...</p>}
+      {points !== null ? (
+        <p className="text-3xl">Reward Points: {points}</p>
+      ) : (
+        <p>Loading...</p>
+      )}
     </div>
   );
 }
