@@ -32,7 +32,7 @@ export default function Home() {
         ) : (
           //TODO: check if the user is login, if not then show the Join Us button which should link to sign up page. If the user has logged in then dont show the Join Us button
           <Link
-            to="register"
+            to="sign-up"
             className="border-white bg-white rounded-sm text-gray-800 border-2 px-6 py-2"
           >
             Join Us

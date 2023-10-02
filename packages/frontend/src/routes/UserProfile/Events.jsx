@@ -2,14 +2,13 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { AuthContext } from "../../AuthContext";
 import { useContext } from "react";
+import dayjs from "dayjs";
 
 const Events = () => {
   const [selectedTab, setSelectedTab] = useState("upcoming");
   const [userEvents, setUserEvents] = useState([]);
   const { uid, currentUser } = useContext(AuthContext);
   const [filteredEvents, setFilteredEvents] = useState([]);
-  //const [pastEvents, setPastEvents] = useState([]);
-  //const [upcomingEvents, setUpcomingEvents] = useState([])
 
   useEffect(() => {
     const fetchUsersEvents = async () => {
@@ -21,17 +20,23 @@ const Events = () => {
           { headers }
         );
         const data = response.data;
-        if (data) {
-          setUserEvents(data);
-          setFilteredEvents(data);
-          console.log(data);
-        }
+        console.log("all data:", data);
+        setUserEvents(data);
       } catch (error) {
         console.error("Error fetching user events:", error);
       }
     };
     fetchUsersEvents();
-  }, [currentUser]);
+  }, []);
+
+  useEffect(() => {
+    const currentDate = new Date();
+    const upcomingEvents = userEvents.filter(
+      (event) => new Date(event.eventTime) > currentDate
+    );
+    setFilteredEvents(upcomingEvents);
+    console.log(filteredEvents);
+  }, [userEvents]);
 
   const handleTabChange = (tab) => {
     setSelectedTab(tab);
@@ -71,14 +76,6 @@ const Events = () => {
             </li>
           </ul>
         </div>
-        <div className="mt-4 bg-gray-100 rounded-lg p-4">
-          <h2 className="text-lg font-bold mb-4 text-black">My Profile</h2>
-          {/* Add more items in the user's profile */}
-        </div>
-        <div className="mt-4 bg-gray-100 rounded-lg p-4 text-black">
-          <h2 className="text-lg font-bold mb-4">My Settings</h2>
-          {/* Add settings options here */}
-        </div>
       </div>
 
       {/* Right Content */}
@@ -91,7 +88,7 @@ const Events = () => {
                 selectedTab === "upcoming"
                   ? "bg-blue-500 text-white"
                   : "bg-gray-300 text-gray-800"
-              } py-2 px-4 rounded`}
+              } py-2 px-4 rounded text-lg`}
               onClick={() => handleTabChange("upcoming")}
             >
               Upcoming Events
@@ -101,7 +98,7 @@ const Events = () => {
                 selectedTab === "past"
                   ? "bg-blue-500 text-white"
                   : "bg-gray-300 text-gray-800"
-              } py-2 px-4 rounded`}
+              } py-2 px-4 rounded text-lg`}
               onClick={() => handleTabChange("past")}
             >
               Past Events
@@ -110,19 +107,21 @@ const Events = () => {
         </div>
         {selectedTab === "upcoming" ? (
           <div>
-            <h2 className="text-2xl font-bold mb-4">Upcoming Events</h2>
+            <p className="text-3xl font-bold mb-4">Upcoming Events</p>
             {filteredEvents.map((event) => (
               <div key={event.id} className="bg-white rounded p-4 mb-2">
                 <h3 className="text-black text-lg font-bold">
                   {event.eventTitle}
                 </h3>
-                <p className="text-black">Date: {event.eventTime}</p>
+                <p className="text-black">
+                  Date: {dayjs(event.eventTime).format("MMM D, YYYY h:mm A")}
+                </p>
               </div>
             ))}
           </div>
         ) : (
           <div>
-            <h2 className="text-2xl font-bold mb-4">Past Events</h2>
+            <p className="text-3xl font-bold mb-4">Past Events</p>
             {filteredEvents.map((event) => (
               <div key={event.id} className="bg-white rounded p-4 mb-2">
                 <h3 className="text-black text-lg font-bold">
@@ -131,7 +130,9 @@ const Events = () => {
                 <p className="text-black">
                   This event was held at: {event.eventLocation}
                 </p>
-                <p className="text-black">Date: {event.eventTime}</p>
+                <p className="text-black">
+                  Date: {dayjs(event.eventTime).format("MMM D, YYYY h:mm A")}
+                </p>
               </div>
             ))}
           </div>
