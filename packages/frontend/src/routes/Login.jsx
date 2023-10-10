@@ -8,6 +8,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { AuthContext } from "../AuthContext";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../firebase";
+import axios from "axios";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -18,19 +19,28 @@ export default function Login() {
   const logIn = async (event) => {
     event.preventDefault();
     try {
-      await signInWithEmailAndPassword(auth, email, password).then(
-        (userCredentials) => {
-          const user = userCredentials.user;
-          const token = user.getIdToken();
-          localStorage.setItem("authToken", token);
-          setCurrentUser(user);
-          console.log(
-            "User LOGGED IN with the email;",
-            auth?.currentUser?.email
-          );
-          navigate("/");
-        }
+      const userCredentials = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
       );
+      const user = userCredentials.user;
+      const token = await user.getIdToken();
+      localStorage.setItem("authToken", token);
+      setCurrentUser(user);
+
+      // Check if logged in user is admin (redirect them to proper route).
+      const headers = { Authorization: `Bearer ${token}` };
+      const response = await axios.get(
+        `${process.env.REACT_APP_API_URL}/users/isAdmin`,
+        { headers }
+      );
+
+      if (response.data) {
+        navigate("/admin-dashboard");
+      } else {
+        navigate("/");
+      }
     } catch (error) {
       console.log(error);
     }

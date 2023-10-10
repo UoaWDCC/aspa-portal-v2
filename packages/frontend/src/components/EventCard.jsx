@@ -3,11 +3,7 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types"; // Import PropTypes
 import "./EventCardStyles.css";
 import orangeClub from "../assets/mainBG.jpg";
-
-/*
-Here for EventCard, we pass the title and details as props so that we can put values dynamically from eventsData.js.
-eventsData.js file will work as a data file / work as an api (creates data for each project I want to display). We will render this ProjectCard in the Work.js file.
-*/
+import dayjs from "dayjs";
 
 const EventCard = (props) => {
   const { eventId, title, description, date, location } = props; //destructing props for cleaner code
@@ -20,7 +16,7 @@ const EventCard = (props) => {
       <div className="event-details">
         <h1 className="event-title">{title}</h1>
         <p>{description}</p>
-        <p>Date: {date}</p>
+        <p>Date: {dayjs(date).format("MMM D, YYYY h:mm A")}</p>
         <p>Location: {location}</p>
         <div className="event-buttons">
           <Link to={`/event-register?eventId=${eventId}`}>Register</Link>

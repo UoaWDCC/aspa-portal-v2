@@ -301,3 +301,14 @@ export const removeUserPoints = async (req: Request, res: Response) => {
     res.status(400).json(error);
   }
 };
+
+/**
+ * Check if logged in user is admin
+ */
+export const isAdmin = async (req: Request, res: Response) => {
+  if (req.userRole === "admin") {
+    return res.status(200).json(true);
+  } else {
+    return res.status(200).json(false);
+  }
+};
