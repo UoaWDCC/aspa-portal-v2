@@ -63,8 +63,9 @@ export const checkout = async (req: Request, res: Response) => {
           quantity: 1,
         },
       ],
-      success_url: "https://google.com", // TODO : significant URL eg 'https://your-frontend-url.com/payment-success?session_id={CHECKOUT_SESSION_ID}'
-      cancel_url: "https://google.com", // TODO : significant URL eg 'https://your-frontend-url.com/payment-cancel',
+      success_url:
+        "http://localhost:3000/success-payment?session_id={CHECKOUT_SESSION_ID}",
+      cancel_url: "http://localhost:3000/failed-payment",
       mode: "payment",
       metadata: {
         userId: user.id,

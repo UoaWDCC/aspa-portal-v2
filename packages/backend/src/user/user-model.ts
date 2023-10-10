@@ -6,14 +6,14 @@ import { Model, Schema, Types, model } from "mongoose";
  * @property {mongoose.Types.ObjectId} eventId - the id of the event
  * @property {Date} registrationDate - the date the user registered for the event
  * @property {boolean} isPaid - whether the user has already paid for the event
- * @property {object} paymentDetails - the type of payment. For example, "card"
+ * @property {string} paymentType - the type of payment. For example, "card"
  *
  */
 export interface RegistrationRecordUser {
   eventId: Types.ObjectId;
   registrationDate: Date;
   isPaid: boolean;
-  paymentDetails: object;
+  paymentType: string;
 }
 
 /**
@@ -62,7 +62,7 @@ const userSchema = new Schema<IUser>({
       eventId: Types.ObjectId,
       registrationDate: Date,
       isPaid: Boolean,
-      paymentDetails: Object,
+      paymentType: String,
     }),
   ],
 });
