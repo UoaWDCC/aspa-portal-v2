@@ -1,7 +1,6 @@
 import { Event, RegistrationRecordEvent } from "../event/event-model";
 import { Request, Response } from "express";
 import { User, RegistrationRecordUser } from "../user/user-model";
-import { sendEmailHandler } from "../email/email-controller";
 import EmailService from "../email/emailService";
 
 /**
@@ -13,7 +12,7 @@ interface registerUserEventRequest {
     firstName: string;
     lastName: string;
     email: string;
-    paymentType: "cash" | "Bank Transfer";
+    paymentType: "cash" | "Bank Transfer" | "points";
 }
 
 export const registerUserEvent = async (req: Request, res: Response) => {
@@ -96,11 +95,14 @@ export const registerUserEvent = async (req: Request, res: Response) => {
             { new: true }
         );
         // TODO: modify this to send email when using points
-        if (paymentType == "cash") {
+        if (paymentType == "cash" || paymentType == "points") {
             await EmailService.sendEventEmail(
                 email,
                 firstName,
-                event.eventTitle
+                event.eventTitle,
+                event.eventTime.toLocaleString("en-GB", { timeZone: "nz" }),
+                event.eventLocation,
+                paymentType
             );
         }
         res.status(200).send("User registered for event");

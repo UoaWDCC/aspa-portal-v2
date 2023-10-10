@@ -56,12 +56,17 @@ export default class EmailService {
     public static async sendEventEmail(
         toEmail: string,
         name: string,
-        eventName: string
+        eventName: string,
+        eventDate: string,
+        eventLocation: string,
+        paymentMethod: string
     ) {
         const subject = `ASPA UOA ${eventName} Registration`;
         const title = "ASPA UOA";
-        const message = `You have registered for ${eventName} successfully! 
-        We look forward to seeing you there!`;
+        const message = `You have registered for ${eventName} on ${eventDate} at ${eventLocation} successfully!
+        Your payment for this event was made with ${paymentMethod}.
+        We look forward to seeing you there!
+        `;
         await this._sendEmail(toEmail, subject, name, title, message);
     }
 }
