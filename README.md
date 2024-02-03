@@ -21,7 +21,6 @@ ASPA
 </h1>
 <p align="center">
 React, Tailwind CSS, MongoDB, Express, Node.js
-Work Trello Board: https://trello.com/invite/b/kYuMqoF7/ATTIb696d87d526cf015c1fc4b370810e802EFD276CE/final-sprint
 
 </p>
 
