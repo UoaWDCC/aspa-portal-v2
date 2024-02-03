@@ -3,8 +3,16 @@ Project initiated by WDCC in 2020, revamped for V2 in 2022.
 
 ## Team Leadership (2023)
 
-- Yilong Wang (Project Manager)
+- Amanda Huang
+- Andrew Ham
+- Areil Wang
+- Connor Stevens
+- Jace Ye
 - Jack Ma (Tech Lead)
+- Jacky Zhu
+- Jason Huang
+- Noam Bechhofer
+-  Yilong Wang (Project Manager)
 
 ## Past Notes (to reformat)
 
@@ -13,6 +21,8 @@ ASPA
 </h1>
 <p align="center">
 React, Tailwind CSS, MongoDB, Express, Node.js
+Work Trello Board: https://trello.com/invite/b/kYuMqoF7/ATTIb696d87d526cf015c1fc4b370810e802EFD276CE/final-sprint
+
 </p>
 
 
