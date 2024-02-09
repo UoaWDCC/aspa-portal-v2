@@ -1,0 +1,37 @@
+name: Deploy DEV
+
+on: [workflow_dispatch]
+
+jobs:
+  DeployClient:
+    runs-on: ubuntu-latest
+    environment: DEV
+    defaults:
+      run:
+        working-directory: ./packages/frontend
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Create env file
+        run: echo ${{ secrets.ASPA_DEV_FRONTEND_ENVFILE }} | base64 --decode > .env
+
+      - run: yarn
+      - run: CI=false yarn build
+
+      - uses: 'google-github-actions/auth@v2'
+        with:
+          # Credentials stored inside WDCC organisation secrets
+          credentials_json: '${{ secrets.ASPA_DEV_GCP_DEPLOYMENT_SA_CREDENTIALS }}'
+
+      - uses: 'google-github-actions/upload-cloud-storage@v2'
+        with:
+          # Build path (path is excluded if parent: false flag)
+          path: 'packages/frontend/build'
+          parent: false
+
+          # Bucket to add contents into
+          destination: 'aspa-dev.wdcc.co.nz'
