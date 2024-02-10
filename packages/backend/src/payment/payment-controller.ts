@@ -1,30 +1,27 @@
-import { Request, Response } from "express";
-import { Event } from "../event/event-model";
-import { User } from "../user/user-model";
-import Stripe from "stripe";
+import { Request, Response } from 'express';
+import { Event } from '../event/event-model';
+import { User } from '../user/user-model';
+import Stripe from 'stripe';
 
-import dotenv from "dotenv";
+import dotenv from 'dotenv';
 
 const conf = dotenv.config();
-if (conf.error) {
-  throw conf.error;
-}
 
 const secret = process.env.STRIPE_SECRET_KEY;
 if (!secret)
-  throw new Error("Stripe secret key not found. Please update .env file.");
-const stripe = new Stripe(secret, { apiVersion: "2022-11-15" });
+  throw new Error('Stripe secret key not found. Please update .env file.');
+const stripe = new Stripe(secret, { apiVersion: '2022-11-15' });
 
 /**
  * Backend controller for Stripe Checkout.
  */
 export const checkout = async (req: Request, res: Response) => {
   if (!req.params.eventId) {
-    res.status(400).json("Missing req.params.eventId");
+    res.status(400).json('Missing req.params.eventId');
     return;
   }
   if (!req.params.userId) {
-    res.status(400).json("Missing req.params.userId");
+    res.status(400).json('Missing req.params.userId');
     return;
   }
 
@@ -55,7 +52,7 @@ export const checkout = async (req: Request, res: Response) => {
 
     // Create a Stripe Checkout Session
     const session = await stripe.checkout.sessions.create({
-      payment_method_types: ["card"],
+      payment_method_types: ['card'],
       line_items: [
         {
           // there is an adjustable quantity option btw
@@ -64,9 +61,9 @@ export const checkout = async (req: Request, res: Response) => {
         },
       ],
       success_url:
-        "http://localhost:3000/success-payment?session_id={CHECKOUT_SESSION_ID}",
-      cancel_url: "http://localhost:3000/failed-payment",
-      mode: "payment",
+        'http://localhost:3000/success-payment?session_id={CHECKOUT_SESSION_ID}',
+      cancel_url: 'http://localhost:3000/failed-payment',
+      mode: 'payment',
       metadata: {
         userId: user.id,
         eventId: event.id,
@@ -81,7 +78,7 @@ export const checkout = async (req: Request, res: Response) => {
     // redirect customer to url from checkout session
     const payment_page = session.url;
     if (!payment_page) {
-      const err = new Error("No payment page presented");
+      const err = new Error('No payment page presented');
       res.status(400).json(err);
       return;
     }

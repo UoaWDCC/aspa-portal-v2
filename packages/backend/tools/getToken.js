@@ -1,13 +1,10 @@
 // Script to get the token from firebase
 // import dotenv from "dotenv";
-const dotenv = require("dotenv");
+const dotenv = require('dotenv');
 const conf = dotenv.config();
-if (conf.error) {
-  throw conf.error;
-}
 
 var myHeaders = new Headers();
-myHeaders.append("Content-Type", "application/json");
+myHeaders.append('Content-Type', 'application/json');
 
 const email = process.env.SCRIPT_EMAIL;
 const password = process.env.SCRIPT_PASSWORD;
@@ -20,10 +17,10 @@ var raw = JSON.stringify({
 });
 
 var requestOptions = {
-  method: "POST",
+  method: 'POST',
   headers: myHeaders,
   body: raw,
-  redirect: "follow",
+  redirect: 'follow',
 };
 
 fetch(
@@ -32,4 +29,4 @@ fetch(
 )
   .then((response) => response.text())
   .then((result) => console.log(result))
-  .catch((error) => console.log("error", error));
+  .catch((error) => console.log('error', error));
