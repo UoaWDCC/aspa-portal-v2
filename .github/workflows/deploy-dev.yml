@@ -3,7 +3,45 @@ name: Deploy DEV
 on: [workflow_dispatch]
 
 jobs:
-  DeployClient:
+  deploy-backend:
+    runs-on: ubuntu-latest
+    environment: development
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Node.js version
+        uses: actions/setup-node@v1
+        with:
+          node-version: '18.x'
+
+      - name: npm install
+        run: |
+          npm install
+
+      - name: Create env file
+        run: echo ${{ secrets.ASPA_DEV_BACKEND_ENVFILE }} | base64 --decode > .env
+
+      - name: Build app
+        run: |
+          npm run build
+
+      - id: 'auth'
+        name: 'Authenticate to Google Cloud'
+        uses: 'google-github-actions/auth@v2'
+        with:
+          credentials_json: '${{ secrets.ASPA_DEV_GCP_DEPLOYMENT_SA_CREDENTIALS }}'
+
+      - id: 'app-engine-deploy'
+        uses: 'google-github-actions/deploy-appengine@v2'
+        with:
+          project_id: wdcc-aspa-dev
+          working_directory: ./
+
+  deploy-frontend:
     runs-on: ubuntu-latest
     environment: DEV
     defaults:
