@@ -5,7 +5,7 @@ on: [workflow_dispatch]
 jobs:
   deploy-backend:
     runs-on: ubuntu-latest
-    environment: development
+    environment: DEV
     permissions:
       contents: 'read'
       id-token: 'write'
@@ -24,10 +24,6 @@ jobs:
 
       - name: Create env file
         run: echo ${{ secrets.ASPA_DEV_BACKEND_ENVFILE }} | base64 --decode > .env
-
-      - name: Build app
-        run: |
-          npm run build
 
       - id: 'auth'
         name: 'Authenticate to Google Cloud'
