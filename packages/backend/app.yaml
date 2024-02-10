@@ -1,0 +1,7 @@
+runtime: nodejs18
+
+# By default, GAE uses npm
+entrypoint: 'npm run start'
+
+env_variables:
+  PORT: 8080
