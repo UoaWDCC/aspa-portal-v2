@@ -2,6 +2,9 @@
 // import dotenv from "dotenv";
 const dotenv = require('dotenv');
 const conf = dotenv.config();
+if (conf.error) {
+  throw conf.error;
+}
 
 var myHeaders = new Headers();
 myHeaders.append('Content-Type', 'application/json');

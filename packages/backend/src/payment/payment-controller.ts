@@ -6,6 +6,9 @@ import Stripe from 'stripe';
 import dotenv from 'dotenv';
 
 const conf = dotenv.config();
+if (conf.error) {
+  throw conf.error;
+}
 
 const secret = process.env.STRIPE_SECRET_KEY;
 if (!secret)

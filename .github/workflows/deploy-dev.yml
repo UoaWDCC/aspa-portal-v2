@@ -6,6 +6,9 @@ jobs:
   deploy-backend:
     runs-on: ubuntu-latest
     environment: DEV
+    defaults:
+      run:
+        working-directory: ./packages/backend
     permissions:
       contents: 'read'
       id-token: 'write'
@@ -35,7 +38,6 @@ jobs:
         uses: 'google-github-actions/deploy-appengine@v2'
         with:
           project_id: wdcc-aspa-dev
-          working_directory: ./packages/backend
 
   deploy-frontend:
     runs-on: ubuntu-latest

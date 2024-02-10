@@ -4,7 +4,9 @@ import fs from 'fs';
 import path from 'path';
 
 const conf = dotenv.config();
-
+if (conf.error) {
+  throw conf.error;
+}
 const apiKey = process.env.SENDGRID_API_KEY;
 const fromEmail = process.env.SENDGRID_FROM_EMAIL;
 if (apiKey == null) {

@@ -13,6 +13,9 @@ import { verifyAdmin } from './middleware/verifyAdmin';
 import firebase_admin from 'firebase-admin';
 
 const conf = dotenv.config();
+if (conf.error) {
+  throw conf.error;
+}
 
 const app = express();
 const port = process.env.PORT || 5000;
