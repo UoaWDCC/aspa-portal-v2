@@ -35,7 +35,7 @@ jobs:
         uses: 'google-github-actions/deploy-appengine@v2'
         with:
           project_id: wdcc-aspa-dev
-          working_directory: ./
+          working_directory: ./packages/backend
 
   deploy-frontend:
     runs-on: ubuntu-latest
